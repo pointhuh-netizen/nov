@@ -22,7 +22,8 @@ sillytavern-style-engine/
 │   └── axis-g-interaction.json    ← G축: 상호작용. 2계층. 비어있음
 ├── meta/
 │   ├── catalog.json               ← UI 카탈로그 (모든 축/모듈 등록)
-│   └── combinations.json          ← 조합 권장/비권장 목록 (비어있음)
+│   ├── trait-schema.json           ← 모듈 특성(traits) 스키마 정의
+│   └── combinations.json          ← 조합 자동 충돌 감지 규칙
 └── presets/
     └── .gitkeep                   ← 인기 조합 저장 (향후)
 ```
@@ -56,6 +57,45 @@ N → A → B → C → D → E → F → G
 6. `check_operations` 병합 (ADD/REPLACE/REMOVE)
 7. 충돌 검사 (`combinations.json` 참조)
 8. 최종 프롬프트 조립 → SillyTavern 주입
+
+---
+
+## Traits 시스템
+
+각 모듈은 `traits` 필드를 가진다. traits는 모듈의 결과물 특성을 구조화된 태그로 표현하여, 모듈 조합 시 자동 충돌 감지에 사용된다.
+
+### 주요 traits
+
+| trait | 설명 | 적용 축 |
+|---|---|---|
+| `pov` | 시점 | N, A |
+| `inner_access` | 인물 내면 접근 수준 | N, A |
+| `fid` | FID 사용 범위 | N, A |
+| `emotion_level` | 감정 표현 허용 수준 | N, A, B |
+| `sentence_length` | 지배적 문장 길이 | N, A, B |
+| `sensory_anchor` | 감각 우선순위의 앵커 | N, A |
+| `formality` | 격식 수준 | N, B |
+| `irony` | 아이러니/냉소 사용 여부 | B |
+| `lyricism` | 서정성 수준 | N, B |
+| `narrator_presence` | 서술자 존재감 | N, A, B |
+| `personification` | 의인화 허용 수준 | A, B, F |
+| `temporal_mode` | 시간 구조 | N, A |
+| `slots_touched` | 교체/추가하는 슬롯 목록 | 전체 |
+
+### 충돌 감지
+
+`meta/combinations.json`의 `auto_rules`가 traits를 비교하여 충돌을 감지한다:
+
+- **error**: 조합 불가 (시점 충돌, FID 충돌, 서술자/1인칭 충돌)
+- **warning**: 조합 가능하나 빌드 순서 주의 (문장 길이 충돌, 서정성 충돌, 의인화 충돌)
+- **info**: 참고 사항 (슬롯 겹침, 감정 이중 억제)
+
+### 제어 원칙
+
+의인화 같은 규칙은 **독립 토글이 아니라 시점(A축) 선택의 부산물**이다:
+- A-05(공간 시점), A-06(사물 시점) 선택 시 의인화 금지가 자동으로 적용
+- 문체적 수사로 허용하고 싶으면 B축/F축에서 미세 조정
+- 빌드 순서(A→B)로 우선순위 해소: A축이 금지하면 B축이 허용해도 A축 우선
 
 ---
 

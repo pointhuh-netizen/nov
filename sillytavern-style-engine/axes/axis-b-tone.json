@@ -12,7 +12,10 @@
       "operations": {},
       "check_operations": [],
       "master_guide_delta": {},
-      "known_conflicts": []
+      "known_conflicts": [],
+      "traits": {
+        "slots_touched": []
+      }
     },
     {
       "id": "B-01",
@@ -68,7 +71,16 @@
           "reason": "건조체는 감정 형용사·감각 어휘를 금지하는 반면, 서정체는 이를 핵심 도구로 사용한다.",
           "resolution": "양립 불가. 하나만 선택."
         }
-      ]
+      ],
+      "traits": {
+        "emotion_level": "suppressed",
+        "sentence_length": "short",
+        "formality": "neutral",
+        "irony": false,
+        "lyricism": "forbidden",
+        "narrator_presence": "invisible",
+        "slots_touched": ["MODULE_6_STYLE"]
+      }
     },
     {
       "id": "B-02",
@@ -124,7 +136,16 @@
           "reason": "서정체는 감각 어휘·비유를 핵심 도구로 사용하는 반면, 건조체는 이를 금지한다.",
           "resolution": "양립 불가. 하나만 선택."
         }
-      ]
+      ],
+      "traits": {
+        "emotion_level": "open",
+        "sentence_length": "mixed",
+        "formality": "neutral",
+        "irony": false,
+        "lyricism": "high",
+        "narrator_presence": "invisible",
+        "slots_touched": ["MODULE_6_STYLE"]
+      }
     },
     {
       "id": "B-03",
@@ -174,7 +195,16 @@
         }
       ],
       "master_guide_delta": {},
-      "known_conflicts": []
+      "known_conflicts": [],
+      "traits": {
+        "emotion_level": "open",
+        "sentence_length": "mixed",
+        "formality": "casual",
+        "irony": false,
+        "lyricism": "low",
+        "narrator_presence": "invisible",
+        "slots_touched": ["MODULE_6_STYLE"]
+      }
     },
     {
       "id": "B-04",
@@ -230,7 +260,16 @@
           "reason": "만연체는 긴 복문을 기본으로 하는 반면, 간결체는 문장 분리와 단문 우선을 원칙으로 한다.",
           "resolution": "양립 불가. 하나만 선택."
         }
-      ]
+      ],
+      "traits": {
+        "emotion_level": "open",
+        "sentence_length": "long",
+        "formality": "neutral",
+        "irony": false,
+        "lyricism": "moderate",
+        "narrator_presence": "invisible",
+        "slots_touched": ["MODULE_6_STYLE"]
+      }
     },
     {
       "id": "B-05",
@@ -286,7 +325,16 @@
           "reason": "간결체는 단문·문장 분리를 원칙으로 하는 반면, 만연체는 긴 복문을 기본으로 한다.",
           "resolution": "양립 불가. 하나만 선택."
         }
-      ]
+      ],
+      "traits": {
+        "emotion_level": "restrained",
+        "sentence_length": "short",
+        "formality": "neutral",
+        "irony": false,
+        "lyricism": "low",
+        "narrator_presence": "invisible",
+        "slots_touched": ["MODULE_6_STYLE"]
+      }
     },
     {
       "id": "B-06",
@@ -342,7 +390,16 @@
           "reason": "냉소체는 거리두기·아이러니 온도를 기본으로 하고, 서정체는 감각·여운을 기본으로 한다. 방향이 상반되어 하나의 어조로 수렴되지 않는다.",
           "resolution": "양립 불가. 하나만 선택."
         }
-      ]
+      ],
+      "traits": {
+        "emotion_level": "suppressed",
+        "sentence_length": "mixed",
+        "formality": "neutral",
+        "irony": true,
+        "lyricism": "forbidden",
+        "narrator_presence": "subtle",
+        "slots_touched": ["MODULE_6_STYLE"]
+      }
     },
     {
       "id": "B-07",
@@ -392,7 +449,16 @@
         }
       ],
       "master_guide_delta": {},
-      "known_conflicts": []
+      "known_conflicts": [],
+      "traits": {
+        "emotion_level": "restrained",
+        "sentence_length": "mixed",
+        "formality": "archaic",
+        "irony": false,
+        "lyricism": "moderate",
+        "narrator_presence": "invisible",
+        "slots_touched": ["MODULE_6_STYLE"]
+      }
     }
   ]
 }
