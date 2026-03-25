@@ -1,6 +1,16 @@
 {
   "version": "1.1.0",
   "trait_schema": "meta/trait-schema.json",
+  "configs": [
+    {
+      "id": "user_character_control",
+      "name_ko": "유저 캐릭터 제어",
+      "name_en": "User Character Control",
+      "icon": "🎭",
+      "file": "configs/user-character-control.json",
+      "modes": ["UCC-00", "UCC-01", "UCC-02"]
+    }
+  ],
   "axes": {
     "N": {
       "name_ko": "서사 모드",
