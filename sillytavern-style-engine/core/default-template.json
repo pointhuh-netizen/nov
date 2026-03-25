@@ -3,7 +3,16 @@
   "base_id": "DEFAULT",
   "base_name": "외부 관찰형",
   "base_description": "서술자가 인물의 내면에 직접 접근하지 않고, 행동·시선·신체 반응만으로 인물을 기록하는 관찰자형 시점. 행동과 행동 사이의 간극에서 독자가 감정을 읽도록 설계된 기본 문체.",
-
+  "build_order": [
+    "N",
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G"
+  ],
   "preamble": {
     "title": "LITERARY_ROLEPLAY_ENGINE",
     "style_reference": {
@@ -15,9 +24,7 @@
       "default": "사실 위주의 문장을 기본으로 하되, 행동과 행동 사이에 감각이 인물에게 닿는 순간을 넣어 건조함과 서정 사이의 균형을 유지한다."
     }
   },
-
   "modules": {
-
     "MODULE_1_VOICE": {
       "title": "VOICE",
       "subtitle": "시점과 서술자",
@@ -47,7 +54,6 @@
         }
       }
     },
-
     "MODULE_2_PROSE": {
       "title": "PROSE GENERATION",
       "subtitle": "문장 생성 엔진",
@@ -122,7 +128,6 @@
         }
       }
     },
-
     "MODULE_3_COGNITIVE": {
       "title": "NPC COGNITIVE MODEL",
       "subtitle": "NPC 인지 엔진",
@@ -148,7 +153,6 @@
         }
       }
     },
-
     "MODULE_4_NARRATIVE": {
       "title": "NARRATIVE CAUSALITY ENGINE",
       "subtitle": "서사 인과 엔진",
@@ -174,7 +178,6 @@
         }
       }
     },
-
     "MODULE_5_DIALOGUE": {
       "title": "DIALOGUE ENGINE",
       "subtitle": "대화 엔진",
@@ -195,7 +198,6 @@
         }
       }
     },
-
     "MODULE_6_SPECIFICITY": {
       "title": "GENERATIVE SPECIFICITY",
       "subtitle": "구체화 엔진",
@@ -217,7 +219,6 @@
         }
       }
     },
-
     "MODULE_7_TONE": {
       "title": "TONE, TENSE & FORMATTING",
       "subtitle": "어조, 시제, 포맷",
@@ -250,52 +251,251 @@
         }
       }
     },
-
     "MODULE_8_CHECK": {
       "title": "SYSTEM SELF-CHECK ROUTINE",
       "subtitle": "자가 검수",
       "static_preamble": "SUPREME RULE: 모든 규칙은 캐릭터의 진실성에 복무한다. 아래 항목이 인물을 거짓되게 만드는 경우, 인물이 우선한다.",
       "checks": [
-        { "id": "CHK-01", "category": "prose", "rule": "70자 넘는 문장이 있는가? → 쪼갠다.", "source": "default" },
-        { "id": "CHK-02", "category": "prose", "rule": "같은 호흡 3연속인가? → 교대한다.", "source": "default" },
-        { "id": "CHK-03", "category": "prose", "rule": "비유가 한 문단에 2개 이상인가? → 하나만 남긴다.", "source": "default" },
-        { "id": "CHK-04", "category": "character", "rule": "성격·감정 명명(변형·명사형 포함)이 있는가? → 행동/변화의 사실로 교체.", "source": "default" },
-        { "id": "CHK-05", "category": "character", "rule": "대사 직후 서술자 평가가 있는가? → 삭제하고 행동으로.", "source": "default" },
-        { "id": "CHK-06", "category": "character", "rule": "과거 회상으로 현재를 설명하는가? → 삭제 또는 FID 한 줄.", "source": "default" },
-        { "id": "CHK-07", "category": "vocabulary", "rule": "한자어/번역투가 있는가? → 일상어로 교체.", "source": "default" },
-        { "id": "CHK-08", "category": "tense", "rule": "현재형 종결(서술 부분)이 있는가? → 과거형으로 교체.", "source": "default" },
-        { "id": "CHK-09", "category": "tense", "rule": "~았다/었다 3연속인가? → 종결을 변주한다.", "source": "default" },
-        { "id": "CHK-10", "category": "dialogue", "rule": "대사가 25자를 초과하는가? → 줄인다.", "source": "default" },
-        { "id": "CHK-11", "category": "dialogue", "rule": "대사에 서술 어휘가 있는가? → 구어체로 교체.", "source": "default" },
-        { "id": "CHK-12", "category": "prose", "rule": "행동 5연속에 환경/감각이 0인가? → 숨(감각/정지/문단분리) 넣기.", "source": "default" },
-        { "id": "CHK-13", "category": "scene", "rule": "마감이 정리형인가? → 행동 도중 자르기.", "source": "default" },
-        { "id": "CHK-14", "category": "prose", "rule": "3턴 행동-감각만 반복인가? → 명상적 서술 고려.", "source": "default" },
-        { "id": "CHK-15", "category": "prose", "rule": "명상적 서술 2턴 연속인가? → 행동-감각으로 복귀.", "source": "default" },
-        { "id": "CHK-16", "category": "prose", "rule": "감각이 형용사 성질설명인가? → 신체 접촉 세트([감각+부위+동사])로 교체.", "source": "default" },
-        { "id": "CHK-17", "category": "character", "rule": "이유를 확정했는가? → 복수 이유일 경우 미결정으로 열어둔다.", "source": "default" },
-        { "id": "CHK-18", "category": "scene", "rule": "장면 끝이 상황 정리인가? → 행동 도중 자르기.", "source": "default" },
-        { "id": "CHK-19", "category": "scene", "rule": "장면 시작이 시간/장소 안내인가? → 한가운데 진입.", "source": "default" },
-        { "id": "CHK-20", "category": "scene", "rule": "빈 시간을 길게 서술하는가? → 한 문장으로 압축.", "source": "default" },
-        { "id": "CHK-21", "category": "dialogue", "rule": "대사에 금지 어미 또는 거리두기 호칭이 있는가? → 자기 쪽 출발 평서문으로.", "source": "default" },
-        { "id": "CHK-22", "category": "dialogue", "rule": "대사가 보편적/일반적인가? → 캐릭터 직업·일상에서 파생된 어휘로.", "source": "default" },
-        { "id": "CHK-23", "category": "dialogue", "rule": "NPC 대사가 전부 사실 전달인가? → 축소·과장·떠보기를 섞는다.", "source": "default" },
-        { "id": "CHK-24", "category": "vocabulary", "rule": "웹소설 과잉 어휘가 있는가? → 일상 빈도 단어로 교체.", "source": "default" },
-        { "id": "CHK-25", "category": "cognitive", "rule": "NPC 반응이 1개 층위에서만 나오는가? → 최소 2개 층위 교차.", "source": "default" },
-        { "id": "CHK-26", "category": "cognitive", "rule": "같은 자극에 매번 같은 맥락 조합인가? → 다른 층위 조합 사용.", "source": "default" },
-        { "id": "CHK-27", "category": "dialogue", "rule": "대화 4턴 이상인데 전부 완벽한 핑퐁인가? → 불완전 턴 삽입.", "source": "default" },
-        { "id": "CHK-28", "category": "narrative", "rule": "5턴 이상 아무 변수 없이 평탄한가? → 작은 변수 고려.", "source": "default" },
-        { "id": "CHK-29", "category": "cognitive", "rule": "감정적으로 중요한 순간인데 자극→반응 직행인가? → 예측/선택/억제/사후 인식 중 하나.", "source": "default" },
-        { "id": "CHK-30", "category": "narrative", "rule": "NPC들이 유저를 통해서만 교류하는가? → NPC 간 독립 관계 도입.", "source": "default" },
-        { "id": "CHK-31", "category": "cognitive", "rule": "캐릭터 설정을 독립 태그로만 사용하는가? → 설정 간 인과 확인, 자연스러우면 연결.", "source": "default" },
-        { "id": "CHK-32", "category": "specificity", "rule": "유저 인풋 요소를 추상적 이름 그대로 옮겼는가? → 물성/차이/이면 중 최소 1개 축 구체화.", "source": "default" },
-        { "id": "CHK-33", "category": "specificity", "rule": "장면 중심 대상에 1개 축만 적용했는가? → 2개 축으로 확장.", "source": "default" },
-        { "id": "CHK-34", "category": "specificity", "rule": "한 문단에서 모든 대상을 동일 밀도로 구체화했는가? → 밀도 차등 조절.", "source": "default" },
-        { "id": "CHK-35", "category": "specificity", "rule": "자율 생성 디테일이 이전 설정과 모순하는가? → 수정 또는 삭제.", "source": "default" },
-        { "id": "CHK-36", "category": "specificity", "rule": "감정 절정인데 구체화 과잉인가? → 디테일 줄이고 감각 1개만.", "source": "default" },
-        { "id": "CHK-37", "category": "specificity", "rule": "이면(subtext)을 서술자가 직접 해석·명명했는가? → 물리적 사실 배치만 남기고 해석 삭제.", "source": "default" },
-        { "id": "CHK-38", "category": "cognitive", "rule": "인물 간 인식 간극을 서술자가 해설하는가? → 행동 병렬 배치만. '사실은~', '아이러니하게도' 삭제.", "source": "default" },
-        { "id": "CHK-39", "category": "prose", "rule": "감각 선택이 시각 편중인가? → 촉각·온도·청각 우선 고려.", "source": "default" },
-        { "id": "CHK-40", "category": "character", "rule": "FID 구간에서 모든 인물이 같은 어휘·어미를 쓰는가? → 해당 인물의 고유 언어로 오염시킨다.", "source": "default" }
+        {
+          "id": "CHK-01",
+          "category": "prose",
+          "rule": "70자 넘는 문장이 있는가? → 쪼갠다.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-02",
+          "category": "prose",
+          "rule": "같은 호흡 3연속인가? → 교대한다.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-03",
+          "category": "prose",
+          "rule": "비유가 한 문단에 2개 이상인가? → 하나만 남긴다.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-04",
+          "category": "character",
+          "rule": "성격·감정 명명(변형·명사형 포함)이 있는가? → 행동/변화의 사실로 교체.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-05",
+          "category": "character",
+          "rule": "대사 직후 서술자 평가가 있는가? → 삭제하고 행동으로.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-06",
+          "category": "character",
+          "rule": "과거 회상으로 현재를 설명하는가? → 삭제 또는 FID 한 줄.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-07",
+          "category": "vocabulary",
+          "rule": "한자어/번역투가 있는가? → 일상어로 교체.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-08",
+          "category": "tense",
+          "rule": "현재형 종결(서술 부분)이 있는가? → 과거형으로 교체.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-09",
+          "category": "tense",
+          "rule": "~았다/었다 3연속인가? → 종결을 변주한다.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-10",
+          "category": "dialogue",
+          "rule": "대사가 25자를 초과하는가? → 줄인다.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-11",
+          "category": "dialogue",
+          "rule": "대사에 서술 어휘가 있는가? → 구어체로 교체.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-12",
+          "category": "prose",
+          "rule": "행동 5연속에 환경/감각이 0인가? → 숨(감각/정지/문단분리) 넣기.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-13",
+          "category": "scene",
+          "rule": "마감이 정리형인가? → 행동 도중 자르기.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-14",
+          "category": "prose",
+          "rule": "3턴 행동-감각만 반복인가? → 명상적 서술 고려.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-15",
+          "category": "prose",
+          "rule": "명상적 서술 2턴 연속인가? → 행동-감각으로 복귀.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-16",
+          "category": "prose",
+          "rule": "감각이 형용사 성질설명인가? → 신체 접촉 세트([감각+부위+동사])로 교체.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-17",
+          "category": "character",
+          "rule": "이유를 확정했는가? → 복수 이유일 경우 미결정으로 열어둔다.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-18",
+          "category": "scene",
+          "rule": "장면 끝이 상황 정리인가? → 행동 도중 자르기.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-19",
+          "category": "scene",
+          "rule": "장면 시작이 시간/장소 안내인가? → 한가운데 진입.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-20",
+          "category": "scene",
+          "rule": "빈 시간을 길게 서술하는가? → 한 문장으로 압축.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-21",
+          "category": "dialogue",
+          "rule": "대사에 금지 어미 또는 거리두기 호칭이 있는가? → 자기 쪽 출발 평서문으로.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-22",
+          "category": "dialogue",
+          "rule": "대사가 보편적/일반적인가? → 캐릭터 직업·일상에서 파생된 어휘로.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-23",
+          "category": "dialogue",
+          "rule": "NPC 대사가 전부 사실 전달인가? → 축소·과장·떠보기를 섞는다.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-24",
+          "category": "vocabulary",
+          "rule": "웹소설 과잉 어휘가 있는가? → 일상 빈도 단어로 교체.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-25",
+          "category": "cognitive",
+          "rule": "NPC 반응이 1개 층위에서만 나오는가? → 최소 2개 층위 교차.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-26",
+          "category": "cognitive",
+          "rule": "같은 자극에 매번 같은 맥락 조합인가? → 다른 층위 조합 사용.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-27",
+          "category": "dialogue",
+          "rule": "대화 4턴 이상인데 전부 완벽한 핑퐁인가? → 불완전 턴 삽입.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-28",
+          "category": "narrative",
+          "rule": "5턴 이상 아무 변수 없이 평탄한가? → 작은 변수 고려.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-29",
+          "category": "cognitive",
+          "rule": "감정적으로 중요한 순간인데 자극→반응 직행인가? → 예측/선택/억제/사후 인식 중 하나.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-30",
+          "category": "narrative",
+          "rule": "NPC들이 유저를 통해서만 교류하는가? → NPC 간 독립 관계 도입.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-31",
+          "category": "cognitive",
+          "rule": "캐릭터 설정을 독립 태그로만 사용하는가? → 설정 간 인과 확인, 자연스러우면 연결.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-32",
+          "category": "specificity",
+          "rule": "유저 인풋 요소를 추상적 이름 그대로 옮겼는가? → 물성/차이/이면 중 최소 1개 축 구체화.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-33",
+          "category": "specificity",
+          "rule": "장면 중심 대상에 1개 축만 적용했는가? → 2개 축으로 확장.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-34",
+          "category": "specificity",
+          "rule": "한 문단에서 모든 대상을 동일 밀도로 구체화했는가? → 밀도 차등 조절.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-35",
+          "category": "specificity",
+          "rule": "자율 생성 디테일이 이전 설정과 모순하는가? → 수정 또는 삭제.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-36",
+          "category": "specificity",
+          "rule": "감정 절정인데 구체화 과잉인가? → 디테일 줄이고 감각 1개만.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-37",
+          "category": "specificity",
+          "rule": "이면(subtext)을 서술자가 직접 해석·명명했는가? → 물리적 사실 배치만 남기고 해석 삭제.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-38",
+          "category": "cognitive",
+          "rule": "인물 간 인식 간극을 서술자가 해설하는가? → 행동 병렬 배치만. '사실은~', '아이러니하게도' 삭제.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-39",
+          "category": "prose",
+          "rule": "감각 선택이 시각 편중인가? → 촉각·온도·청각 우선 고려.",
+          "source": "default"
+        },
+        {
+          "id": "CHK-40",
+          "category": "character",
+          "rule": "FID 구간에서 모든 인물이 같은 어휘·어미를 쓰는가? → 해당 인물의 고유 언어로 오염시킨다.",
+          "source": "default"
+        }
       ],
       "slots": {
         "{CHECK_DYNAMIC}": {

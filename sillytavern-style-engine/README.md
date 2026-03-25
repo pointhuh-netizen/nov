@@ -1,73 +1,238 @@
 # SillyTavern Style Engine
 
-## 개요
-SillyTavern용 모듈형 프롬프트 아키텍처. 기본틀(Default Template) 위에 축별 모듈을 오버레이하여 문체를 조합하는 시스템.
+SillyTavern용 모듈형 프롬프트 아키텍처. 기본틀(Default Template) 위에 N축(복합 문체) → A~G축(단일 차원)을 순서대로 오버레이하여 문체를 조합하는 시스템.
 
-## 구조
-2계층: Default Template + Axis Overlay
-- **Layer 0**: `core/master-rules.json` — 어떤 문체를 선택해도 절대 변하지 않는 불변 규칙
-- **Default Template**: `core/default-template.json` — 아무것도 선택하지 않아도 완전히 작동하는 기본 문체("외부 관찰형")
-- **Axis Modules**: `axes/axis-*.json` — 축별 오버레이 모듈. 선택하면 기본틀의 해당 변수를 교체/추가/공존
+---
 
-## 축(Axis) 분류 (A~G)
-| 축 | 이름 | 타입 | 설명 |
+## 아키텍처
+
+```
+sillytavern-style-engine/
+├── core/
+│   ├── default-template.json     ← 기본 문체 ("외부 관찰형"), 8개 MODULE, 슬롯 시스템
+│   └── master-rules.json         ← 불변 규칙 (core_directives, forbidden 패턴/어휘/대사)
+├── axes/
+│   ├── axis-n-narrative-mode.json ← N축: 복합 문체 (서사 모드). 1계층. N-00~N-02
+│   ├── axis-a-pov.json            ← A축: 시점·서술방식. 2계층. A-00~A-06
+│   ├── axis-b-tone.json           ← B축: 어조·어휘. 2계층. B-00~B-07 (포맷 정비 필요)
+│   ├── axis-c-genre.json          ← C축: 장르. 2계층. 비어있음
+│   ├── axis-d-mood.json           ← D축: 분위기. 2계층. 비어있음
+│   ├── axis-e-setting.json        ← E축: 배경. 2계층. 비어있음
+│   ├── axis-f-special.json        ← F축: 특별 요소. 2계층. 비어있음
+│   └── axis-g-interaction.json    ← G축: 상호작용. 2계층. 비어있음
+├── meta/
+│   ├── catalog.json               ← UI 카탈로그 (모든 축/모듈 등록)
+│   └── combinations.json          ← 조합 권장/비권장 목록 (비어있음)
+└── presets/
+    └── .gitkeep                   ← 인기 조합 저장 (향후)
+```
+
+---
+
+## 2계층 구조
+
+| 계층 | 축 | 역할 | 선택 방식 |
 |---|---|---|---|
-| A | 시점 · 서술방식 | MUTEX | 하나만 선택 가능 |
-| B | 어조 · 어휘 | COMBINABLE | 다중 선택 가능 |
-| C | 장르 | COMBINABLE | 다중 선택 가능 |
-| D | 분위기 | COMBINABLE | 다중 선택 가능 |
-| E | 배경 | COMBINABLE | 다중 선택 가능 |
-| F | 특별 요소 | COMBINABLE | 다중 선택 가능 |
-| G | 상호작용 | COMBINABLE | 다중 선택 가능 |
+| **1계층** | **N** | 복합 문체 선택. 여러 축의 슬롯을 동시에 설정하고, static/preamble을 교체하며, 고유 구조 법칙을 깔아둠 | MUTEX (0 또는 1개) |
+| **2계층** | **A~G** | 단일 차원 미세 조정. N축이 깔아놓은 값 위에 특정 슬롯만 덮어씀 | A: MUTEX / B~G: COMBINABLE |
 
-## 오버레이 모드
+**핵심 원칙:** N축이 default-template 위에 복합 문체 전체를 설정 → A~G축이 그 위에서 원하는 차원만 미세 조정.
+
+---
+
+## 빌드 순서
+
+```
+N → A → B → C → D → E → F → G
+```
+
+1. `default-template.json` 로드 (모든 슬롯에 기본값)
+2. `master-rules.json` 로드 (항상 포함)
+3. **N축** 모듈 적용 (복합 문체 전체 설정)
+4. **A축** 모듈 적용 (시점 미세 조정)
+5. **B~G축** 모듈 적용 (각 차원 미세 조정)
+6. `check_operations` 병합 (ADD/REPLACE/REMOVE)
+7. 충돌 검사 (`combinations.json` 참조)
+8. 최종 프롬프트 조립 → SillyTavern 주입
+
+---
+
+## 축별 슬롯 맵
+
+| 축 | 건드리는 슬롯 | 위치 |
+|---|---|---|
+| **N** | `{A_*}`, `{B_*}`, `{C_*}`, `{D_*}`, `{F_*}` 전체 + static_overrides + preamble_overrides | 복합 (여러 모듈) |
+| **A** | `{A_VOICE_POV_RATIO}`, `{A_VOICE_FID_STYLE}`, `{A_VOICE_STYLE_REF}`, `{A_PROSE_RHYTHM}`, `{A_PROSE_SENSORY}`, `{A_PROSE_DESCRIPTION}`, `{A_PROSE_CAUSALITY}`, `{A_PROSE_TIME_DENSITY}`, `{A_PROSE_PACING}`, `{A_PROSE_DWELL}`, `{A_PROSE_MEDITATIVE}`, `{A_PROSE_PHYSICAL_DISTANCE}` | MODULE_1_VOICE, MODULE_2_PROSE |
+| **B** | `{B_TONE_TEMP}`, `{B_TONE_VOCAB}`, `{B_TONE_FID_GRAMMAR}`, `{B_TONE_ENDING}`, `{B_TONE_DIALOGUE_TAG}` | MODULE_7_TONE |
+| **C** | `{C_NARR_GENRE_VARS}`, `{C_DLG_GENRE_STYLE}` | MODULE_4_NARRATIVE, MODULE_5_DIALOGUE |
+| **D** | `{D_PROSE_MOOD}` | MODULE_2_PROSE |
+| **E** | `{E_NARR_SETTING_VARS}` | MODULE_4_NARRATIVE |
+| **F** | `{F_COG_QUIRKS}`, `{F_SPEC_EXTRA}` | MODULE_3_COGNITIVE, MODULE_6_SPECIFICITY |
+| **G** | `{G_COG_DISTANCE}`, `{G_NARR_INITIATIVE}`, `{G_NARR_NPC_NETWORK}`, `{G_DLG_INCOMPLETE}` | MODULE_3_COGNITIVE, MODULE_4_NARRATIVE, MODULE_5_DIALOGUE |
+
+---
+
+## 모듈 완성 상태
+
+| 축 | ID | 이름 | 상태 |
+|---|---|---|---|
+| **N** | N-00 | 사용하지 않음 | ✅ 완성 |
+| **N** | N-01 | 동화/우화 | ✅ 완성 |
+| **N** | N-02 | 서간체 | ✅ 완성 |
+| **A** | A-00 | 사용하지 않음 | ✅ 완성 |
+| **A** | A-01 | 1인칭 체험형 | ✅ 완성 |
+| **A** | A-02 | 2인칭 관찰 밀착형 | ✅ 완성 |
+| **A** | A-03 | 3인칭 제한 관찰자 | ✅ 완성 (기본값 사용) |
+| **A** | A-04 | 전지적 작가 시점 | ✅ 완성 |
+| **A** | A-05 | 공간 시점 | ✅ 완성 |
+| **A** | A-06 | 사물 시점 | ✅ 완성 |
+| **B** | B-00 | 사용하지 않음 | ⚠️ 포맷 불일치 |
+| **B** | B-01 | 건조체 | ⚠️ 포맷 불일치 |
+| **B** | B-02 | 서정체 | ⚠️ 포맷 불일치 |
+| **B** | B-03 | 구어체 | ⚠️ 포맷 불일치 |
+| **B** | B-04 | 만연체 | ⚠️ 포맷 불일치 |
+| **B** | B-05 | 간결체 | ⚠️ 포맷 불일치 |
+| **B** | B-06 | 냉소체 | ⚠️ 포맷 불일치 |
+| **B** | B-07 | 고풍체 | ⚠️ 포맷 불일치 |
+| **C** | — | (없음) | ❌ 미구현 |
+| **D** | — | (없음) | ❌ 미구현 |
+| **E** | — | (없음) | ❌ 미구현 |
+| **F** | — | (없음) | ❌ 미구현 |
+| **G** | — | (없음) | ❌ 미구현 |
+
+---
+
+## 다음 할 일 (우선순위 순)
+
+- [ ] **[HIGH] B축 포맷 정비**: `override_mode` + `module_overrides.MODULE_6_STYLE` 구조 → `operations` + `check_operations` 구조로 전환. `{B_TONE_TEMP}`, `{B_TONE_VOCAB}`, `{B_TONE_FID_GRAMMAR}`, `{B_TONE_ENDING}`, `{B_TONE_DIALOGUE_TAG}` 슬롯 연결. (별도 PR 예정)
+- [ ] **[HIGH] catalog.json에 B축 모듈 등록**: B-00~B-07 등록
+- [ ] **[MED] C축 장르 모듈 작성**: `{C_NARR_GENRE_VARS}`, `{C_DLG_GENRE_STYLE}` 슬롯 사용
+- [ ] **[MED] D축 분위기 모듈 작성**: `{D_PROSE_MOOD}` 슬롯 사용
+- [ ] **[MED] F축 특별 요소 모듈 작성**: `{F_COG_QUIRKS}`, `{F_SPEC_EXTRA}` 슬롯 사용
+- [ ] **[LOW] E축 배경 모듈 작성**: `{E_NARR_SETTING_VARS}` 슬롯 사용
+- [ ] **[LOW] G축 상호작용 모듈 작성**: `{G_*}` 슬롯 사용
+- [ ] **[LOW] combinations.json 채우기**: 권장/비권장 조합 등록
+- [ ] **[LOW] N-03 극본체 추가**: 대사 중심 서사 모드
+- [ ] **[LOW] N-04 웹소설체 추가**: 장르 관습 기반 복합 모드
+- [ ] **[LOW] presets/ 채우기**: 인기 조합 저장
+
+---
+
+## 모듈 포맷 설명
+
+### N축 모듈 포맷
+
+N축은 **복합 문체**를 다루므로, A~G 여러 축의 슬롯을 동시에 건드린다. 추가 필드:
+
+```json
+{
+  "id": "N-01",
+  "name": "동화/우화",
+  "one_liner": "UI에 표시될 한줄 설명",
+  "persona": "서술자 페르소나 (해당 있는 경우)",
+  "preamble_overrides": {
+    "title": "변경할 preamble 제목",
+    "naming_rule": "추가 명명 규칙",
+    "core_directives_add": ["추가할 core directive"],
+    "narrator_stance": "서술자 입장 (서간체 등)"
+  },
+  "operations": {
+    "{A_VOICE_POV_RATIO}": { "mode": "REPLACE", "value": "..." },
+    "{B_TONE_TEMP}": { "mode": "REPLACE", "value": "..." },
+    "{C_NARR_GENRE_VARS}": { "mode": "REPLACE", "value": "..." }
+  },
+  "check_operations": [
+    { "mode": "ADD", "check": { "id": "CHK-N01-01", ... } },
+    { "mode": "REPLACE", "target_id": "CHK-04", "reason": "...", "check": { ... } }
+  ],
+  "static_overrides": {
+    "MODULE_1_VOICE": { "static": ["교체할 static 배열"] },
+    "MODULE_7_TONE": { "static": ["교체할 static 배열"] }
+  },
+  "master_guide_delta": { "key": "추가 가이드라인" },
+  "known_conflicts": [
+    { "with": "A-01", "reason": "...", "resolution": "..." }
+  ]
+}
+```
+
+**A~G 축과의 차이:**
+- `operations`에 `{A_*}`, `{B_*}`, `{C_*}`, `{D_*}`, `{F_*}` 등 **여러 접두사의 슬롯이 혼재**
+- `preamble_overrides`: default-template의 preamble 필드 중 변경이 필요한 것만 교체
+- `static_overrides`: 특정 모듈의 static 배열을 교체해야 할 때 사용
+- `persona`: 동화처럼 서술자 페르소나가 있는 경우 추가
+
+### A~G축 모듈 포맷
+
+A~G축은 **단일 차원** 조정이므로, 자기 접두사 슬롯만 건드린다:
+
+```json
+{
+  "id": "A-01",
+  "name": "1인칭 체험형",
+  "one_liner": "UI에 표시될 한줄 설명",
+  "operations": {
+    "{A_VOICE_POV_RATIO}": { "mode": "REPLACE", "value": "..." },
+    "{A_PROSE_RHYTHM}": { "mode": "REPLACE", "value": "..." }
+  },
+  "check_operations": [
+    { "mode": "ADD", "check": { "id": "CHK-A01-01", "category": "pov", "rule": "...", "source": "A-01" } },
+    { "mode": "REPLACE", "target_id": "CHK-40", "reason": "...", "check": { ... } }
+  ],
+  "master_guide_delta": { ... },
+  "known_conflicts": [ ... ]
+}
+```
+
+**오버레이 모드:**
+
 | 모드 | 설명 | 용도 |
 |---|---|---|
-| REPLACE | 기본값을 완전히 대체 | A축(MUTEX), 또는 기본값과 양립 불가능한 경우 |
+| REPLACE | 기본값을 완전히 대체 | A/N축(MUTEX), 기본값과 양립 불가한 경우 |
 | APPEND | 기본값 뒤에 내용 추가 | B~G축(COMBINABLE)에서 정보를 덧붙일 때 |
-| COEXIST | 기본값과 나란히 병렬 배치 | 기존 규칙을 유지하면서 추가 규칙을 병렬로 둘 때 |
+| COEXIST | 기본값과 나란히 병렬 배치 | 기존 규칙 유지하면서 추가 규칙을 병렬로 둘 때 |
 
-## Self-Check 병합 로직
-축 모듈은 `check_operations`로 기본 검수 항목을 조작할 수 있음:
+**Self-Check 병합 모드:**
+
 | 모드 | 설명 |
 |---|---|
 | ADD | 새 검수 항목 추가 |
 | REPLACE | 기존 항목(target_id)을 새 버전으로 교체 |
 | REMOVE | 기존 항목(target_id) 제거 |
 
-빌드 시 중복 제거 및 충돌 해소가 자동으로 수행됨.
+---
 
-## 변수 네이밍 컨벤션
-`{축_모듈약어_기능}` 패턴.
-- 축 접두사: A_, B_, C_, D_, E_, F_, G_
-- 예: `{A_VOICE_POV_RATIO}`, `{B_TONE_TEMP}`, `{C_NARR_GENRE_VARS}`
+## 알려진 문제
 
-## 빌드 흐름
-1. `default-template.json` 로드 (모든 슬롯에 기본값)
-2. `master-rules.json` 로드 (항상 포함)
-3. 유저 선택된 축 모듈의 `operations` 실행 (REPLACE/APPEND/COEXIST)
-4. 축 모듈의 `check_operations` 실행 (ADD/REPLACE/REMOVE)
-5. 충돌 검사 (`combinations.json` 참조)
-6. 최종 프롬프트 조립 → SillyTavern에 주입
+### B축 포맷 불일치
 
-## 축 모듈 등록 시 필수 필드
+현재 B-00~B-07은 아래의 **비표준 구조**를 사용하고 있다:
+
 ```json
 {
-  "id": "A-01",
-  "name": "모듈 이름",
-  "one_liner": "UI에 표시될 한줄 설명",
-  "operations": { ... },
-  "check_operations": [ ... ],
-  "master_guide_delta": { ... },
-  "known_conflicts": [ ... ]
+  "override_mode": "APPEND",
+  "preamble_overrides": { "tone_register": "..." },
+  "module_overrides": {
+    "MODULE_6_STYLE": {
+      "append_rules": [ "..." ]
+    }
+  }
 }
 ```
 
-## 파일 구조
-```
-sillytavern-style-engine/
-├── core/           ← 불변 규칙 + 기본틀
-├── axes/           ← 축별 모듈 (데이터가 쌓이는 곳)
-├── meta/           ← UI 카탈로그 + 조합 관리
-└── presets/        ← 인기 조합 저장 (향후)
-```
+문제점:
+1. `operations` 필드가 없어서 빌드 시스템에 실제로 연결되지 않음
+2. `MODULE_6_STYLE`은 default-template에 존재하지 않는 모듈명 (실제로는 `MODULE_7_TONE`)
+3. `{B_TONE_TEMP}`, `{B_TONE_VOCAB}`, `{B_TONE_FID_GRAMMAR}`, `{B_TONE_ENDING}`, `{B_TONE_DIALOGUE_TAG}` 슬롯에 대한 operations가 전무
+4. `check_operations`가 전부 없음
+
+→ **별도 PR로 B축 전면 재작성 예정**
+
+---
+
+## 변경 이력
+
+| 버전 | 내용 |
+|---|---|
+| 초기 | A-00~A-06, B-00~B-07 작성. catalog.json에 A축만 등록 |
+| 현재 | **N축(서사 모드) 신설**: N-00(사용하지 않음), N-01(동화/우화), N-02(서간체). `default-template.json`에 `build_order` 추가. A-07 서간체를 N-02로 이동. catalog.json에 N축 등록 |
