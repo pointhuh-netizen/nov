@@ -19,7 +19,7 @@
     "B": {
       "name_ko": "어조 · 어휘",
       "name_en": "Tone & Vocabulary",
-      "type": "combinable",
+      "type": "mutex",
       "ui_description": "문장의 온도, 말투, 단어 선택 수준.",
       "icon": "🎨"
     },
@@ -129,6 +129,62 @@
       "name": "사물 시점",
       "one_liner": "특정 사물 하나가 관찰자. 그 사물의 물리적 감각 범위만으로 세계를 기록.",
       "file": "axes/axis-a-pov.json"
+    },
+    {
+      "id": "B-00",
+      "axis": "B",
+      "name": "사용하지 않음",
+      "one_liner": "어조·어휘 지시를 주입하지 않음. default-template 기본값 그대로 사용.",
+      "file": "axes/axis-b-tone.json"
+    },
+    {
+      "id": "B-01",
+      "axis": "B",
+      "name": "건조체",
+      "one_liner": "감정을 삭제하고 사실만 남긴 보고서형 어조.",
+      "file": "axes/axis-b-tone.json"
+    },
+    {
+      "id": "B-02",
+      "axis": "B",
+      "name": "서정체",
+      "one_liner": "감각과 여운을 살린 시적 어조.",
+      "file": "axes/axis-b-tone.json"
+    },
+    {
+      "id": "B-03",
+      "axis": "B",
+      "name": "구어체",
+      "one_liner": "말하듯 쓰는 자연스러운 입말 어조.",
+      "file": "axes/axis-b-tone.json"
+    },
+    {
+      "id": "B-04",
+      "axis": "B",
+      "name": "만연체",
+      "one_liner": "긴 호흡으로 층위를 쌓아가는 복문 위주 어조.",
+      "file": "axes/axis-b-tone.json"
+    },
+    {
+      "id": "B-05",
+      "axis": "B",
+      "name": "간결체",
+      "one_liner": "군더더기 없이 핵심만 남기는 단문 위주 어조.",
+      "file": "axes/axis-b-tone.json"
+    },
+    {
+      "id": "B-06",
+      "axis": "B",
+      "name": "냉소체",
+      "one_liner": "거리를 두고 비틀어 보는 아이러니 어조.",
+      "file": "axes/axis-b-tone.json"
+    },
+    {
+      "id": "B-07",
+      "axis": "B",
+      "name": "고풍체",
+      "one_liner": "한문 투·고어를 절제 있게 살린 아카이브형 어조.",
+      "file": "axes/axis-b-tone.json"
     }
   ]
 }

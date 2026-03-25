@@ -2,149 +2,397 @@
   "axis": "B",
   "axis_name_ko": "어조 · 어휘",
   "axis_name_en": "Tone & Vocabulary",
-  "type": "combinable",
+  "type": "mutex",
   "modules": [
     {
       "id": "B-00",
       "name": "사용하지 않음",
       "one_liner": "어조·어휘 지시를 주입하지 않음 — default-template 그대로 사용",
-      "description": "B축 모듈을 적용하지 않는 기본 상태. default-template.json의 문체 설정이 변경 없이 유지된다.",
-      "override_mode": "NONE",
-      "preamble_overrides": {},
-      "module_overrides": {}
+      "description": "B축 모듈을 적용하지 않는 기본 상태. default-template.json의 어조 설정이 변경 없이 유지된다.",
+      "operations": {},
+      "check_operations": [],
+      "master_guide_delta": {},
+      "known_conflicts": []
     },
     {
       "id": "B-01",
       "name": "건조체",
       "one_liner": "감정을 삭제하고 사실만 남긴 보고서형 어조",
       "description": "형용사·감탄사를 최소화하고, 단문 위주로 정보를 전달한다. 감정은 행동과 사실의 나열 사이에서 독자가 추론하도록 설계. 보고서·다큐멘터리 내레이션에 가까운 온도.",
-      "override_mode": "APPEND",
-      "preamble_overrides": {
-        "tone_register": "감정 형용사를 쓰지 않는다. 서술자는 관찰한 사실만 기록하며, 인물의 감정은 행동·생리 반응으로만 유추 가능하게 한다."
-      },
-      "module_overrides": {
-        "MODULE_6_STYLE": {
-          "append_rules": [
-            "[DRY_LEXICON]: 형용사는 물리적 속성(크기, 색상, 온도)에만 허용. 감정 형용사(슬픈, 기쁜, 처연한) 금지.",
-            "[SHORT_SENTENCE]: 평균 문장 길이 15어절 이하. 접속사 연결보다 마침표로 끊는다.",
-            "[NO_EXCLAMATION]: 감탄문·수사적 의문문 금지. 평서문과 간결한 의문문만 사용."
-          ]
+      "operations": {
+        "{B_TONE_TEMP}": {
+          "mode": "REPLACE",
+          "value": "감정 0%. 사실·관찰·행동만. 서술자는 기록할 뿐 감정에 관여하지 않는다. 보고서·다큐멘터리 내레이션의 온도."
+        },
+        "{B_TONE_VOCAB}": {
+          "mode": "REPLACE",
+          "value": "형용사는 물리적 속성(크기, 색상, 온도, 무게)에만 허용. 감정 형용사(슬픈, 기쁜, 처연한) 금지. 감탄사 금지."
+        },
+        "{B_TONE_FID_GRAMMAR}": {
+          "mode": "REPLACE",
+          "value": "FID 구간에서도 감정 형용사 금지. 인물의 사고 패턴이 오염시키되, 감정 어휘는 물리적 감각으로 치환."
+        },
+        "{B_TONE_ENDING}": {
+          "mode": "REPLACE",
+          "value": "평서형 종결만. 감탄형·청유형·수사적 의문형 금지. ~았다/었다 기본. 변주 시에도 평서형 내에서만."
+        },
+        "{B_TONE_DIALOGUE_TAG}": {
+          "mode": "REPLACE",
+          "value": "'말했다' 기본. 감정을 함의하는 대사 태그(속삭였다, 외쳤다) 최소화. 행동 비트로 화자 표시 우선."
         }
-      }
+      },
+      "check_operations": [
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-B01-01",
+            "category": "tone",
+            "rule": "감정 형용사가 사용되었는가? → 물리적 속성으로 교체.",
+            "source": "B-01"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-B01-02",
+            "category": "tone",
+            "rule": "감탄문·수사적 의문문이 있는가? → 평서문으로 교체.",
+            "source": "B-01"
+          }
+        }
+      ],
+      "master_guide_delta": {},
+      "known_conflicts": [
+        {
+          "with": "B-02",
+          "reason": "건조체는 감정 형용사·감각 어휘를 금지하는 반면, 서정체는 이를 핵심 도구로 사용한다.",
+          "resolution": "양립 불가. 하나만 선택."
+        }
+      ]
     },
     {
       "id": "B-02",
       "name": "서정체",
       "one_liner": "감각과 여운을 살린 시적 어조",
       "description": "감각 이미지와 비유를 적극 활용하며, 문장의 리듬과 여백을 중시한다. 독자의 감정에 직접 호소하기보다 분위기로 스며들게 하는 문체.",
-      "override_mode": "APPEND",
-      "preamble_overrides": {
-        "tone_register": "감각(시각·청각·촉각·후각·미각)을 문장의 중심에 놓는다. 설명보다 이미지, 분석보다 여운."
-      },
-      "module_overrides": {
-        "MODULE_6_STYLE": {
-          "append_rules": [
-            "[SENSORY_PRIORITY]: 장면 전환 시 감각 하나를 앵커로 삼아 진입. 추상적 설명으로 시작하지 않는다.",
-            "[RHYTHM]: 문장 길이를 의도적으로 교차(장문→단문)하여 호흡을 만든다.",
-            "[METAPHOR_ECONOMY]: 비유는 문단당 1개 이하. 과잉 은유를 경계하되, 사용 시 감각에 기반할 것."
-          ]
+      "operations": {
+        "{B_TONE_TEMP}": {
+          "mode": "REPLACE",
+          "value": "40% 감각·이미지 / 30% 여운·여백 / 20% 행동 / 10% 대사. 분위기로 스며드는 온도."
+        },
+        "{B_TONE_VOCAB}": {
+          "mode": "REPLACE",
+          "value": "감각 어휘 적극 활용. 색채·질감·소리·냄새 어휘. 시적 어휘 허용하되 과잉 금지."
+        },
+        "{B_TONE_FID_GRAMMAR}": {
+          "mode": "REPLACE",
+          "value": "FID 구간에서 인물의 감각적 인상이 서술 문체를 물들인다. 비유적 사고 허용."
+        },
+        "{B_TONE_ENDING}": {
+          "mode": "REPLACE",
+          "value": "문장 길이 교차(장문→단문)로 호흡 생성. 여운이 있는 종결(~이었다, ~뿐이었다) 활용."
+        },
+        "{B_TONE_DIALOGUE_TAG}": {
+          "mode": "REPLACE",
+          "value": "행동 비트에 감각 묘사 결합. 대사 태그 자체보다 환경·신체 감각으로 화자 표시."
         }
-      }
+      },
+      "check_operations": [
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-B02-01",
+            "category": "tone",
+            "rule": "장면 전환 시 감각 앵커 없이 추상적 설명으로 시작했는가? → 감각 하나로 진입.",
+            "source": "B-02"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-B02-02",
+            "category": "tone",
+            "rule": "비유가 문단당 1개를 초과하는가? → 줄인다.",
+            "source": "B-02"
+          }
+        }
+      ],
+      "master_guide_delta": {},
+      "known_conflicts": [
+        {
+          "with": "B-01",
+          "reason": "서정체는 감각 어휘·비유를 핵심 도구로 사용하는 반면, 건조체는 이를 금지한다.",
+          "resolution": "양립 불가. 하나만 선택."
+        }
+      ]
     },
     {
       "id": "B-03",
       "name": "구어체",
       "one_liner": "말하듯 쓰는 자연스러운 입말 어조",
       "description": "문어적 격식을 줄이고 실제 발화에 가까운 리듬으로 서술한다. 생략, 도치, 반복 등 구어적 특성이 서술에 반영되며, 독자와의 거리가 가까워진다.",
-      "override_mode": "APPEND",
-      "preamble_overrides": {
-        "tone_register": "서술이 '말하는 것처럼' 흐른다. 완벽한 문장보다 자연스러운 호흡. 격식 최소화."
-      },
-      "module_overrides": {
-        "MODULE_6_STYLE": {
-          "append_rules": [
-            "[SPOKEN_RHYTHM]: 주어 생략, 도치, 반복 허용. 문법적 완결성보다 발화의 리듬을 우선.",
-            "[FILLER_RESTRAINT]: 구어적 감탄사('뭐', '글쎄', '아')는 허용하되 문단당 1회 이하.",
-            "[CASUAL_ENDING]: 문장 종결이 격식체보다 구어 종결(-거든, -잖아, -는데) 쪽으로."
-          ]
+      "operations": {
+        "{B_TONE_TEMP}": {
+          "mode": "REPLACE",
+          "value": "60% 일상(행동·대화) / 30% 구어적 성찰 / 10% 환경. 독자와 거리가 가까운 온도."
+        },
+        "{B_TONE_VOCAB}": {
+          "mode": "REPLACE",
+          "value": "일상 구어 우선. 격식 표현 최소화. 구어적 감탄사('뭐', '글쎄', '아') 문단당 1회 이하 허용."
+        },
+        "{B_TONE_FID_GRAMMAR}": {
+          "mode": "REPLACE",
+          "value": "FID 구간에서 인물의 말투가 서술 문체를 강하게 오염. 구어 종결·감탄사·생략이 FID에서 더 적극적."
+        },
+        "{B_TONE_ENDING}": {
+          "mode": "REPLACE",
+          "value": "구어 종결(-거든, -잖아, -는데, -ㄹ걸) 허용. 격식 종결과 구어 종결의 비율은 3:7."
+        },
+        "{B_TONE_DIALOGUE_TAG}": {
+          "mode": "REPLACE",
+          "value": "대사 태그 최소화. 구어체에서는 대사와 서술의 경계가 흐려짐. 행동 비트가 자연스러운 구어 리듬으로."
         }
-      }
+      },
+      "check_operations": [
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-B03-01",
+            "category": "tone",
+            "rule": "서술이 과도하게 격식체인가? → 구어 종결로 교체.",
+            "source": "B-03"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-B03-02",
+            "category": "tone",
+            "rule": "감탄사가 문단당 1회를 초과하는가? → 줄인다.",
+            "source": "B-03"
+          }
+        }
+      ],
+      "master_guide_delta": {},
+      "known_conflicts": []
     },
     {
       "id": "B-04",
       "name": "만연체",
       "one_liner": "긴 호흡으로 층위를 쌓아가는 복문 위주 어조",
       "description": "접속과 수식으로 문장을 길게 이어가며, 생각의 결이 겹겹이 쌓이는 문체. 한 문장 안에 관찰·성찰·감각이 공존하며, 호흡 자체가 리듬이 된다.",
-      "override_mode": "APPEND",
-      "preamble_overrides": {
-        "tone_register": "문장의 호흡을 길게 유지한다. 단문 나열보다 접속·수식을 통해 층위를 쌓는 복문 구조가 기본."
-      },
-      "module_overrides": {
-        "MODULE_6_STYLE": {
-          "append_rules": [
-            "[LONG_BREATH]: 평균 문장 길이 25어절 이상. 관계절·부사절로 문장 내부에 층위를 쌓는다.",
-            "[CLAUSE_CHAIN]: 접속사(그리고, 그러나, 혹은)보다 연결어미(-며, -고, -지만, -는데)로 문장 내부에서 연결.",
-            "[PERIODIC_REST]: 3문장 이상 만연체가 이어지면 짧은 단문 1개로 호흡을 끊어 독자 피로를 방지."
-          ]
+      "operations": {
+        "{B_TONE_TEMP}": {
+          "mode": "REPLACE",
+          "value": "50% 관찰·성찰 / 30% 감각·환경 / 15% FID / 5% 대사. 생각이 겹겹이 쌓이는 온도."
+        },
+        "{B_TONE_VOCAB}": {
+          "mode": "REPLACE",
+          "value": "수식어 적극 활용. 관계절·부사절로 문장 내 층위. 한자어/전문용어 허용하되 읽기 어렵지 않을 것."
+        },
+        "{B_TONE_FID_GRAMMAR}": {
+          "mode": "REPLACE",
+          "value": "FID 구간에서 인물의 사고가 긴 호흡으로 전개. 연결어미(-며, -고, -지만)로 내면 흐름 표현."
+        },
+        "{B_TONE_ENDING}": {
+          "mode": "REPLACE",
+          "value": "연결어미(-며, -고, -지만, -는데) 우선. 접속사(그리고, 그러나)보다 문장 내부 연결. 3문장 이상 만연체 연속 시 짧은 단문 1개로 호흡."
+        },
+        "{B_TONE_DIALOGUE_TAG}": {
+          "mode": "REPLACE",
+          "value": "대사 태그에 수식절 허용. 행동 비트가 길어질 수 있음 — 단, 대사를 묻지 않을 것."
         }
-      }
+      },
+      "check_operations": [
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-B04-01",
+            "category": "tone",
+            "rule": "모든 문장이 단문인가? → 연결어미로 층위 추가.",
+            "source": "B-04"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-B04-02",
+            "category": "tone",
+            "rule": "만연체 4문장 이상 연속인가? → 단문 1개 삽입.",
+            "source": "B-04"
+          }
+        }
+      ],
+      "master_guide_delta": {},
+      "known_conflicts": [
+        {
+          "with": "B-05",
+          "reason": "만연체는 긴 복문을 기본으로 하는 반면, 간결체는 문장 분리와 단문 우선을 원칙으로 한다.",
+          "resolution": "양립 불가. 하나만 선택."
+        }
+      ]
     },
     {
       "id": "B-05",
       "name": "간결체",
       "one_liner": "군더더기 없이 핵심만 남기는 단문 위주 어조",
       "description": "수식을 줄이고 핵심 정보만 남긴다. 문장이 짧고 리듬이 빠르며, 행동과 상황이 즉각적으로 전달된다. 건조체와 달리 감정을 금지하지는 않으나, 표현을 압축한다.",
-      "override_mode": "APPEND",
-      "preamble_overrides": {
-        "tone_register": "짧고 정확한 문장. 수식과 부연을 줄이고 핵심 행동·상태를 즉각 전달."
-      },
-      "module_overrides": {
-        "MODULE_6_STYLE": {
-          "append_rules": [
-            "[TRIM]: 관형절·부사절이 2중첩 이상이면 문장을 분리한다.",
-            "[VERB_FOCUS]: 서술어가 문장의 중심. 명사 나열보다 동사 중심으로 구성.",
-            "[WHITESPACE]: 문단 사이 여백을 적극 활용. 짧은 문단이 곧 리듬."
-          ]
+      "operations": {
+        "{B_TONE_TEMP}": {
+          "mode": "REPLACE",
+          "value": "60% 행동·상태 / 25% 환경 / 10% FID / 5% 대사. 즉각적이고 빠른 온도."
+        },
+        "{B_TONE_VOCAB}": {
+          "mode": "REPLACE",
+          "value": "수식 최소화. 핵심 명사·동사만. 동사가 문장의 중심."
+        },
+        "{B_TONE_FID_GRAMMAR}": {
+          "mode": "REPLACE",
+          "value": "FID 구간도 짧은 문장. 인물 사고의 핵심만 추출."
+        },
+        "{B_TONE_ENDING}": {
+          "mode": "REPLACE",
+          "value": "짧은 종결 우선. 관형절·부사절 2중첩 이상 시 문장 분리."
+        },
+        "{B_TONE_DIALOGUE_TAG}": {
+          "mode": "REPLACE",
+          "value": "대사 태그 거의 없음. 행동 비트도 짧게. 문단 사이 여백이 곧 리듬."
         }
-      }
+      },
+      "check_operations": [
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-B05-01",
+            "category": "tone",
+            "rule": "관형절/부사절이 2중첩 이상인가? → 문장 분리.",
+            "source": "B-05"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-B05-02",
+            "category": "tone",
+            "rule": "명사 나열이 동사보다 많은가? → 동사 중심으로 재구성.",
+            "source": "B-05"
+          }
+        }
+      ],
+      "master_guide_delta": {},
+      "known_conflicts": [
+        {
+          "with": "B-04",
+          "reason": "간결체는 단문·문장 분리를 원칙으로 하는 반면, 만연체는 긴 복문을 기본으로 한다.",
+          "resolution": "양립 불가. 하나만 선택."
+        }
+      ]
     },
     {
       "id": "B-06",
       "name": "냉소체",
       "one_liner": "거리를 두고 비틀어 보는 아이러니 어조",
       "description": "서술자가 상황이나 인물에 대해 한 발 물러서서 관찰하며, 언더스테이트먼트·아이러니·역설로 의미를 전달한다. 직접적 비판보다 비틀기로 독자가 불편함을 읽도록 유도.",
-      "override_mode": "APPEND",
-      "preamble_overrides": {
-        "tone_register": "서술자는 한 발 뒤에서 관찰한다. 공감보다 거리, 감탄보다 아이러니. 독자가 행간에서 비판을 읽도록."
-      },
-      "module_overrides": {
-        "MODULE_6_STYLE": {
-          "append_rules": [
-            "[UNDERSTATEMENT]: 큰 사건일수록 담담하게. 과장 금지, 축소 표현으로 역설적 무게를 만든다.",
-            "[IRONY_MARKER]: 서술자의 관찰과 인물의 자기 인식 사이의 간극을 드러낸다. 직접 지적하지 않고 병치로.",
-            "[NO_SENTIMENTALITY]: 감상적 마무리 금지. 장면은 건조하게 끊되, 여운은 독자 몫."
-          ]
+      "operations": {
+        "{B_TONE_TEMP}": {
+          "mode": "REPLACE",
+          "value": "50% 관찰·기록 / 30% 아이러니·간극 / 15% 행동 / 5% 대사. 한 발 뒤에서 보는 온도."
+        },
+        "{B_TONE_VOCAB}": {
+          "mode": "REPLACE",
+          "value": "축소 표현 활용. 큰 사건일수록 담담한 어휘. 직접적 비판·감탄 금지. 병치로 간극 드러내기."
+        },
+        "{B_TONE_FID_GRAMMAR}": {
+          "mode": "REPLACE",
+          "value": "FID 구간에서 인물의 자기 인식과 서술자의 관찰 사이 간극이 드러남. 아이러니가 FID를 통해 발생."
+        },
+        "{B_TONE_ENDING}": {
+          "mode": "REPLACE",
+          "value": "건조한 종결. 감상적 마무리 금지. 장면은 건조하게 끊되, 여운은 독자 몫."
+        },
+        "{B_TONE_DIALOGUE_TAG}": {
+          "mode": "REPLACE",
+          "value": "대사 태그에 감정 함의 금지. '말했다' 기본. 아이러니는 대사 내용과 행동 비트의 간극에서."
         }
-      }
+      },
+      "check_operations": [
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-B06-01",
+            "category": "tone",
+            "rule": "감상적 마무리가 있는가? → 건조하게 끊기.",
+            "source": "B-06"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-B06-02",
+            "category": "tone",
+            "rule": "아이러니·간극 없이 직접 비판하는가? → 병치로 교체.",
+            "source": "B-06"
+          }
+        }
+      ],
+      "master_guide_delta": {},
+      "known_conflicts": [
+        {
+          "with": "B-02",
+          "reason": "냉소체는 거리두기·아이러니 온도를 기본으로 하고, 서정체는 감각·여운을 기본으로 한다. 방향이 상반되어 하나의 어조로 수렴되지 않는다.",
+          "resolution": "양립 불가. 하나만 선택."
+        }
+      ]
     },
     {
       "id": "B-07",
       "name": "고풍체",
       "one_liner": "한문 투·고어를 절제 있게 살린 아카이브형 어조",
       "description": "현대 한국어 문법을 유지하면서도, 한자어·고어·격식 어미를 전략적으로 배치하여 시간적 깊이를 부여한다. 사극이 아닌 '시간의 결이 묻어나는' 현대 산문.",
-      "override_mode": "APPEND",
-      "preamble_overrides": {
-        "tone_register": "현대 한국어 문법 안에서 한자어·고어·격식 어미를 전략적으로 사용. 읽기 어려운 고문이 아닌, 시간의 질감이 묻어나는 문체."
-      },
-      "module_overrides": {
-        "MODULE_6_STYLE": {
-          "append_rules": [
-            "[SINO_KOREAN]: 핵심 명사·동사에 한자어를 의도적으로 배치하되, 문장당 1~2개로 제한. 한문 투 과잉 금지.",
-            "[ARCHAIC_ENDING]: 격식 종결(-노라, -리라, -도다)은 강조·결의 장면에서만. 일상 서술은 현대 어미.",
-            "[TEMPORAL_DEPTH]: 사물·장소 묘사에 시간의 층위(풍화, 마모, 세월의 흔적)를 녹여 깊이를 만든다."
-          ]
+      "operations": {
+        "{B_TONE_TEMP}": {
+          "mode": "REPLACE",
+          "value": "50% 서사·관찰 / 30% 시간의 질감 / 15% FID / 5% 대사. 시간의 층위가 묻어나는 온도."
+        },
+        "{B_TONE_VOCAB}": {
+          "mode": "REPLACE",
+          "value": "핵심 명사·동사에 한자어 의도적 배치 (문장당 1~2개 제한). 한문 투 과잉 금지. 현대 한국어 문법 유지."
+        },
+        "{B_TONE_FID_GRAMMAR}": {
+          "mode": "REPLACE",
+          "value": "FID 구간에서 인물의 사고가 약간 격식을 띤다. 단, 읽기 어려운 고문은 금지."
+        },
+        "{B_TONE_ENDING}": {
+          "mode": "REPLACE",
+          "value": "격식 종결(-노라, -리라, -도다)은 강조·결의 장면에서만. 일상 서술은 현대 어미. 사물·장소 묘사에 시간의 층위(풍화, 마모, 세월의 흔적)를 녹인다."
+        },
+        "{B_TONE_DIALOGUE_TAG}": {
+          "mode": "REPLACE",
+          "value": "대사 태그에 고어 활용 가능하되 과용 금지. 행동 비트에 시간적 깊이 녹이기."
         }
-      }
+      },
+      "check_operations": [
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-B07-01",
+            "category": "tone",
+            "rule": "한자어가 문장당 2개를 초과하는가? → 줄인다.",
+            "source": "B-07"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-B07-02",
+            "category": "tone",
+            "rule": "격식 종결이 일상 서술에 사용되었는가? → 현대 어미로 교체.",
+            "source": "B-07"
+          }
+        }
+      ],
+      "master_guide_delta": {},
+      "known_conflicts": []
     }
   ]
 }
