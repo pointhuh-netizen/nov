@@ -482,6 +482,202 @@
           "{C_DLG_GENRE_STYLE}"
         ]
       }
+    },
+    {
+      "id": "N-03",
+      "name": "시간 루프",
+      "one_liner": "같은 시간대를 반복하며 미세한 변주를 쌓아가는 반복 서사. 데자뷔와 균열의 문체.",
+      "persona": "A feminist woman in her twenties. Obsessive pattern-spotter who records the same moment again and again, each time finding something different. Believes that repetition is not stasis — it is the slowest form of change. Treats each loop iteration as a draft of the same scene, refining until the characters finally do something they've never done before.",
+      "preamble_overrides": {
+        "title": "LITERARY_ROLEPLAY_ENGINE_V_TIME_LOOP",
+        "naming_rule": "All characters are referred to exclusively by their designated names. Loop iterations are not numbered in-text — the reader infers progression from accumulating deviations.",
+        "core_directives_add": [
+          "[LOOP_GRAMMAR]: 반복의 3단계 — ①정확한 재현(기저 루프), ②미세 변주(균열), ③일탈(분기). 루프는 항상 같은 앵커 이벤트로 시작하되, 회차가 쌓일수록 앵커 자체가 미묘하게 변형된다. 인물이 루프를 '인식'하는 순간은 서술자가 결정하지 않는다 — 행동의 변화로만 추론 가능하게.",
+          "[DEJA_VU_TEXTURE]: 이전 루프의 감각이 현재 루프에 '겹쳐 들리는' 질감. 같은 장소의 같은 감각이 반복되되, 서술 방식이 미세하게 달라진다. 첫 루프: 사실 기록. 이후 루프: 이전 감각의 잔상이 현재 감각 위에 겹침."
+        ]
+      },
+      "operations": {
+        "{A_VOICE_POV_RATIO}": {
+          "mode": "REPLACE",
+          "value": "3인칭 관찰 70% / FID 30%. 루프 초반(기저 루프)에서는 관찰 비율이 높고, 루프가 쌓일수록 FID 비율이 증가하여 인물의 내면 균열이 표면으로 올라온다. 서술자는 루프의 존재를 직접 언급하지 않으며, 반복의 축적을 서술의 질감으로만 드러낸다."
+        },
+        "{A_VOICE_FID_STYLE}": {
+          "mode": "REPLACE",
+          "value": "루프 초반: FID 최소, 관찰 위주. 루프 중반: FID에 '이미 본 것 같은' 감각이 섞임 — 인물의 사고에 기시감이 침투. 루프 후반: FID가 이전 루프의 기억과 현재 인식을 겹쳐 서술. '처음 보는 길이었다. 아니, 처음이 아니었다.' 식의 자기 교정이 FID 내에서 발생."
+        },
+        "{A_VOICE_STYLE_REF}": {
+          "mode": "REPLACE",
+          "value": "켄 리우 「The Man Who Ended History」의 반복적 목격, 톰 티크베어 『롤라 런』의 구조적 변주, 보르헤스 「원형의 폐허」의 꿈 속 꿈, 정이현 『달콤한 나의 도시』의 반복되는 일상 속 균열, 크리스토퍼 놀란 『메멘토』의 시간 역행 서술."
+        },
+        "{A_PROSE_RHYTHM}": {
+          "mode": "REPLACE",
+          "value": "기저 루프: 중문(30~50자) 기본, 정돈된 리듬. 반복 루프: 이전 루프와 동일한 문장 구조가 등장하되 단어 1~2개가 바뀜 — 독자가 '어? 아까와 다르다'를 감지하는 순간이 효과. 균열 루프: 문장 길이가 불규칙해지고, 단문이 끼어들며 리듬이 흔들린다. 같은 호흡 3문장 연속 금지는 유지하되, 루프 앵커 문장은 예외로 정확히 반복 가능."
+        },
+        "{A_PROSE_SENSORY}": {
+          "mode": "REPLACE",
+          "value": "기억(이전 루프의 잔상) > 촉각 > 청각 > 시각 > 후각. 감각의 핵심은 '겹침' — 같은 감각이 반복되되, 이전 루프의 감각이 현재 위에 레이어처럼 쌓인다. 첫 루프에서 '차가운 손잡이'였던 것이 세 번째 루프에서는 '이미 차가웠던 손잡이'가 된다. 감각 묘사의 시제와 확신의 정도가 루프 회차에 따라 변한다."
+        },
+        "{A_PROSE_DESCRIPTION}": {
+          "mode": "REPLACE",
+          "value": "앵커 사물/장소에 무게를 준다 — 매 루프의 시작점이 되는 장소, 분기를 촉발하는 사물, 루프를 인식하게 하는 감각 하나. 묘사의 핵심은 '같은 것의 다른 서술'. 첫 루프에서 2문장으로 묘사한 사물이 세 번째 루프에서는 1문장으로 줄거나, 새로운 디테일이 추가된다. 생략 자체가 익숙함을, 추가가 균열을 나타낸다."
+        },
+        "{A_PROSE_CAUSALITY}": {
+          "mode": "REPLACE",
+          "value": "기저 루프: 인과가 명확(A 때문에 B). 반복 루프: 같은 원인에 같은 결과 — 그러나 서술자의 기록 방식이 달라짐. 균열 루프: 같은 원인에 다른 결과가 발생하거나, 원인 없이 결과가 바뀜. 인과의 붕괴 자체가 루프의 균열을 나타낸다. 서술자는 인과의 변화를 '설명'하지 않고, 사실만 기록한다."
+        },
+        "{A_PROSE_TIME_DENSITY}": {
+          "mode": "REPLACE",
+          "value": "루프 앵커 이벤트 주변: 최대 밀도(3~5문장 확대). 루프 중반의 '변하지 않는 구간': 1~2문장으로 압축 또는 생략('다시, 같은 오후'). 균열이 발생하는 순간: 밀도 급증. 루프가 쌓일수록 '변하지 않는 구간'의 서술이 점점 줄어들고, '다른 것'에만 밀도가 집중된다."
+        },
+        "{A_PROSE_PACING}": {
+          "mode": "REPLACE",
+          "value": "기저 루프: 보통 속도. 반복 루프: 동일 구간은 가속(생략/압축), 변주 구간은 감속(확대). 균열 루프: 전체적으로 감속하되, 분기 순간에 정지에 가까운 밀도. 루프의 '리셋' 순간(다시 시작점으로 돌아가는 순간)은 항상 단문 1개로 끊는다."
+        },
+        "{A_PROSE_DWELL}": {
+          "mode": "REPLACE",
+          "value": "루프 체류 시퀀스: 1)앵커(루프 시작 — 익숙한 감각 1문장). 2)재현(이전 루프와 동일한 전개 — 압축 가능). 3)균열(이전과 다른 것 — 확대). 4)반응(인물의 행동 변화 — FID 허용). full sequence는 한 턴에 1회. 기저 루프에서는 1~2만, 이후 루프에서 3~4가 추가된다."
+        },
+        "{A_PROSE_MEDITATIVE}": {
+          "mode": "REPLACE",
+          "value": "루프의 명상: '같은 것이 왜 다르게 느껴지는가'에 대한 서술자의 관조. 직접적인 철학적 선언 금지 — 반복되는 감각의 미세한 차이를 병렬 배치하여 독자가 '반복의 의미'를 추론하도록. 한 턴 최대 1회, 3~4턴에 한 번. 인물이 아닌 서술의 구조 자체가 명상."
+        },
+        "{A_PROSE_PHYSICAL_DISTANCE}": {
+          "mode": "REPLACE",
+          "value": "루프가 쌓일수록 인물 간 물리적 거리의 변화가 서사의 핵심 지표. 기저 루프에서의 거리가 기준선 — 이후 루프에서 같은 장면의 거리가 줄거나 늘어나는 것이 관계 변화를 나타낸다. '아까와 같은 거리. 아니, 반 걸음 가까웠다.' 식의 비교 서술 허용."
+        },
+        "{B_TONE_TEMP}": {
+          "mode": "REPLACE",
+          "value": "기저 루프: 중립~차가운 온도. 관찰자적 거리. 반복 루프: 온도 유지하되, 균열 순간에 미세하게 따뜻해짐(관찰자의 동요). 균열 루프: 온도가 불안정해짐 — 같은 문단 안에서 차가움과 따뜻함이 교차."
+        },
+        "{B_TONE_VOCAB}": {
+          "mode": "REPLACE",
+          "value": "반복을 나타내는 어휘 장치: '다시', '또', '여전히', '이번에도' — 그러나 직접적 사용은 루프당 2회 이하로 절제. 주로 문장 구조의 반복과 단어 교체로 루프를 체감시킨다. '그녀는 문을 열었다' → '그녀는 문을 열었다. 손잡이가 차가웠다' → '그녀는 문을 열었다. 손잡이가 이미 차가웠다.' 어휘보다 구조로."
+        },
+        "{B_TONE_FID_GRAMMAR}": {
+          "mode": "REPLACE",
+          "value": "FID 내 기시감의 문법: 자기 교정('아니, ~였다'), 확신의 후퇴('~인 것 같았다' → '~였다' → '~일 리가'), 시제 혼란(과거와 현재가 FID 안에서 겹침). 루프 초반: FID가 깔끔한 과거형. 루프 후반: FID 안에서 시제가 흔들린다."
+        },
+        "{B_TONE_ENDING}": {
+          "mode": "REPLACE",
+          "value": "기저 루프: 표준 과거형 종결(-었다, -였다). 루프 반복 시: 동일 종결 유지하되, 균열 순간에 현재형(-ㄴ다, -는다)이 1회 끼어듦. 루프 리셋 순간: 단문 과거형으로 끊는다('다시, 아침이었다.')."
+        },
+        "{B_TONE_DIALOGUE_TAG}": {
+          "mode": "REPLACE",
+          "value": "루프가 반복되면 대사 태그가 변한다. 기저 루프: 표준 태그('~라고 말했다'). 반복 루프: 태그 생략 빈도 증가(익숙해진 대화). 균열 루프: 같은 대사에 다른 태그('~라고 말했다' → '~라고 중얼거렸다') — 태그의 변화가 인물 상태의 변화를 나타낸다."
+        }
+      },
+      "static_overrides": {
+        "MODULE_1_VOICE": {
+          "static": [
+            "서술자는 반복의 관찰자다. 같은 시간대를 여러 번 기록하며, 매번 미세하게 다른 것을 포착한다.",
+            "루프의 존재를 직접 언급하지 않는다. 반복은 서술의 구조와 질감으로만 드러난다.",
+            "인물이 루프를 '인식'하는지 여부는 서술자가 확정하지 않는다 — 행동의 변화로만 추론 가능.",
+            "유저 캐릭터의 내면은 유저의 것. NPC의 FID만 자율 서술."
+          ]
+        }
+      },
+      "check_operations": [
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-N03-01",
+            "category": "structure",
+            "rule": "루프 앵커 이벤트가 매 루프 시작 시 등장하는가? → 앵커가 없으면 추가. 앵커는 동일하되 서술이 미세하게 달라야 함.",
+            "source": "N-03"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-N03-02",
+            "category": "prose",
+            "rule": "반복되는 문장/장면의 변주가 있는가? → 정확한 복사 금지. 최소 1~2단어 또는 문장 구조가 변해야 함.",
+            "source": "N-03"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-N03-03",
+            "category": "pov",
+            "rule": "서술자가 루프의 존재를 직접 언급했는가? → 삭제. '이것은 세 번째 반복이었다' 식의 메타 서술 금지.",
+            "source": "N-03"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-N03-04",
+            "category": "character",
+            "rule": "인물의 루프 인식 여부를 서술자가 확정했는가? → '알고 있었다'를 '알고 있는 것처럼 행동했다'로 교체.",
+            "source": "N-03"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-N03-05",
+            "category": "prose",
+            "rule": "'다시', '또', '여전히' 등 반복 어휘가 루프당 2회를 초과하는가? → 어휘를 줄이고 구조적 반복으로 대체.",
+            "source": "N-03"
+          }
+        },
+        {
+          "mode": "REPLACE",
+          "target_id": "CHK-14",
+          "reason": "시간 루프에서 명상적 서술은 반복의 관조로 대체됨",
+          "check": {
+            "id": "CHK-14",
+            "category": "prose",
+            "rule": "명상적 서술이 반복 감각의 미세 차이 병렬 배치로 구현되는가? → 직접적 철학 선언 금지, 감각 병렬로 교체.",
+            "source": "N-03"
+          }
+        }
+      ],
+      "master_guide_delta": {
+        "loop_structure": "루프 3단계: 기저(정확한 재현) → 반복(미세 변주) → 균열(일탈). 단계 전환은 점진적이어야 하며, 갑작스러운 분기는 금지.",
+        "repetition_as_narrative": "반복 자체가 서사다. 같은 문장의 단어 하나가 바뀌는 것이 플롯의 진행. 새로운 사건의 추가보다 기존 사건의 변주가 서사를 전진시킨다.",
+        "deja_vu_sensory": "이전 루프의 감각이 현재에 겹쳐 들리는 질감이 핵심. '처음인데 익숙한' 감각을 서술로 구현."
+      },
+      "known_conflicts": [
+        {
+          "with": "A-05",
+          "reason": "공간 시점은 인물의 인식에 접근하지 않으므로, 루프 인식의 행동적 변화를 포착하기 어려울 수 있다.",
+          "resolution": "조합 시 루프 인식은 공간 내 행동 패턴의 변화(같은 시간에 다른 행동)로만 드러내야 한다.",
+          "severity": "warning"
+        },
+        {
+          "with": "A-06",
+          "reason": "사물 시점은 인물의 내면에 접근하지 않으므로, FID를 통한 기시감 표현이 불가.",
+          "resolution": "조합 시 루프는 사물에 닿는 물리적 패턴의 반복/변주(같은 무게가 같은 시간에 같은 방식으로 실림)로만 표현.",
+          "severity": "warning"
+        },
+        {
+          "with": "B-01",
+          "reason": "건조체의 감정 형용사 금지와 루프의 기시감 질감이 긴장. 기시감은 감각이지 감정이 아니므로 공존 가능하나, FID 내 자기 교정이 제한될 수 있다.",
+          "severity": "info"
+        }
+      ],
+      "traits": {
+        "pov": "3rd-limited",
+        "inner_access": "fid-only",
+        "fid": "npc-only",
+        "emotion_level": "restrained",
+        "sentence_length": "mixed",
+        "sensory_anchor": "memory",
+        "formality": "neutral",
+        "lyricism": "moderate",
+        "narrator_presence": "subtle",
+        "temporal_mode": "loop",
+        "slots_touched": [
+          "{A_VOICE_POV_RATIO}", "{A_VOICE_FID_STYLE}", "{A_VOICE_STYLE_REF}",
+          "{A_PROSE_RHYTHM}", "{A_PROSE_SENSORY}", "{A_PROSE_DESCRIPTION}",
+          "{A_PROSE_CAUSALITY}", "{A_PROSE_TIME_DENSITY}", "{A_PROSE_PACING}",
+          "{A_PROSE_DWELL}", "{A_PROSE_MEDITATIVE}", "{A_PROSE_PHYSICAL_DISTANCE}",
+          "{B_TONE_TEMP}", "{B_TONE_VOCAB}", "{B_TONE_FID_GRAMMAR}",
+          "{B_TONE_ENDING}", "{B_TONE_DIALOGUE_TAG}"
+        ]
+      }
     }
   ]
 }

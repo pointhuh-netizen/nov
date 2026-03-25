@@ -69,7 +69,7 @@
     },
     "temporal_mode": {
       "type": "enum",
-      "values": ["linear", "flashback", "layered", "ritual"],
+      "values": ["linear", "flashback", "layered", "ritual", "loop"],
       "description": "시간 구조.",
       "applicable_axes": ["N", "A"]
     },
