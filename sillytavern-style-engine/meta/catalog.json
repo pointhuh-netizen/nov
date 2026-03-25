@@ -1,0 +1,55 @@
+{
+  "version": "1.0.0",
+  "axes": {
+    "A": {
+      "name_ko": "시점 · 서술방식",
+      "name_en": "POV & Narration Style",
+      "type": "mutex",
+      "ui_description": "글의 뼈대가 되는 시점과 서술 구조. 하나만 선택 가능.",
+      "icon": "👁️"
+    },
+    "B": {
+      "name_ko": "어조 · 어휘",
+      "name_en": "Tone & Vocabulary",
+      "type": "combinable",
+      "ui_description": "문장의 온도, 말투, 단어 선택 수준.",
+      "icon": "🎨"
+    },
+    "C": {
+      "name_ko": "장르",
+      "name_en": "Genre",
+      "type": "combinable",
+      "ui_description": "세계관의 규칙과 서사 관습을 결정하는 장르.",
+      "icon": "📚"
+    },
+    "D": {
+      "name_ko": "분위기",
+      "name_en": "Mood & Atmosphere",
+      "type": "combinable",
+      "ui_description": "장면 전체를 지배하는 정서적 색채.",
+      "icon": "🌫️"
+    },
+    "E": {
+      "name_ko": "배경",
+      "name_en": "Setting & Era",
+      "type": "combinable",
+      "ui_description": "시대, 장소, 문화적 맥락.",
+      "icon": "🏙️"
+    },
+    "F": {
+      "name_ko": "특별 요소",
+      "name_en": "Special Elements",
+      "type": "combinable",
+      "ui_description": "특수 종족, 마법 체계, 고유 장치 등 세계관 플러그인.",
+      "icon": "✨"
+    },
+    "G": {
+      "name_ko": "상호작용",
+      "name_en": "Interaction Style",
+      "type": "combinable",
+      "ui_description": "NPC 반응 방식, 서사 개입 빈도, 관계 역학.",
+      "icon": "🔄"
+    }
+  },
+  "modules": []
+}

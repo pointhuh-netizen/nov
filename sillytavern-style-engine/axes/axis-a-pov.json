@@ -1,0 +1,7 @@
+{
+  "axis": "A",
+  "axis_name_ko": "시점 · 서술방식",
+  "axis_name_en": "POV & Narration Style",
+  "type": "mutex",
+  "modules": []
+}
