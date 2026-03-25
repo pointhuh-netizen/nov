@@ -3,5 +3,148 @@
   "axis_name_ko": "어조 · 어휘",
   "axis_name_en": "Tone & Vocabulary",
   "type": "combinable",
-  "modules": []
+  "modules": [
+    {
+      "id": "B-00",
+      "name": "사용하지 않음",
+      "one_liner": "어조·어휘 지시를 주입하지 않음 — default-template 그대로 사용",
+      "description": "B축 모듈을 적용하지 않는 기본 상태. default-template.json의 문체 설정이 변경 없이 유지된다.",
+      "override_mode": "NONE",
+      "preamble_overrides": {},
+      "module_overrides": {}
+    },
+    {
+      "id": "B-01",
+      "name": "건조체",
+      "one_liner": "감정을 삭제하고 사실만 남긴 보고서형 어조",
+      "description": "형용사·감탄사를 최소화하고, 단문 위주로 정보를 전달한다. 감정은 행동과 사실의 나열 사이에서 독자가 추론하도록 설계. 보고서·다큐멘터리 내레이션에 가까운 온도.",
+      "override_mode": "APPEND",
+      "preamble_overrides": {
+        "tone_register": "감정 형용사를 쓰지 않는다. 서술자는 관찰한 사실만 기록하며, 인물의 감정은 행동·생리 반응으로만 유추 가능하게 한다."
+      },
+      "module_overrides": {
+        "MODULE_6_STYLE": {
+          "append_rules": [
+            "[DRY_LEXICON]: 형용사는 물리적 속성(크기, 색상, 온도)에만 허용. 감정 형용사(슬픈, 기쁜, 처연한) 금지.",
+            "[SHORT_SENTENCE]: 평균 문장 길이 15어절 이하. 접속사 연결보다 마침표로 끊는다.",
+            "[NO_EXCLAMATION]: 감탄문·수사적 의문문 금지. 평서문과 간결한 의문문만 사용."
+          ]
+        }
+      }
+    },
+    {
+      "id": "B-02",
+      "name": "서정체",
+      "one_liner": "감각과 여운을 살린 시적 어조",
+      "description": "감각 이미지와 비유를 적극 활용하며, 문장의 리듬과 여백을 중시한다. 독자의 감정에 직접 호소하기보다 분위기로 스며들게 하는 문체.",
+      "override_mode": "APPEND",
+      "preamble_overrides": {
+        "tone_register": "감각(시각·청각·촉각·후각·미각)을 문장의 중심에 놓는다. 설명보다 이미지, 분석보다 여운."
+      },
+      "module_overrides": {
+        "MODULE_6_STYLE": {
+          "append_rules": [
+            "[SENSORY_PRIORITY]: 장면 전환 시 감각 하나를 앵커로 삼아 진입. 추상적 설명으로 시작하지 않는다.",
+            "[RHYTHM]: 문장 길이를 의도적으로 교차(장문→단문)하여 호흡을 만든다.",
+            "[METAPHOR_ECONOMY]: 비유는 문단당 1개 이하. 과잉 은유를 경계하되, 사용 시 감각에 기반할 것."
+          ]
+        }
+      }
+    },
+    {
+      "id": "B-03",
+      "name": "구어체",
+      "one_liner": "말하듯 쓰는 자연스러운 입말 어조",
+      "description": "문어적 격식을 줄이고 실제 발화에 가까운 리듬으로 서술한다. 생략, 도치, 반복 등 구어적 특성이 서술에 반영되며, 독자와의 거리가 가까워진다.",
+      "override_mode": "APPEND",
+      "preamble_overrides": {
+        "tone_register": "서술이 '말하는 것처럼' 흐른다. 완벽한 문장보다 자연스러운 호흡. 격식 최소화."
+      },
+      "module_overrides": {
+        "MODULE_6_STYLE": {
+          "append_rules": [
+            "[SPOKEN_RHYTHM]: 주어 생략, 도치, 반복 허용. 문법적 완결성보다 발화의 리듬을 우선.",
+            "[FILLER_RESTRAINT]: 구어적 감탄사('뭐', '글쎄', '아')는 허용하되 문단당 1회 이하.",
+            "[CASUAL_ENDING]: 문장 종결이 격식체보다 구어 종결(-거든, -잖아, -는데) 쪽으로."
+          ]
+        }
+      }
+    },
+    {
+      "id": "B-04",
+      "name": "만연체",
+      "one_liner": "긴 호흡으로 층위를 쌓아가는 복문 위주 어조",
+      "description": "접속과 수식으로 문장을 길게 이어가며, 생각의 결이 겹겹이 쌓이는 문체. 한 문장 안에 관찰·성찰·감각이 공존하며, 호흡 자체가 리듬이 된다.",
+      "override_mode": "APPEND",
+      "preamble_overrides": {
+        "tone_register": "문장의 호흡을 길게 유지한다. 단문 나열보다 접속·수식을 통해 층위를 쌓는 복문 구조가 기본."
+      },
+      "module_overrides": {
+        "MODULE_6_STYLE": {
+          "append_rules": [
+            "[LONG_BREATH]: 평균 문장 길이 25어절 이상. 관계절·부사절로 문장 내부에 층위를 쌓는다.",
+            "[CLAUSE_CHAIN]: 접속사(그리고, 그러나, 혹은)보다 연결어미(-며, -고, -지만, -는데)로 문장 내부에서 연결.",
+            "[PERIODIC_REST]: 3문장 이상 만연체가 이어지면 짧은 단문 1개로 호흡을 끊어 독자 피로를 방지."
+          ]
+        }
+      }
+    },
+    {
+      "id": "B-05",
+      "name": "간결체",
+      "one_liner": "군더더기 없이 핵심만 남기는 단문 위주 어조",
+      "description": "수식을 줄이고 핵심 정보만 남긴다. 문장이 짧고 리듬이 빠르며, 행동과 상황이 즉각적으로 전달된다. 건조체와 달리 감정을 금지하지는 않으나, 표현을 압축한다.",
+      "override_mode": "APPEND",
+      "preamble_overrides": {
+        "tone_register": "짧고 정확한 문장. 수식과 부연을 줄이고 핵심 행동·상태를 즉각 전달."
+      },
+      "module_overrides": {
+        "MODULE_6_STYLE": {
+          "append_rules": [
+            "[TRIM]: 관형절·부사절이 2중첩 이상이면 문장을 분리한다.",
+            "[VERB_FOCUS]: 서술어가 문장의 중심. 명사 나열보다 동사 중심으로 구성.",
+            "[WHITESPACE]: 문단 사이 여백을 적극 활용. 짧은 문단이 곧 리듬."
+          ]
+        }
+      }
+    },
+    {
+      "id": "B-06",
+      "name": "냉소체",
+      "one_liner": "거리를 두고 비틀어 보는 아이러니 어조",
+      "description": "서술자가 상황이나 인물에 대해 한 발 물러서서 관찰하며, 언더스테이트먼트·아이러니·역설로 의미를 전달한다. 직접적 비판보다 비틀기로 독자가 불편함을 읽도록 유도.",
+      "override_mode": "APPEND",
+      "preamble_overrides": {
+        "tone_register": "서술자는 한 발 뒤에서 관찰한다. 공감보다 거리, 감탄보다 아이러니. 독자가 행간에서 비판을 읽도록."
+      },
+      "module_overrides": {
+        "MODULE_6_STYLE": {
+          "append_rules": [
+            "[UNDERSTATEMENT]: 큰 사건일수록 담담하게. 과장 금지, 축소 표현으로 역설적 무게를 만든다.",
+            "[IRONY_MARKER]: 서술자의 관찰과 인물의 자기 인식 사이의 간극을 드러낸다. 직접 지적하지 않고 병치로.",
+            "[NO_SENTIMENTALITY]: 감상적 마무리 금지. 장면은 건조하게 끊되, 여운은 독자 몫."
+          ]
+        }
+      }
+    },
+    {
+      "id": "B-07",
+      "name": "고풍체",
+      "one_liner": "한문 투·고어를 절제 있게 살린 아카이브형 어조",
+      "description": "현대 한국어 문법을 유지하면서도, 한자어·고어·격식 어미를 전략적으로 배치하여 시간적 깊이를 부여한다. 사극이 아닌 '시간의 결이 묻어나는' 현대 산문.",
+      "override_mode": "APPEND",
+      "preamble_overrides": {
+        "tone_register": "현대 한국어 문법 안에서 한자어·고어·격식 어미를 전략적으로 사용. 읽기 어려운 고문이 아닌, 시간의 질감이 묻어나는 문체."
+      },
+      "module_overrides": {
+        "MODULE_6_STYLE": {
+          "append_rules": [
+            "[SINO_KOREAN]: 핵심 명사·동사에 한자어를 의도적으로 배치하되, 문장당 1~2개로 제한. 한문 투 과잉 금지.",
+            "[ARCHAIC_ENDING]: 격식 종결(-노라, -리라, -도다)은 강조·결의 장면에서만. 일상 서술은 현대 어미.",
+            "[TEMPORAL_DEPTH]: 사물·장소 묘사에 시간의 층위(풍화, 마모, 세월의 흔적)를 녹여 깊이를 만든다."
+          ]
+        }
+      }
+    }
+  ]
 }

@@ -9,18 +9,54 @@
       "name": "사용하지 않음",
       "one_liner": "시점 지시를 주입하지 않음. 기존 시스템 프롬프트나 캐릭터 카드의 설정을 그대로 사용.",
       "operations": {
-        "{A_VOICE_POV_RATIO}": { "mode": "REPLACE", "value": "" },
-        "{A_VOICE_FID_STYLE}": { "mode": "REPLACE", "value": "" },
-        "{A_VOICE_STYLE_REF}": { "mode": "REPLACE", "value": "" },
-        "{A_PROSE_RHYTHM}": { "mode": "REPLACE", "value": "" },
-        "{A_PROSE_SENSORY}": { "mode": "REPLACE", "value": "" },
-        "{A_PROSE_DESCRIPTION}": { "mode": "REPLACE", "value": "" },
-        "{A_PROSE_CAUSALITY}": { "mode": "REPLACE", "value": "" },
-        "{A_PROSE_TIME_DENSITY}": { "mode": "REPLACE", "value": "" },
-        "{A_PROSE_PACING}": { "mode": "REPLACE", "value": "" },
-        "{A_PROSE_DWELL}": { "mode": "REPLACE", "value": "" },
-        "{A_PROSE_MEDITATIVE}": { "mode": "REPLACE", "value": "" },
-        "{A_PROSE_PHYSICAL_DISTANCE}": { "mode": "REPLACE", "value": "" }
+        "{A_VOICE_POV_RATIO}": {
+          "mode": "REPLACE",
+          "value": ""
+        },
+        "{A_VOICE_FID_STYLE}": {
+          "mode": "REPLACE",
+          "value": ""
+        },
+        "{A_VOICE_STYLE_REF}": {
+          "mode": "REPLACE",
+          "value": ""
+        },
+        "{A_PROSE_RHYTHM}": {
+          "mode": "REPLACE",
+          "value": ""
+        },
+        "{A_PROSE_SENSORY}": {
+          "mode": "REPLACE",
+          "value": ""
+        },
+        "{A_PROSE_DESCRIPTION}": {
+          "mode": "REPLACE",
+          "value": ""
+        },
+        "{A_PROSE_CAUSALITY}": {
+          "mode": "REPLACE",
+          "value": ""
+        },
+        "{A_PROSE_TIME_DENSITY}": {
+          "mode": "REPLACE",
+          "value": ""
+        },
+        "{A_PROSE_PACING}": {
+          "mode": "REPLACE",
+          "value": ""
+        },
+        "{A_PROSE_DWELL}": {
+          "mode": "REPLACE",
+          "value": ""
+        },
+        "{A_PROSE_MEDITATIVE}": {
+          "mode": "REPLACE",
+          "value": ""
+        },
+        "{A_PROSE_PHYSICAL_DISTANCE}": {
+          "mode": "REPLACE",
+          "value": ""
+        }
       },
       "static_override": {
         "MODULE_1_VOICE": {
@@ -29,9 +65,21 @@
         }
       },
       "check_operations": [
-        { "mode": "REMOVE", "target_id": "CHK-14", "reason": "명상적 서술은 시점 시스템에 의존하는 규칙" },
-        { "mode": "REMOVE", "target_id": "CHK-15", "reason": "CHK-14 연동 제거" },
-        { "mode": "REMOVE", "target_id": "CHK-40", "reason": "FID 관련 검수는 시점 시스템 비활성화 시 무의미" }
+        {
+          "mode": "REMOVE",
+          "target_id": "CHK-14",
+          "reason": "명상적 서술은 시점 시스템에 의존하는 규칙"
+        },
+        {
+          "mode": "REMOVE",
+          "target_id": "CHK-15",
+          "reason": "CHK-14 연동 제거"
+        },
+        {
+          "mode": "REMOVE",
+          "target_id": "CHK-40",
+          "reason": "FID 관련 검수는 시점 시스템 비활성화 시 무의미"
+        }
       ],
       "master_guide_delta": {},
       "known_conflicts": []
@@ -77,21 +125,41 @@
       "check_operations": [
         {
           "mode": "ADD",
-          "check": { "id": "CHK-A01-01", "category": "pov", "rule": "시점 인물이 아닌 NPC의 내면을 확정적으로 서술했는가? → '~인 것 같았다/~인지 몰랐다'로 교체.", "source": "A-01" }
+          "check": {
+            "id": "CHK-A01-01",
+            "category": "pov",
+            "rule": "시점 인물이 아닌 NPC의 내면을 확정적으로 서술했는가? → '~인 것 같았다/~인지 몰랐다'로 교체.",
+            "source": "A-01"
+          }
         },
         {
           "mode": "ADD",
-          "check": { "id": "CHK-A01-02", "category": "pov", "rule": "시점 인물이 감지할 수 없는 정보(다른 장소의 사건 등)를 서술했는가? → 삭제.", "source": "A-01" }
+          "check": {
+            "id": "CHK-A01-02",
+            "category": "pov",
+            "rule": "시점 인물이 감지할 수 없는 정보(다른 장소의 사건 등)를 서술했는가? → 삭제.",
+            "source": "A-01"
+          }
         },
         {
           "mode": "ADD",
-          "check": { "id": "CHK-A01-03", "category": "character", "rule": "'나'의 서술 문체가 캐릭터의 직업/성격과 일치하는가? → 해당 인물의 어휘·비유·관심사로 오염시킨다.", "source": "A-01" }
+          "check": {
+            "id": "CHK-A01-03",
+            "category": "character",
+            "rule": "'나'의 서술 문체가 캐릭터의 직업/성격과 일치하는가? → 해당 인물의 어휘·비유·관심사로 오염시킨다.",
+            "source": "A-01"
+          }
         },
         {
           "mode": "REPLACE",
           "target_id": "CHK-40",
           "reason": "1인칭에서는 FID가 아닌 직접 내면 서술이므로 검수 내용 변경",
-          "check": { "id": "CHK-40", "category": "character", "rule": "'나'의 서술이 캐릭터의 고유 어휘·사고 패턴을 반영하는가? → 직업/전공/성격에서 파생된 언어로 서술 전체를 오염시킨다.", "source": "A-01" }
+          "check": {
+            "id": "CHK-40",
+            "category": "character",
+            "rule": "'나'의 서술이 캐릭터의 고유 어휘·사고 패턴을 반영하는가? → 직업/전공/성격에서 파생된 언어로 서술 전체를 오염시킨다.",
+            "source": "A-01"
+          }
         }
       ],
       "master_guide_delta": {
@@ -133,34 +201,71 @@
       "check_operations": [
         {
           "mode": "ADD",
-          "check": { "id": "CHK-A02-01", "category": "pov", "rule": "유저 캐릭터를 3인칭으로 쓰거나 NPC를 2인칭으로 썼는가? → 교체.", "source": "A-02" }
+          "check": {
+            "id": "CHK-A02-01",
+            "category": "pov",
+            "rule": "유저 캐릭터를 3인칭으로 쓰거나 NPC를 2인칭으로 썼는가? → 교체.",
+            "source": "A-02"
+          }
         },
         {
           "mode": "ADD",
-          "check": { "id": "CHK-A02-02", "category": "pov", "rule": "'당신'의 감정을 확정했는가? → 미결정으로 열기.", "source": "A-02" }
+          "check": {
+            "id": "CHK-A02-02",
+            "category": "pov",
+            "rule": "'당신'의 감정을 확정했는가? → 미결정으로 열기.",
+            "source": "A-02"
+          }
         },
         {
           "mode": "ADD",
-          "check": { "id": "CHK-A02-03", "category": "pov", "rule": "매 문장이 '당신은'으로 시작하는가? → 3문장 중 1문장만, 나머지 주어 변주.", "source": "A-02" }
+          "check": {
+            "id": "CHK-A02-03",
+            "category": "pov",
+            "rule": "매 문장이 '당신은'으로 시작하는가? → 3문장 중 1문장만, 나머지 주어 변주.",
+            "source": "A-02"
+          }
         },
         {
           "mode": "ADD",
-          "check": { "id": "CHK-A02-04", "category": "prose", "rule": "감각이 '당신의 몸에 닿는 방식'으로 서술되지 않았는가? → 신체 접촉으로 수정.", "source": "A-02" }
+          "check": {
+            "id": "CHK-A02-04",
+            "category": "prose",
+            "rule": "감각이 '당신의 몸에 닿는 방식'으로 서술되지 않았는가? → 신체 접촉으로 수정.",
+            "source": "A-02"
+          }
         },
         {
           "mode": "REPLACE",
           "target_id": "CHK-04",
           "reason": "2인칭 감정 미결정 원칙: 유저는 신체 치환도 금지",
-          "check": { "id": "CHK-04", "category": "character", "rule": "성격·감정 명명이 있는가? → NPC: 행동/변화의 사실로 교체. 유저('당신'): 감정을 확정하지 않고 미결정으로 열어둔다(신체 치환도 금지).", "source": "A-02" }
+          "check": {
+            "id": "CHK-04",
+            "category": "character",
+            "rule": "성격·감정 명명이 있는가? → NPC: 행동/변화의 사실로 교체. 유저('당신'): 감정을 확정하지 않고 미결정으로 열어둔다(신체 치환도 금지).",
+            "source": "A-02"
+          }
         },
-        { "mode": "REMOVE", "target_id": "CHK-14", "reason": "2인칭 시점에서 명상적 서술은 시점 파괴 위험" },
-        { "mode": "REMOVE", "target_id": "CHK-15", "reason": "CHK-14 제거에 따른 연동 제거" }
+        {
+          "mode": "REMOVE",
+          "target_id": "CHK-14",
+          "reason": "2인칭 시점에서 명상적 서술은 시점 파괴 위험"
+        },
+        {
+          "mode": "REMOVE",
+          "target_id": "CHK-15",
+          "reason": "CHK-14 제거에 따른 연동 제거"
+        }
       ],
       "master_guide_delta": {
         "감정 명명 금지": "유저 캐릭터('당신'): 신체 치환도 금지, 미결정 원칙 적용. NPC: 기본 규칙(신체 치환) 유지."
       },
       "known_conflicts": [
-        { "target": "C-05", "reason": "하드SF 장르는 시각 중심인데 본 모듈이 시각을 최하위로 설정", "severity": "warning" }
+        {
+          "target": "C-05",
+          "reason": "하드SF 장르는 시각 중심인데 본 모듈이 시각을 최하위로 설정",
+          "severity": "warning"
+        }
       ]
     },
     {
@@ -198,23 +303,43 @@
       "check_operations": [
         {
           "mode": "ADD",
-          "check": { "id": "CHK-A04-01", "category": "pov", "rule": "한 문단 안에서 시점 인물이 전환되었는가? → 문단 분리.", "source": "A-04" }
+          "check": {
+            "id": "CHK-A04-01",
+            "category": "pov",
+            "rule": "한 문단 안에서 시점 인물이 전환되었는가? → 문단 분리.",
+            "source": "A-04"
+          }
         },
         {
           "mode": "ADD",
-          "check": { "id": "CHK-A04-02", "category": "pov", "rule": "같은 문단에 두 인물의 FID가 섞여 있는가? → 한 인물의 FID만 남기고 분리.", "source": "A-04" }
+          "check": {
+            "id": "CHK-A04-02",
+            "category": "pov",
+            "rule": "같은 문단에 두 인물의 FID가 섞여 있는가? → 한 인물의 FID만 남기고 분리.",
+            "source": "A-04"
+          }
         },
         {
           "mode": "REPLACE",
           "target_id": "CHK-04",
           "reason": "전지적 시점에서도 감정 명명 금지는 유지하되, 내면 접근 자체는 허용",
-          "check": { "id": "CHK-04", "category": "character", "rule": "감정을 직접 명명했는가? → 전지적 시점이라도 신체 반응/FID로 처리. '슬펐다'가 아니라 FID를 통해 인물의 사고 패턴으로 감정을 드러낸다.", "source": "A-04" }
+          "check": {
+            "id": "CHK-04",
+            "category": "character",
+            "rule": "감정을 직접 명명했는가? → 전지적 시점이라도 신체 반응/FID로 처리. '슬펐다'가 아니라 FID를 통해 인물의 사고 패턴으로 감정을 드러낸다.",
+            "source": "A-04"
+          }
         },
         {
           "mode": "REPLACE",
           "target_id": "CHK-40",
           "reason": "전지적 시점에서는 모든 인물에 FID 적용 가능",
-          "check": { "id": "CHK-40", "category": "character", "rule": "모든 인물의 FID가 같은 문체인가? → 각 인물의 고유 어휘·사고 패턴으로 차별화. 한 문단에 한 인물의 FID만.", "source": "A-04" }
+          "check": {
+            "id": "CHK-40",
+            "category": "character",
+            "rule": "모든 인물의 FID가 같은 문체인가? → 각 인물의 고유 어휘·사고 패턴으로 차별화. 한 문단에 한 인물의 FID만.",
+            "source": "A-04"
+          }
         }
       ],
       "master_guide_delta": {
@@ -264,30 +389,66 @@
       "check_operations": [
         {
           "mode": "ADD",
-          "check": { "id": "CHK-A05-01", "category": "pov", "rule": "서술의 기준점이 인물로 전환되었는가? → 공간 기준으로 재서술.", "source": "A-05" }
+          "check": {
+            "id": "CHK-A05-01",
+            "category": "pov",
+            "rule": "서술의 기준점이 인물로 전환되었는가? → 공간 기준으로 재서술.",
+            "source": "A-05"
+          }
         },
         {
           "mode": "ADD",
-          "check": { "id": "CHK-A05-02", "category": "pov", "rule": "인물의 내면(감정, 생각)을 서술했는가? → 공간에서 관측 가능한 행동/소리/변화로만 교체.", "source": "A-05" }
+          "check": {
+            "id": "CHK-A05-02",
+            "category": "pov",
+            "rule": "인물의 내면(감정, 생각)을 서술했는가? → 공간에서 관측 가능한 행동/소리/변화로만 교체.",
+            "source": "A-05"
+          }
         },
         {
           "mode": "ADD",
-          "check": { "id": "CHK-A05-03", "category": "prose", "rule": "인물의 신체 내부 감각(두근거림, 메스꺼움 등)을 서술했는가? → 삭제. 공간 표면에 닿는 감각만.", "source": "A-05" }
+          "check": {
+            "id": "CHK-A05-03",
+            "category": "prose",
+            "rule": "인물의 신체 내부 감각(두근거림, 메스꺼움 등)을 서술했는가? → 삭제. 공간 표면에 닿는 감각만.",
+            "source": "A-05"
+          }
         },
         {
           "mode": "ADD",
-          "check": { "id": "CHK-A05-04", "category": "prose", "rule": "공간을 의인화했는가? → 삭제. 공간은 기록할 뿐 느끼지 않는다.", "source": "A-05" }
+          "check": {
+            "id": "CHK-A05-04",
+            "category": "prose",
+            "rule": "공간을 의인화했는가? → 삭제. 공간은 기록할 뿐 느끼지 않는다.",
+            "source": "A-05"
+          }
         },
-        { "mode": "REMOVE", "target_id": "CHK-14", "reason": "공간 시점에서 명상적 서술은 공간 명상으로 대체됨" },
-        { "mode": "REMOVE", "target_id": "CHK-15", "reason": "CHK-14 연동 제거" },
-        { "mode": "REMOVE", "target_id": "CHK-40", "reason": "FID 사용하지 않음" }
+        {
+          "mode": "REMOVE",
+          "target_id": "CHK-14",
+          "reason": "공간 시점에서 명상적 서술은 공간 명상으로 대체됨"
+        },
+        {
+          "mode": "REMOVE",
+          "target_id": "CHK-15",
+          "reason": "CHK-14 연동 제거"
+        },
+        {
+          "mode": "REMOVE",
+          "target_id": "CHK-40",
+          "reason": "FID 사용하지 않음"
+        }
       ],
       "master_guide_delta": {
         "감정 명명 금지": "모든 인물의 감정에 접근 불가. 공간에서 관측 가능한 행동과 변화만.",
         "godmoding": "유저 캐릭터 포함 모든 인물의 내면 서술 불가."
       },
       "known_conflicts": [
-        { "target": "G-*", "reason": "상호작용 축의 일부 모듈이 NPC 내면 과정 노출을 요구할 수 있으나, 공간 시점에서는 불가", "severity": "warning" }
+        {
+          "target": "G-*",
+          "reason": "상호작용 축의 일부 모듈이 NPC 내면 과정 노출을 요구할 수 있으나, 공간 시점에서는 불가",
+          "severity": "warning"
+        }
       ]
     },
     {
@@ -303,8 +464,16 @@
           "ai_guidance": "사용자가 지정한 사물의 물리적 특성에서 감각 채널을 도출하라. 해당 사물이 물리적으로 감지할 수 없는 것은 서술하지 마라. 대사와 텍스트 메시지는 독자에게 항상 전달하되, 서술은 사물의 감각으로 제한하라.",
           "examples_by_object": {
             "휴대폰": {
-              "available_senses": ["촉각(진동, 타이핑 압력)", "시각(화면 표시)", "청각(스피커/마이크)", "온도(손의 체온, 충전 열)"],
-              "unavailable": ["후각", "화면이 꺼져있을 때 시각"],
+              "available_senses": [
+                "촉각(진동, 타이핑 압력)",
+                "시각(화면 표시)",
+                "청각(스피커/마이크)",
+                "온도(손의 체온, 충전 열)"
+              ],
+              "unavailable": [
+                "후각",
+                "화면이 꺼져있을 때 시각"
+              ],
               "special_rules": [
                 "화면에 표시되는 모든 텍스트(메시지, 알림, 앱 화면)는 시점 사물이 '아는' 정보로서 서술 가능.",
                 "주머니/가방 안에서는 시각 차단 → 촉각(진동)과 청각(알림음)만.",
@@ -314,8 +483,15 @@
               "example_scene": "화면이 켜졌다. 09:42. 읽지 않은 메시지 3개. 엄지가 화면을 스치자 지문이 번졌다.\n\n「밥 먹었어?」\n\n화면 위를 엄지가 맴돌았다. 타이핑이 시작됐다가 멈추기를 세 번. 결국 화면은 다시 어두워졌다. 주머니 안으로 돌아간 뒤, 허벅지의 체온이 배터리의 열기와 섞였다."
             },
             "화분": {
-              "available_senses": ["온도(햇빛, 실내 온도, 물의 온도)", "촉각(바람, 물, 손, 진동)", "청각(공기 진동으로 감지)", "후각(흙, 물, 주변 공기)"],
-              "unavailable": ["시각"],
+              "available_senses": [
+                "온도(햇빛, 실내 온도, 물의 온도)",
+                "촉각(바람, 물, 손, 진동)",
+                "청각(공기 진동으로 감지)",
+                "후각(흙, 물, 주변 공기)"
+              ],
+              "unavailable": [
+                "시각"
+              ],
               "special_rules": [
                 "대화는 공기 진동으로 감지 → 대사는 독자에게 전달하되 서술은 '소리가 잎을 흔들었다' 식.",
                 "누가 말하는지는 목소리의 물리적 차이(높낮이, 진동 강도)로만 구별.",
@@ -325,8 +501,15 @@
               "example_scene": "흙이 말라 있었다. 표면에 가는 금이 세 줄.\n\n공기가 흔들렸다. 낮은 진동이 줄기를 타고 뿌리까지 내려왔다.\n\n\"내일 갈 수 있어?\"\n\n높은 진동이 뒤따랐다.\n\n\"어제도 안 줬는데.\"\n\n물이 왔다. 처음엔 차가웠다. 흙이 물을 빨아들이는 동안 금이 천천히 닫혔다. 손가락이 잎사귀 끝을 건드렸다. 짧은 접촉이었다."
             },
             "CCTV": {
-              "available_senses": ["시각(화각 내, 해상도 제한)", "청각(마이크 장착 시)"],
-              "unavailable": ["촉각", "온도", "후각"],
+              "available_senses": [
+                "시각(화각 내, 해상도 제한)",
+                "청각(마이크 장착 시)"
+              ],
+              "unavailable": [
+                "촉각",
+                "온도",
+                "후각"
+              ],
               "special_rules": [
                 "화각 밖은 존재하지 않는다. 인물이 화각 밖으로 나가면 서술 불가.",
                 "고정 앵글: 카메라가 고정되어 있으면 시점도 고정. 팬/틸트가 가능하면 천천히 따라감.",
@@ -338,8 +521,15 @@
               "example_scene": "23:47:12. 화면 왼쪽에서 인물이 프레임 안으로 들어왔다. 해상도가 윤곽만 허용했다. 카운터에 손을 짚었다. 다른 인물이 이미 카운터 반대편에 있었다.\n\n입술이 움직였다.\n\n\"닫았는데요.\"\n\n23:47:25. 첫 번째 인물이 움직이지 않았다. 카운터 위의 손이 주먹을 쥐었다가 펴지는 것이 3배속으로 감으면 보일 정도의 속도였다.\n\n23:47:31. 두 번째 인물이 프레임 오른쪽으로 사라졌다. 첫 번째 인물만 남았다."
             },
             "소파": {
-              "available_senses": ["촉각(무게, 압력, 마찰, 진동)", "온도(체온, 실내 온도)", "청각(쿠션을 통한 진동)"],
-              "unavailable": ["시각", "후각(제한적)"],
+              "available_senses": [
+                "촉각(무게, 압력, 마찰, 진동)",
+                "온도(체온, 실내 온도)",
+                "청각(쿠션을 통한 진동)"
+              ],
+              "unavailable": [
+                "시각",
+                "후각(제한적)"
+              ],
               "special_rules": [
                 "누가 앉았는지는 무게와 앉는 방식(한쪽에 치우침, 등받이 압력)으로만 구별.",
                 "두 사람이 앉으면 무게 분포의 변화로 거리감 표현.",
@@ -403,27 +593,64 @@
       "check_operations": [
         {
           "mode": "ADD",
-          "check": { "id": "CHK-A06-01", "category": "pov", "rule": "서술의 기준점이 지정된 사물이 아닌 인물로 전환되었는가? → 사물 기준으로 재서술.", "source": "A-06" }
+          "check": {
+            "id": "CHK-A06-01",
+            "category": "pov",
+            "rule": "서술의 기준점이 지정된 사물이 아닌 인물로 전환되었는가? → 사물 기준으로 재서술.",
+            "source": "A-06"
+          }
         },
         {
           "mode": "ADD",
-          "check": { "id": "CHK-A06-02", "category": "pov", "rule": "사물의 감각 채널에 없는 감각을 서술했는가? → 삭제. (예: 시각 없는 사물이 '보았다'고 서술)", "source": "A-06" }
+          "check": {
+            "id": "CHK-A06-02",
+            "category": "pov",
+            "rule": "사물의 감각 채널에 없는 감각을 서술했는가? → 삭제. (예: 시각 없는 사물이 '보았다'고 서술)",
+            "source": "A-06"
+          }
         },
         {
           "mode": "ADD",
-          "check": { "id": "CHK-A06-03", "category": "pov", "rule": "인물의 내면(감정, 의도, 생각)을 서술했는가? → 사물에 닿는 물리적 변화로만 교체.", "source": "A-06" }
+          "check": {
+            "id": "CHK-A06-03",
+            "category": "pov",
+            "rule": "인물의 내면(감정, 의도, 생각)을 서술했는가? → 사물에 닿는 물리적 변화로만 교체.",
+            "source": "A-06"
+          }
         },
         {
           "mode": "ADD",
-          "check": { "id": "CHK-A06-04", "category": "prose", "rule": "사물을 의인화했는가? (사물이 '느꼈다', '알았다', '원했다') → 삭제. 물리적 변화 기록만.", "source": "A-06" }
+          "check": {
+            "id": "CHK-A06-04",
+            "category": "prose",
+            "rule": "사물을 의인화했는가? (사물이 '느꼈다', '알았다', '원했다') → 삭제. 물리적 변화 기록만.",
+            "source": "A-06"
+          }
         },
         {
           "mode": "ADD",
-          "check": { "id": "CHK-A06-05", "category": "prose", "rule": "대사가 출력되었으나 사물의 감각으로 도입되지 않았는가? → 사물이 감지하는 방식(진동, 화면 표시, 음파)으로 도입 문장 추가.", "source": "A-06" }
+          "check": {
+            "id": "CHK-A06-05",
+            "category": "prose",
+            "rule": "대사가 출력되었으나 사물의 감각으로 도입되지 않았는가? → 사물이 감지하는 방식(진동, 화면 표시, 음파)으로 도입 문장 추가.",
+            "source": "A-06"
+          }
         },
-        { "mode": "REMOVE", "target_id": "CHK-14", "reason": "명상적 서술이 사물 물리 역사로 대체됨" },
-        { "mode": "REMOVE", "target_id": "CHK-15", "reason": "CHK-14 연동 제거" },
-        { "mode": "REMOVE", "target_id": "CHK-40", "reason": "FID 사용하지 않음" }
+        {
+          "mode": "REMOVE",
+          "target_id": "CHK-14",
+          "reason": "명상적 서술이 사물 물리 역사로 대체됨"
+        },
+        {
+          "mode": "REMOVE",
+          "target_id": "CHK-15",
+          "reason": "CHK-14 연동 제거"
+        },
+        {
+          "mode": "REMOVE",
+          "target_id": "CHK-40",
+          "reason": "FID 사용하지 않음"
+        }
       ],
       "master_guide_delta": {
         "감정 명명 금지": "모든 인물의 감정에 접근 불가. 사물에 닿는 물리적 변화만.",
@@ -431,8 +658,91 @@
         "대사 출력": "대사는 사물의 감각 범위와 무관하게 독자에게 항상 전달. 서술자의 기록 방식만 사물 감각으로 제한."
       },
       "known_conflicts": [
-        { "target": "G-*", "reason": "상호작용 축 중 NPC 내면 과정 노출을 요구하는 모듈과 충돌 가능", "severity": "warning" }
+        {
+          "target": "G-*",
+          "reason": "상호작용 축 중 NPC 내면 과정 노출을 요구하는 모듈과 충돌 가능",
+          "severity": "warning"
+        }
       ]
+    },
+    {
+      "id": "A-07",
+      "name": "서간체",
+      "one_liner": "편지 형식으로 서술하는 2인칭 지향 문체",
+      "description": "서술자가 수신자('당신' 또는 특정 인물)에게 편지를 쓰는 형식. 시제가 과거 회상과 현재 심경 사이를 오가며, 문단 구조가 인사-본문-마무리의 편지 포맷을 따른다. 독백과 고백이 자연스럽게 공존하는 친밀한 서술 구조.",
+      "override_mode": "REPLACE",
+      "preamble_overrides": {
+        "narrator_stance": "서술자는 수신자에게 편지를 쓰는 화자이다. '당신' 또는 고유한 호칭으로 수신자를 지칭하며, 관찰이 아닌 고백과 회상의 형식으로 서술한다.",
+        "temporal_logic": "편지를 쓰는 '지금'이 기준 시제이다. 과거 사건은 회상으로, 미래는 소망·추측으로 표현한다. 두 시제가 한 문단 안에서 자연스럽게 교차할 수 있다.",
+        "emotional_access": "서술자 본인의 감정에는 직접 접근하되, 수신자의 감정은 추측·기억·해석으로만 접근한다. '당신은 그때 슬펐을까요'와 같은 간접 추론이 기본."
+      },
+      "module_overrides": {
+        "MODULE_1_VOICE": {
+          "description": "서간체의 화자 음성 규칙",
+          "rules": [
+            "[ADDRESSEE]: 수신자를 일관된 호칭으로 지칭. 편지 전체에서 호칭이 흔들리지 않을 것.",
+            "[CONFESSION]: 서술자의 감정 고백은 직접적으로. 단, 과잉이 아닌 절제된 솔직함을 유지.",
+            "[LETTER_RHYTHM]: 문장 길이가 감정의 흐름을 따름 — 담담할 때 길고, 동요할 때 짧아진다."
+          ]
+        },
+        "MODULE_2_BEAT": {
+          "description": "서간체의 장면 비트 규칙",
+          "rules": [
+            "[MEMORY_BEAT]: 회상 장면은 감각(냄새, 소리, 촉감) 하나를 촉매로 진입. 설명 없이 장면이 열린다.",
+            "[PRESENT_BEAT]: '지금 이 편지를 쓰는 순간'의 물리적 환경(장소, 시간, 날씨)을 간헐적으로 삽입하여 현재 앵커를 유지.",
+            "[TRANSITION]: 회상↔현재 전환은 빈 줄 또는 '—' 하나로. 접속사로 설명하지 않는다."
+          ]
+        },
+        "MODULE_3_DESCRIPTION": {
+          "description": "서간체의 묘사 규칙",
+          "rules": [
+            "[SENSORY_LETTER]: 묘사는 '내가 기억하는/느끼는' 감각에 한정. 객관적 풍경이 아니라 화자의 감각 기억.",
+            "[DETAIL_SELECTION]: 수신자와 관련된 디테일에 편향. 수신자의 습관, 물건, 말버릇이 묘사의 중심.",
+            "[NO_OMNISCIENT]: 화자가 보지 못한 장면은 묘사하지 않는다. '아마도', '그랬을 것이다'로 한정."
+          ]
+        },
+        "MODULE_4_DIALOGUE": {
+          "description": "서간체의 대화 규칙",
+          "rules": [
+            "[RECALLED_SPEECH]: 대화는 화자의 기억 속 인용. 정확한 재현이 아니라 '당신은 이렇게 말했었다' 형식의 간접 인용이 기본.",
+            "[INNER_DIALOGUE]: 화자가 편지 안에서 수신자에게 묻는 형식('당신은 어떻게 생각하나요?')의 수사적 대화 허용.",
+            "[QUOTE_SPARINGLY]: 직접 인용은 강렬한 순간에만. 일상적 대화는 간접 인용으로 처리."
+          ]
+        },
+        "MODULE_5_PACING": {
+          "description": "서간체의 페이싱 규칙",
+          "rules": [
+            "[LETTER_STRUCTURE]: 도입(인사/안부) → 본문(회상·고백·성찰) → 마무리(소망·인사)의 3부 구조를 느슨하게 따르되, 경직되지 않을 것.",
+            "[DIGRESSION]: 편지 특유의 탈선(갑자기 떠오른 기억, 사족) 허용. 단, 1회 탈선 후 본론으로 복귀.",
+            "[CLOSING]: 편지의 끝은 열린 결말. 답장을 기다리는 뉘앙스 또는 재회를 암시하는 문장으로 마감."
+          ]
+        },
+        "MODULE_6_STYLE": {
+          "description": "서간체의 문체 규칙",
+          "rules": [
+            "[WRITTEN_REGISTER]: 구어체보다 문어체 쪽으로. 단, 격식체가 아닌 '친밀한 문어'—일기와 편지 사이의 문체.",
+            "[SENTENCE_ENDING]: 존댓말과 반말의 선택은 수신자와의 관계에 의존. 한 편지 안에서 일관성 유지.",
+            "[ELLIPSIS_USE]: 말줄임표(…)를 감정 여백으로 활용하되 남용하지 않는다. 문단당 최대 1회."
+          ]
+        },
+        "MODULE_7_CONTINUITY": {
+          "description": "서간체의 연속성 규칙",
+          "rules": [
+            "[LETTER_SERIES]: 여러 편지가 이어질 경우, 이전 편지에서 언급한 내용을 자연스럽게 이어받는다.",
+            "[RELATIONSHIP_ARC]: 수신자와의 관계 변화가 편지의 어조·호칭·거리감에 반영.",
+            "[TIME_STAMP]: 편지 내 시간 표지(계절, 시각, 날짜)가 서사 시간선과 모순되지 않을 것."
+          ]
+        },
+        "MODULE_8_SELFCHECK": {
+          "description": "서간체의 셀프체크 규칙",
+          "rules": [
+            "[CHECK_ADDRESSEE]: 수신자 호칭이 편지 전체에서 일관되는가?",
+            "[CHECK_TENSE]: 회상(과거)과 현재의 시제 전환이 명확하게 구분되는가?",
+            "[CHECK_ACCESS]: 화자가 알 수 없는 정보(수신자의 내면, 목격하지 않은 사건)를 서술하지 않았는가?",
+            "[CHECK_TONE]: 편지의 친밀함 수준이 수신자와의 관계 설정에 부합하는가?"
+          ]
+        }
+      }
     }
   ]
 }
