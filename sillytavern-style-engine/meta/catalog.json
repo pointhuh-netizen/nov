@@ -83,6 +83,13 @@
       "file": "axes/axis-n-narrative-mode.json"
     },
     {
+      "id": "N-03",
+      "axis": "N",
+      "name": "시간 루프",
+      "one_liner": "같은 시간대를 반복하며 미세한 변주를 쌓아가는 반복 서사. 데자뷔와 균열의 문체.",
+      "file": "axes/axis-n-narrative-mode.json"
+    },
+    {
       "id": "A-00",
       "axis": "A",
       "name": "사용하지 않음",
