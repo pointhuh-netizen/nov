@@ -278,7 +278,7 @@
           "mode": "ADD",
           "check": { "id": "CHK-A05-04", "category": "prose", "rule": "공간을 의인화했는가? → 삭제. 공간은 기록할 뿐 느끼지 않는다.", "source": "A-05" }
         },
-        { "mode": "REMOVE", "target_id": "CHK-14", "reason": "사물 시점에서 명상적 서술은 공간 명상으로 대체됨" },
+        { "mode": "REMOVE", "target_id": "CHK-14", "reason": "공간 시점에서 명상적 서술은 공간 명상으로 대체됨" },
         { "mode": "REMOVE", "target_id": "CHK-15", "reason": "CHK-14 연동 제거" },
         { "mode": "REMOVE", "target_id": "CHK-40", "reason": "FID 사용하지 않음" }
       ],
