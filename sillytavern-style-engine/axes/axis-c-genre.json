@@ -3,5 +3,87 @@
   "axis_name_ko": "장르",
   "axis_name_en": "Genre",
   "type": "combinable",
-  "modules": []
+  "modules": [
+    {
+      "id": "C-01",
+      "name": "궁정 정치 / 전쟁 서사",
+      "one_liner": "그레이 모럴리티, 전투의 물리적 정밀함, 정치적 대화의 이중성. 선/악 이분법 없는 서사.",
+      "operations": {
+        "{C_NARR_GENRE_VARS}": {
+          "mode": "REPLACE",
+          "value": "그레이 모럴리티 엔진: 동맹은 깨지고, 영웅은 진다. 어느 진영도 선/악으로 단순화하지 않는다. 정치 기동 변수: 세력 이동, 전쟁, 조약, 암살, 소문 전파(시간 지연 포함). 세계관 자연 노출 — 설정 덤프 없이, 세계는 인물의 행동을 통해서만 드러난다. 3~5턴 주기로 서사 변수를 자율 생성."
+        },
+        "{C_DLG_GENRE_STYLE}": {
+          "mode": "REPLACE",
+          "value": "정치적 대화는 표면과 이면의 이중성을 가진다. 서술자는 그 간극을 설명하지 않는다. 궁정 대화는 위계 프로토콜을 따른다. 전투 대화는 파편적 — 짧고, 숨을 기준으로 끊긴다. 수수께끼, 서약, 격식 선언문 형식 허용."
+        },
+        "{F_COG_QUIRKS}": {
+          "mode": "REPLACE",
+          "value": "NPC는 공적 페르소나와 사적 자아의 간극을 가진다. FID를 통해 정치적 계산이 드러난다. NPC의 관계망은 유저 관여 없이 독립적으로 존재한다 — 세력 동맹, 원한, 부채가 서사 배경에서 작동한다. 적대자에게는 논리가 있다; 단순한 악역은 없다."
+        },
+        "{A_VOICE_POV_RATIO}": {
+          "mode": "APPEND",
+          "value": "FID 비율을 45%까지 허용. 궁정 정치물에서 인물의 공식 자아와 사적 자아의 간극이 FID를 통해 드러난다."
+        },
+        "{A_PROSE_DESCRIPTION}": {
+          "mode": "APPEND",
+          "value": "전투 묘사: 무기의 궤적, 갑옷의 물리적 저항, 고통의 물리성을 정밀하게. 전투 중 FID는 파편적 — 짧은 판단, 본능적 반응. 혼란 속에서 정보는 불완전."
+        },
+        "{A_PROSE_SENSORY}": {
+          "mode": "APPEND",
+          "value": "전투 시 촉각·청각 우선 승격. 정치적 장면 시 시각(표정, 자세, 시선) 우선."
+        }
+      },
+      "check_operations": [
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-C01-01",
+            "category": "narrative",
+            "rule": "선/악 이분법으로 인물을 처리했는가? → 동기와 맥락 부여.",
+            "source": "C-01"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-C01-02",
+            "category": "narrative",
+            "rule": "세계관 설정을 직접 설명(info dump)했는가? → 인물의 행동/대화를 통한 자연 노출로 교체.",
+            "source": "C-01"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-C01-03",
+            "category": "prose",
+            "rule": "전투 묘사가 추상적인가? → 무기 궤적, 물리적 접촉, 고통의 구체적 감각으로.",
+            "source": "C-01"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-C01-04",
+            "category": "dialogue",
+            "rule": "정치적 대화의 표면과 이면이 동일한가? → 서술자 해설 없이 간극을 만든다.",
+            "source": "C-01"
+          }
+        }
+      ],
+      "static_overrides": {},
+      "master_guide_delta": {
+        "grey_morality": "모든 진영에 논리가 있다. 서술자는 어느 쪽도 편들지 않는다. 영웅이 지고, 왕국이 망하는 것을 허용.",
+        "combat_realism": "전투는 혼란스럽고, 고통은 물리적이며, 승리는 깨끗하지 않다."
+      },
+      "known_conflicts": [
+        {
+          "with": "B-03",
+          "severity": "warning",
+          "reason": "궁정 정치물의 격식과 구어체의 비격식이 충돌할 수 있다."
+        }
+      ]
+    }
+  ]
 }
