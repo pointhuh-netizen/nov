@@ -1,0 +1,83 @@
+{
+  "version": "1.0.0",
+  "description": "모듈 특성(traits) 스키마. 각 모듈의 결과물 특성을 구조화된 태그로 표현하여 자동 충돌 감지에 사용한다.",
+  "traits": {
+    "pov": {
+      "type": "enum",
+      "values": ["1st", "2nd", "3rd-limited", "3rd-omni", "space", "object", "narrator-voice", "none"],
+      "description": "시점. 서술의 관찰자가 누구인가.",
+      "applicable_axes": ["N", "A"]
+    },
+    "inner_access": {
+      "type": "enum",
+      "values": ["full", "fid-only", "self-only", "none"],
+      "description": "인물 내면 접근 수준.",
+      "applicable_axes": ["N", "A"]
+    },
+    "fid": {
+      "type": "enum",
+      "values": ["all", "npc-only", "simple", "forbidden", "none"],
+      "description": "FID(자유 간접 화법) 사용 범위.",
+      "applicable_axes": ["N", "A"]
+    },
+    "emotion_level": {
+      "type": "enum",
+      "values": ["open", "restrained", "suppressed", "forbidden"],
+      "description": "감정 표현 허용 수준.",
+      "applicable_axes": ["N", "A", "B"]
+    },
+    "sentence_length": {
+      "type": "enum",
+      "values": ["short", "mixed", "long", "character-driven"],
+      "description": "지배적 문장 길이.",
+      "applicable_axes": ["N", "A", "B"]
+    },
+    "sensory_anchor": {
+      "type": "enum",
+      "values": ["touch", "visual", "sound", "temperature", "space-surface", "object-surface", "character-driven", "memory", "default"],
+      "description": "감각 우선순위의 앵커.",
+      "applicable_axes": ["N", "A"]
+    },
+    "formality": {
+      "type": "enum",
+      "values": ["archaic", "formal", "neutral", "casual", "mixed"],
+      "description": "격식 수준.",
+      "applicable_axes": ["N", "B"]
+    },
+    "irony": {
+      "type": "boolean",
+      "description": "아이러니/냉소 사용 여부.",
+      "applicable_axes": ["B"]
+    },
+    "lyricism": {
+      "type": "enum",
+      "values": ["forbidden", "low", "moderate", "high"],
+      "description": "서정성 수준.",
+      "applicable_axes": ["N", "B"]
+    },
+    "narrator_presence": {
+      "type": "enum",
+      "values": ["invisible", "subtle", "visible", "storyteller"],
+      "description": "서술자 존재감.",
+      "applicable_axes": ["N", "A", "B"]
+    },
+    "personification": {
+      "type": "enum",
+      "values": ["allowed", "limited", "forbidden"],
+      "description": "의인화 허용 수준. 시점(A축)이 결정하며, B/F축에서 미세 조정 가능.",
+      "applicable_axes": ["A", "B", "F"]
+    },
+    "temporal_mode": {
+      "type": "enum",
+      "values": ["linear", "flashback", "layered", "ritual"],
+      "description": "시간 구조.",
+      "applicable_axes": ["N", "A"]
+    },
+    "slots_touched": {
+      "type": "array",
+      "items": "string",
+      "description": "이 모듈이 교체/추가하는 슬롯 ID 목록. 빌드 충돌 감지에 사용.",
+      "applicable_axes": ["N", "A", "B", "C", "D", "E", "F", "G"]
+    }
+  }
+}

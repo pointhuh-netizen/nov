@@ -13,7 +13,10 @@
       "operations": {},
       "check_operations": [],
       "master_guide_delta": {},
-      "known_conflicts": []
+      "known_conflicts": [],
+      "traits": {
+        "slots_touched": []
+      }
     },
     {
       "id": "N-01",
@@ -290,7 +293,29 @@
           "reason": "N-01은 3인칭 서술자 목소리를 사용하므로, 2인칭 관찰 밀착형(A-02)과 충돌한다.",
           "resolution": "N-01이 우선."
         }
-      ]
+      ],
+      "traits": {
+        "pov": "narrator-voice",
+        "inner_access": "fid-only",
+        "fid": "simple",
+        "emotion_level": "suppressed",
+        "sentence_length": "short",
+        "sensory_anchor": "visual",
+        "formality": "formal",
+        "irony": false,
+        "lyricism": "forbidden",
+        "narrator_presence": "storyteller",
+        "personification": "allowed",
+        "temporal_mode": "ritual",
+        "slots_touched": [
+          "{A_VOICE_POV_RATIO}", "{A_VOICE_FID_STYLE}", "{A_VOICE_STYLE_REF}",
+          "{A_PROSE_RHYTHM}", "{A_PROSE_SENSORY}", "{A_PROSE_DESCRIPTION}",
+          "{A_PROSE_CAUSALITY}", "{A_PROSE_TIME_DENSITY}", "{A_PROSE_PACING}",
+          "{A_PROSE_DWELL}", "{A_PROSE_MEDITATIVE}", "{A_PROSE_PHYSICAL_DISTANCE}",
+          "{D_PROSE_MOOD}", "{B_TONE_TEMP}", "{B_TONE_VOCAB}", "{B_TONE_ENDING}",
+          "{C_NARR_GENRE_VARS}", "{C_DLG_GENRE_STYLE}", "{F_COG_QUIRKS}"
+        ]
+      }
     },
     {
       "id": "N-02",
@@ -434,7 +459,29 @@
           "reason": "N-02는 화자의 인식 범위에 제한이 있으므로, 전지적 작가 시점(A-04)과 충돌한다.",
           "resolution": "N-02가 우선. 화자가 알 수 없는 정보는 서술 불가."
         }
-      ]
+      ],
+      "traits": {
+        "pov": "1st",
+        "inner_access": "self-only",
+        "fid": "none",
+        "emotion_level": "open",
+        "sentence_length": "character-driven",
+        "sensory_anchor": "memory",
+        "formality": "mixed",
+        "irony": false,
+        "lyricism": "moderate",
+        "narrator_presence": "visible",
+        "personification": "allowed",
+        "temporal_mode": "layered",
+        "slots_touched": [
+          "{A_VOICE_POV_RATIO}", "{A_VOICE_FID_STYLE}", "{A_VOICE_STYLE_REF}",
+          "{A_PROSE_RHYTHM}", "{A_PROSE_SENSORY}", "{A_PROSE_DESCRIPTION}",
+          "{A_PROSE_CAUSALITY}", "{A_PROSE_TIME_DENSITY}", "{A_PROSE_PACING}",
+          "{A_PROSE_DWELL}", "{A_PROSE_MEDITATIVE}", "{A_PROSE_PHYSICAL_DISTANCE}",
+          "{D_PROSE_MOOD}", "{B_TONE_TEMP}", "{B_TONE_VOCAB}", "{B_TONE_ENDING}",
+          "{C_DLG_GENRE_STYLE}"
+        ]
+      }
     }
   ]
 }

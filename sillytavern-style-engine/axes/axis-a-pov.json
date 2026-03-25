@@ -82,7 +82,20 @@
         }
       ],
       "master_guide_delta": {},
-      "known_conflicts": []
+      "known_conflicts": [],
+      "traits": {
+        "pov": "none",
+        "inner_access": "none",
+        "fid": "none",
+        "narrator_presence": "invisible",
+        "personification": "allowed",
+        "slots_touched": [
+          "{A_VOICE_POV_RATIO}", "{A_VOICE_FID_STYLE}", "{A_VOICE_STYLE_REF}",
+          "{A_PROSE_RHYTHM}", "{A_PROSE_SENSORY}", "{A_PROSE_DESCRIPTION}",
+          "{A_PROSE_CAUSALITY}", "{A_PROSE_TIME_DENSITY}", "{A_PROSE_PACING}",
+          "{A_PROSE_DWELL}", "{A_PROSE_MEDITATIVE}", "{A_PROSE_PHYSICAL_DISTANCE}"
+        ]
+      }
     },
     {
       "id": "A-01",
@@ -166,7 +179,23 @@
         "감정 명명 금지": "'나'의 감정은 직접 명명 가능하나, 항상 정확하지는 않음. '슬펐다'보다 '왜인지 모르게 목이 조였다' 권장. 타인의 감정은 추측만.",
         "godmoding": "유저 캐릭터의 내면은 시점 인물('나')의 추측으로만 접근. 확정 금지."
       },
-      "known_conflicts": []
+      "known_conflicts": [],
+      "traits": {
+        "pov": "1st",
+        "inner_access": "self-only",
+        "fid": "none",
+        "emotion_level": "restrained",
+        "sentence_length": "character-driven",
+        "sensory_anchor": "character-driven",
+        "narrator_presence": "invisible",
+        "personification": "allowed",
+        "temporal_mode": "linear",
+        "slots_touched": [
+          "{A_VOICE_POV_RATIO}", "{A_VOICE_FID_STYLE}", "{A_VOICE_STYLE_REF}",
+          "{A_PROSE_RHYTHM}", "{A_PROSE_SENSORY}", "{A_PROSE_CAUSALITY}",
+          "{A_PROSE_MEDITATIVE}", "{A_PROSE_PHYSICAL_DISTANCE}"
+        ]
+      }
     },
     {
       "id": "A-02",
@@ -266,7 +295,22 @@
           "reason": "하드SF 장르는 시각 중심인데 본 모듈이 시각을 최하위로 설정",
           "severity": "warning"
         }
-      ]
+      ],
+      "traits": {
+        "pov": "2nd",
+        "inner_access": "fid-only",
+        "fid": "npc-only",
+        "emotion_level": "restrained",
+        "sentence_length": "mixed",
+        "sensory_anchor": "touch",
+        "narrator_presence": "invisible",
+        "personification": "allowed",
+        "temporal_mode": "linear",
+        "slots_touched": [
+          "{A_VOICE_POV_RATIO}", "{A_VOICE_FID_STYLE}", "{A_VOICE_STYLE_REF}",
+          "{A_PROSE_RHYTHM}", "{A_PROSE_SENSORY}", "{A_PROSE_PHYSICAL_DISTANCE}"
+        ]
+      }
     },
     {
       "id": "A-03",
@@ -276,7 +320,19 @@
       "check_operations": [],
       "master_guide_delta": {},
       "known_conflicts": [],
-      "_note": "기본틀(default-template.json)의 기본값을 그대로 사용. operations가 비어있으므로 아무것도 교체하지 않음."
+      "_note": "기본틀(default-template.json)의 기본값을 그대로 사용. operations가 비어있으므로 아무것도 교체하지 않음.",
+      "traits": {
+        "pov": "3rd-limited",
+        "inner_access": "fid-only",
+        "fid": "npc-only",
+        "emotion_level": "restrained",
+        "sentence_length": "mixed",
+        "sensory_anchor": "default",
+        "narrator_presence": "invisible",
+        "personification": "allowed",
+        "temporal_mode": "linear",
+        "slots_touched": []
+      }
     },
     {
       "id": "A-04",
@@ -346,7 +402,22 @@
         "감정 명명 금지": "전지적이라도 감정 명명 금지. 내면 접근은 FID로, 감정은 신체 반응으로.",
         "godmoding": "유저 캐릭터 내면도 서술 가능하나, 유저 인풋에서 파생된 범위 내에서만. 유저가 제시하지 않은 감정/의도를 창작하지 않음."
       },
-      "known_conflicts": []
+      "known_conflicts": [],
+      "traits": {
+        "pov": "3rd-omni",
+        "inner_access": "full",
+        "fid": "all",
+        "emotion_level": "restrained",
+        "sentence_length": "mixed",
+        "sensory_anchor": "default",
+        "narrator_presence": "subtle",
+        "personification": "allowed",
+        "temporal_mode": "linear",
+        "slots_touched": [
+          "{A_VOICE_POV_RATIO}", "{A_VOICE_FID_STYLE}", "{A_VOICE_STYLE_REF}",
+          "{A_PROSE_MEDITATIVE}"
+        ]
+      }
     },
     {
       "id": "A-05",
@@ -449,7 +520,23 @@
           "reason": "상호작용 축의 일부 모듈이 NPC 내면 과정 노출을 요구할 수 있으나, 공간 시점에서는 불가",
           "severity": "warning"
         }
-      ]
+      ],
+      "traits": {
+        "pov": "space",
+        "inner_access": "none",
+        "fid": "forbidden",
+        "emotion_level": "forbidden",
+        "sentence_length": "long",
+        "sensory_anchor": "space-surface",
+        "narrator_presence": "invisible",
+        "personification": "forbidden",
+        "temporal_mode": "linear",
+        "slots_touched": [
+          "{A_VOICE_POV_RATIO}", "{A_VOICE_FID_STYLE}", "{A_VOICE_STYLE_REF}",
+          "{A_PROSE_RHYTHM}", "{A_PROSE_SENSORY}", "{A_PROSE_DESCRIPTION}",
+          "{A_PROSE_MEDITATIVE}", "{A_PROSE_PHYSICAL_DISTANCE}"
+        ]
+      }
     },
     {
       "id": "A-06",
@@ -663,7 +750,24 @@
           "reason": "상호작용 축 중 NPC 내면 과정 노출을 요구하는 모듈과 충돌 가능",
           "severity": "warning"
         }
-      ]
+      ],
+      "traits": {
+        "pov": "object",
+        "inner_access": "none",
+        "fid": "forbidden",
+        "emotion_level": "forbidden",
+        "sentence_length": "mixed",
+        "sensory_anchor": "object-surface",
+        "narrator_presence": "invisible",
+        "personification": "forbidden",
+        "temporal_mode": "linear",
+        "slots_touched": [
+          "{A_VOICE_POV_RATIO}", "{A_VOICE_FID_STYLE}", "{A_VOICE_STYLE_REF}",
+          "{A_PROSE_RHYTHM}", "{A_PROSE_SENSORY}", "{A_PROSE_DESCRIPTION}",
+          "{A_PROSE_CAUSALITY}", "{A_PROSE_TIME_DENSITY}", "{A_PROSE_PACING}",
+          "{A_PROSE_DWELL}", "{A_PROSE_MEDITATIVE}", "{A_PROSE_PHYSICAL_DISTANCE}"
+        ]
+      }
     }
   ]
 }
