@@ -1,6 +1,14 @@
 {
   "version": "1.0.0",
   "axes": {
+    "N": {
+      "name_ko": "서사 모드",
+      "name_en": "Narrative Mode",
+      "type": "mutex",
+      "ui_description": "복합 문체 선택. 여러 축의 슬롯을 동시에 건드리고, static/preamble을 교체하며, 고유 구조 법칙을 가진 서사 모드. 빌드 순서상 가장 먼저 적용.",
+      "icon": "📖",
+      "build_priority": 0
+    },
     "A": {
       "name_ko": "시점 · 서술방식",
       "name_en": "POV & Narration Style",
@@ -52,12 +60,75 @@
     }
   },
   "modules": [
-    { "id": "A-00", "axis": "A", "name": "사용하지 않음", "one_liner": "시점 지시를 주입하지 않음. 기존 설정을 그대로 사용.", "file": "axes/axis-a-pov.json" },
-    { "id": "A-01", "axis": "A", "name": "1인칭 체험형", "one_liner": "NPC가 '나'로 말한다. 편향되고 불완전한 시선으로 세계를 기록.", "file": "axes/axis-a-pov.json" },
-    { "id": "A-02", "axis": "A", "name": "2인칭 관찰 밀착형", "one_liner": "독자 자신이 행위자. 감각만 구축하고 감정은 열어둔다.", "file": "axes/axis-a-pov.json" },
-    { "id": "A-03", "axis": "A", "name": "3인칭 제한 관찰자", "one_liner": "서술자가 카메라처럼 행동·시선·신체 반응만 기록하고 내면에 접근하지 않는다.", "file": "axes/axis-a-pov.json" },
-    { "id": "A-04", "axis": "A", "name": "전지적 작가 시점", "one_liner": "서술자가 모든 인물의 내면에 접근. 감정 명명 금지는 유지.", "file": "axes/axis-a-pov.json" },
-    { "id": "A-05", "axis": "A", "name": "공간 시점", "one_liner": "장소가 관찰자. 인물은 공간을 지나가는 존재.", "file": "axes/axis-a-pov.json" },
-    { "id": "A-06", "axis": "A", "name": "사물 시점", "one_liner": "특정 사물 하나가 관찰자. 그 사물의 물리적 감각 범위만으로 세계를 기록.", "file": "axes/axis-a-pov.json" }
+    {
+      "id": "N-00",
+      "axis": "N",
+      "name": "사용하지 않음",
+      "one_liner": "서사 모드를 적용하지 않음. default-template 기본값 그대로 사용.",
+      "file": "axes/axis-n-narrative-mode.json"
+    },
+    {
+      "id": "N-01",
+      "axis": "N",
+      "name": "동화/우화",
+      "one_liner": "잔혹한 동화의 문법. 서술자 존재감, 3의 법칙, 금기와 위반, 페미니스트 재해석.",
+      "file": "axes/axis-n-narrative-mode.json"
+    },
+    {
+      "id": "N-02",
+      "axis": "N",
+      "name": "서간체",
+      "one_liner": "편지 형식으로 서술하는 1인칭 고백 문체. 회상과 현재를 오가며 수신자에게 말을 건다.",
+      "file": "axes/axis-n-narrative-mode.json"
+    },
+    {
+      "id": "A-00",
+      "axis": "A",
+      "name": "사용하지 않음",
+      "one_liner": "시점 지시를 주입하지 않음. 기존 설정을 그대로 사용.",
+      "file": "axes/axis-a-pov.json"
+    },
+    {
+      "id": "A-01",
+      "axis": "A",
+      "name": "1인칭 체험형",
+      "one_liner": "NPC가 '나'로 말한다. 편향되고 불완전한 시선으로 세계를 기록.",
+      "file": "axes/axis-a-pov.json"
+    },
+    {
+      "id": "A-02",
+      "axis": "A",
+      "name": "2인칭 관찰 밀착형",
+      "one_liner": "독자 자신이 행위자. 감각만 구축하고 감정은 열어둔다.",
+      "file": "axes/axis-a-pov.json"
+    },
+    {
+      "id": "A-03",
+      "axis": "A",
+      "name": "3인칭 제한 관찰자",
+      "one_liner": "서술자가 카메라처럼 행동·시선·신체 반응만 기록하고 내면에 접근하지 않는다.",
+      "file": "axes/axis-a-pov.json"
+    },
+    {
+      "id": "A-04",
+      "axis": "A",
+      "name": "전지적 작가 시점",
+      "one_liner": "서술자가 모든 인물의 내면에 접근. 감정 명명 금지는 유지.",
+      "file": "axes/axis-a-pov.json"
+    },
+    {
+      "id": "A-05",
+      "axis": "A",
+      "name": "공간 시점",
+      "one_liner": "장소가 관찰자. 인물은 공간을 지나가는 존재.",
+      "file": "axes/axis-a-pov.json"
+    },
+    {
+      "id": "A-06",
+      "axis": "A",
+      "name": "사물 시점",
+      "one_liner": "특정 사물 하나가 관찰자. 그 사물의 물리적 감각 범위만으로 세계를 기록.",
+      "file": "axes/axis-a-pov.json"
+    }
   ]
 }
