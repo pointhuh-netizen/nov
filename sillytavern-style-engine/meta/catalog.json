@@ -9,6 +9,14 @@
       "icon": "🎭",
       "file": "configs/user-character-control.json",
       "modes": ["UCC-00", "UCC-01", "UCC-02"]
+    },
+    {
+      "id": "nsfw_rating",
+      "name_ko": "NSFW 등급 제어",
+      "name_en": "NSFW Content Rating",
+      "icon": "🔞",
+      "file": "configs/nsfw-rating.json",
+      "modes": ["NSFW-00", "NSFW-01", "NSFW-02", "NSFW-03", "NSFW-04"]
     }
   ],
   "axes": {
