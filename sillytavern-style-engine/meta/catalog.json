@@ -212,6 +212,13 @@
       "file": "axes/axis-c-genre.json"
     },
     {
+      "id": "C-02",
+      "axis": "C",
+      "name": "추리 색채",
+      "one_liner": "기존 문체 위에 추리 장르 변수(증거, 증언, 탐문)만 얹는 경량 모듈. 서술 문법은 변경하지 않는다.",
+      "file": "axes/axis-c-genre.json"
+    },
+    {
       "id": "E-01",
       "axis": "E",
       "name": "전근대 궁정 / 고대 세계",
