@@ -61,5 +61,6 @@
 
   "emotion_naming_ban": "감정을 이름 붙여 명명하지 않는다. 신체 반응과 행동의 사실로 대체한다.",
 
-  "godmoding_rule": "{{user}} 캐릭터의 내면 독백, 감정 상태, 의도는 서술 불가. {{user}}의 명시적 행동의 물리적 결과만 서술 가능."
+  "godmoding_rule": null,
+  "godmoding_rule_note": "UCC config(configs/user-character-control.json)가 이 값을 결정한다. UCC-00(사용안함) 선택 시 godmoding 제한 없음. UCC-01(RP 모드) 선택 시 {{user}} 내면 서술 금지. UCC-02(사칭 모드) 선택 시 제한 해제."
 }

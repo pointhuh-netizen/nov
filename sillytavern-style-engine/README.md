@@ -246,7 +246,7 @@ AI가 생성하는 콘텐츠의 성적·폭력 묘사 수위를 결정합니다.
 - [x] **[HIGH] N-04 무협 서사 모드 추가**: 김용식 강호 서사. 별도 PR 진행 중
 - [x] **[HIGH] Config 시스템 신설**: 축과 독립적인 빌드 레벨 설정. 유저 캐릭터 제어(UCC-00~02) 추가 ✅ 완료
 - [x] **[HIGH] NSFW 등급 제어 Config**: NSFW-00(사용안함)~NSFW-04(R18) 5단계 등급 제어 ✅ 완료
-- [ ] **[HIGH] 기존 하드코딩 마이그레이션**: N-01~N-04의 유저 캐릭터 관련 하드코딩된 지시를 UCC config로 위임. `master-rules.json`의 `godmoding_rule`을 config 의존으로 전환
+- [x] **[HIGH] 기존 하드코딩 마이그레이션**: `master-rules.json`의 `godmoding_rule`을 `null`(중립)로 전환. A축(A-01, A-02)의 유저 캐릭터 지시를 UCC config 의존으로 변경 ✅ 완료
 - [x] **[MED] 추가 Config 검토**: NSFW 등급 제어 ✅ 완료. 출력 길이 제어 등 추가 후보 검토 중
 - [x] **[MED] C축 장르 모듈 작성**: C-01 궁정 정치/전쟁 서사, C-02 추리 색채 ✅ 완료
 - [ ] **[MED] N-04 본격 추리 추가**: MODULE 전체를 추리 서술 문법으로 재구성하는 복합 문체. AI 모델의 한계로 완벽한 추리 플롯이 아닌 그럴듯한 추리 분위기를 목적으로 함
@@ -447,8 +447,8 @@ sillytavern-style-engine/
 
 ## 알려진 문제
 
-- **하드코딩 마이그레이션 미완료**: N-01~N-04의 유저 캐릭터 관련 하드코딩된 지시가 아직 UCC config로 이관되지 않음. 현재는 UCC config와 기존 하드코딩이 공존하는 상태.
-- **`master-rules.json`의 `godmoding_rule`**: UCC-00(사용안함) 선택 시 기존 godmoding_rule이 그대로 적용됨. UCC-02(사칭) 선택 시 이 규칙을 null로 오버라이드해야 하는데, 빌더가 이를 처리하는 로직이 아직 명세되지 않음.
+- ~~**하드코딩 마이그레이션 미완료**~~ ✅ 완료. `master-rules.json`의 `godmoding_rule`과 A축의 유저 캐릭터 관련 지시가 UCC config 의존으로 전환됨.
+- ~~**`master-rules.json`의 `godmoding_rule`**~~: ✅ 완료. `null`(중립)로 전환되어 UCC-00(사용안함) 선택 시 godmoding 제한 없음.
 
 ---
 
@@ -464,3 +464,4 @@ sillytavern-style-engine/
 | Config 신설 | **Config 시스템(0계층) 신설**: 축과 독립적인 빌드 레벨 설정. `configs/` 디렉토리, `meta/config-schema.json` 추가. 첫 번째 config으로 유저 캐릭터 제어(UCC-00~02) 추가. `default-template.json`의 `build_order`에 `"configs"` 항목 추가 |
 | NSFW Config 추가 | **NSFW 등급 제어 Config 신설**: NSFW-00(사용안함)~NSFW-04(R18) 5단계. `{B_TONE_VOCAB}` 슬롯 오버라이드 + `[CONTENT_RATING_*]` 디렉티브 주입. config-schema.json, catalog.json 등록. 다국어 지원 분석 기록 추가 |
 | C축 추가 | **C-02(추리 색채) 신설**: 추리 장르 변수(증거, 증언, 탐문) 경량 모듈. C-01(궁정 정치/전쟁 서사) README 반영. catalog.json에 C-02 등록 |
+| 하드코딩 마이그레이션 | **godmoding_rule 중립화**: `master-rules.json`의 `godmoding_rule`을 `null`로 전환, UCC config 의존. `default-template.json`의 MODULE_1_VOICE static 업데이트. A-01/A-02의 유저 캐릭터 하드코딩을 UCC 의존으로 전환. A-05는 시점 본질 제약으로 유지 |
