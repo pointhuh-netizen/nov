@@ -185,6 +185,20 @@
       "name": "고풍체",
       "one_liner": "한문 투·고어를 절제 있게 살린 아카이브형 어조.",
       "file": "axes/axis-b-tone.json"
+    },
+    {
+      "id": "C-01",
+      "axis": "C",
+      "name": "궁정 정치 / 전쟁 서사",
+      "one_liner": "그레이 모럴리티, 전투의 물리적 정밀함, 정치적 대화의 이중성. 선/악 이분법 없는 서사.",
+      "file": "axes/axis-c-genre.json"
+    },
+    {
+      "id": "E-01",
+      "axis": "E",
+      "name": "전근대 궁정 / 고대 세계",
+      "one_liner": "호칭·의전·복식·무기·건축의 물질문화. 현대 비유 금지. 시대의 질감이 서사에 스며든다.",
+      "file": "axes/axis-e-setting.json"
     }
   ]
 }
