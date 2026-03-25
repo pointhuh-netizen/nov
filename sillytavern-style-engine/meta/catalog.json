@@ -207,6 +207,13 @@
       "name": "전근대 궁정 / 고대 세계",
       "one_liner": "호칭·의전·복식·무기·건축의 물질문화. 현대 비유 금지. 시대의 질감이 서사에 스며든다.",
       "file": "axes/axis-e-setting.json"
+    },
+    {
+      "id": "N-04",
+      "axis": "N",
+      "name": "무협",
+      "one_liner": "강호는 하나의 세계. 문파·내공·경공·검법·의리·배신이 서사의 기본 어휘. 김용식 신체 역학적 전투와 강호 생태계.",
+      "file": "axes/axis-n-narrative-mode.json"
     }
   ]
 }
