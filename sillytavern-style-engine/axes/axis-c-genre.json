@@ -141,7 +141,406 @@
         }
       ],
       "traits": {
-        "slots_touched": ["{C_NARR_GENRE_VARS}", "{C_DLG_GENRE_STYLE}"]
+        "slots_touched": [
+          "{C_NARR_GENRE_VARS}",
+          "{C_DLG_GENRE_STYLE}"
+        ]
+      }
+    },
+    {
+      "id": "C-03",
+      "name": "동화/우화",
+      "one_liner": "3의 법칙, 금기와 위반, 변신, 원조자/적대자, 보상과 처벌, 페미니스트 재해석. 동화 장르 서사 규칙.",
+      "operations": {
+        "{C_NARR_GENRE_VARS}": {
+          "mode": "REPLACE",
+          "value": "동화 구조 엔진: 새로운 금기의 도입, 원조자/적대자의 등장, 변신의 조건 제시, 3의 법칙 구조 진행, 상징적 사물의 등장/변형. 금기 도입→위반 유도→결과 전개. 3의 법칙 추적. 변신/마법의 조건과 비용. 보상과 처벌. 결론의 전복: '행복하게 살았다' 이후에도 이야기는 계속."
+        },
+        "{C_DLG_GENRE_STYLE}": {
+          "mode": "REPLACE",
+          "value": "어휘: 동화적, 단순, 원형적. 문장당 15자 내외, 최대 25자. 반복 대사: 같은 대사 3회 변주 — '열지 마라.' → '열지 마라.' → '이번에도 열지 마라.' 금기/조건/수수께끼/거래 대사 형식. 동물의 대사: 짧고, 반복적이고, 핵심만."
+        },
+        "{F_SPEC_EXTRA}": {
+          "mode": "APPEND",
+          "value": "자율 생성의 세 가지 축: [물성] 상징적 사물의 물리적 디테일 — 유리 구두의 차가움, 황금 열쇠의 무게, 독사과의 향기. 단순한 행동의 물리적 감각에도 적용. [차이] 3의 법칙에서 세 번째가 앞의 둘과 다른 것 — 차이를 서술자가 자율적으로 발명. 변신 전/후의 차이. [이면] 금기의 진짜 이유, 원조자의 진짜 대가, 보상 뒤의 비용 — 이면은 서술자가 해석하지 않고 서사가 스스로 드러내게. // 밀도 적용: 장면 중심 대상=3축 중 2개, 배경 대상=1개, 스쳐 지나가는 대상=구체화 없이 한 단어. 한 문단에서 3축 동시 작동 대상은 최대 1개. // 구체화 금지 구간: 여정 사이('오래 걸었다.' 한 줄로), 결과의 순간(건조한 단문 '삼켰다.'), 이미 확립된 공간 재진입(변화한 부분만)."
+        },
+        "{F_COG_QUIRKS}": {
+          "mode": "APPEND",
+          "value": "NPC는 원형적 역할(원조자, 적대자, 속이는 자, 변신하는 자)을 갖되 역할 이면에 인간적 동기가 있다. 동물 NPC 가능 — 성격과 동기를 부여하되 대사는 짧고 반복적. 마녀/계모/적대자의 '왜'가 핵심 — 단순 악역 금지. 원조자가 도움인지 함정인지 모르는 간극. 금기가 보호인지 억압인지 모르는 간극. // 내면 과정 시뮬레이터: 감정적으로 중요한 순간, 자극과 반응 사이에 예측·선택·억제·사후 인식 중 하나를 행동으로 보여준다(감정 명명 금지, 턴당 최대 1개)."
+        }
+      },
+      "check_operations": [
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-N01-01",
+            "category": "narrative",
+            "rule": "동화 구조(금기, 3의 법칙, 변신, 보상/처벌)가 진행 중인가? → 다음 구조 요소를 준비한다.",
+            "source": "C-03"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-N01-04",
+            "category": "narrative",
+            "rule": "교훈이 명시적으로 서술되었는가? → 삭제. 이야기가 교훈을 직접 말하지 않도록 한다.",
+            "source": "C-03"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-N01-05",
+            "category": "character",
+            "rule": "여성 인물이 수동적 구조 대상으로만 기능하는가? → 능동적 주체성을 부여한다. 공주는 구조 대상이 아니다.",
+            "source": "C-03"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-N01-06",
+            "category": "character",
+            "rule": "마녀/계모/적대자에게 동기(왜 그렇게 행동하는가)가 있는가? 단순 악역으로 처리했는가? → 이유를 부여한다.",
+            "source": "C-03"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-N01-13",
+            "category": "character",
+            "rule": "NPC 반응이 단일 층위(물리/기억/사회/관계/시간/감정/이면 중 1개)인가? → 최소 2개 층위를 교차 연산한다.",
+            "source": "C-03"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-N01-14",
+            "category": "dialogue",
+            "rule": "대화가 4턴 이상 완벽한 핑퐁(교대 발화)으로 이루어졌는가? → 최소 1회 불완전 턴(침묵, 행동으로 대체, 대화 끊김)을 삽입한다.",
+            "source": "C-03"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-N01-15",
+            "category": "narrative",
+            "rule": "유저 인풋의 추상 개념을 그대로 옮겼는가? → 상징적 사물의 물리적 감각으로 구체화한다(F_SPEC_EXTRA 3축 적용).",
+            "source": "C-03"
+          }
+        }
+      ],
+      "master_guide_delta": {
+        "fairy_tale_reinterpretation": "마녀=단순 악역이 아닌 사정이 있는 인물. 계모=역사가 있는 인물. 원조자=도움인지 함정인지 불명확. 금기=보호인지 억압인지 불명확.",
+        "emotion_to_symbol": "감정 명명 금지를 동화적으로 적용: 감정→물리적 행동+상징적 사물. '슬픔' → '유리 구두를 한쪽만 신은 채 서 있었다.'"
+      },
+      "known_conflicts": [
+        {
+          "with": "A-07",
+          "reason": "A-07 동화적 서술과 함께 사용할 때 최적. A-07이 없어도 동작하나, 서술 문체와 장르 규칙이 함께 작동할 때 시너지가 극대화된다.",
+          "severity": "info"
+        }
+      ],
+      "traits": {
+        "pov": null,
+        "inner_access": null,
+        "fid": "simple",
+        "emotion_level": "suppressed",
+        "sentence_length": null,
+        "sensory_anchor": null,
+        "formality": null,
+        "lyricism": null,
+        "narrator_presence": null,
+        "personification": "allowed",
+        "temporal_mode": "ritual",
+        "slots_touched": [
+          "{C_NARR_GENRE_VARS}",
+          "{C_DLG_GENRE_STYLE}",
+          "{F_SPEC_EXTRA}",
+          "{F_COG_QUIRKS}"
+        ]
+      }
+    },
+    {
+      "id": "C-04",
+      "name": "무협",
+      "one_liner": "전투 역학(검법·내공·경공), 문파 생태계, 의리/배신 서사, 강호 생태계 장르 규칙.",
+      "operations": {
+        "{C_NARR_GENRE_VARS}": {
+          "mode": "REPLACE",
+          "value": "강호 서사 변수: 강호 정치 변동(무림맹 주도권, 문파 간 갈등, 사파의 부상), 비급/영약 쟁탈, 은원의 연쇄(과거의 원한이 현재를 공격), 방랑 중 우연한 조우, 무림대회/비무, 내상의 악화. 3~5턴마다 서사 변수 자율 도입. 억지 위기 금지, 무공 체계 일관성 유지."
+        },
+        "{C_DLG_GENRE_STYLE}": {
+          "mode": "REPLACE",
+          "value": "강호 어투. 무협 전통 어휘 허용(내공, 경공, 초식, 사형, 장문인 등). 존칭/비칭이 관계를 드러냄. 문장당 15자 내외, 최대 25자. 무림 격식 대사는 최대 30자 허용. 2문장 이상 시 행동 비트 삽입. 도전장, 의리의 맹세, 암호어, 강호 속담이 대사에 자연스럽게. 현대적 구어/은어 침투 금지."
+        },
+        "{F_COG_QUIRKS}": {
+          "mode": "APPEND",
+          "value": "NPC 인지에 [무공] 층위 필수 추가: 무공 수준이 반응 속도, 관찰 정밀도, 자신감에 영향. [사회] 층위가 [강호]로 특화: 소속 문파, 파벌, 명성, 은원 관계. 3인 이상 대화 시 문파 내 서열/강호 명성 필수 점검. NPC의 무공, 소속, 은원이 인과의 주요 변수. 무공 수준의 차이에 의한 인식 간극 — 고수는 보이는 것이 하수는 보이지 않는다. // 내면 과정 시뮬레이터: [예측] 상대의 다음 초식 예측, [선택] 어떤 초식으로 대응할 것인가(버려진 선택지), [억제] 공격을 참는 것·분노를 기로 누르는 것, [사후 인식] 기를 쓰고 나서야 내상을 자각."
+        },
+        "{G_NARR_INITIATIVE}": {
+          "mode": "APPEND",
+          "value": "무협 서사 자율 개입 변수: 문파 간 충돌(동맹 균열, 세력 이동, 사파의 부상), 강호 소문(인물의 명성 변화, 무림에 유통되는 정보), 비급/영약/비무 등의 강호 이벤트를 자율 도입. 3~5턴마다 한 번. 억지 위기 금지."
+        },
+        "{G_NARR_NPC_NETWORK}": {
+          "mode": "APPEND",
+          "value": "무림 관계망: NPC들은 소속 문파, 파벌, 은원 관계, 무공 수준에 따라 유저 매개 없이 독립적으로 행동한다. NPC 간 세력 균형 변화가 서사 배경에서 자율 작동."
+        },
+        "{G_COG_DISTANCE}": {
+          "mode": "APPEND",
+          "value": "무림 사회적 거리: 강호에서 사회적 거리는 무공 수준·문파 위상·명성에 의해 결정된다. 호칭의 변화(사형→형→이름)가 거리 변화를 표시한다."
+        }
+      },
+      "check_operations": [
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-N04-01",
+            "category": "martial",
+            "rule": "무공 체계 일관성 위반이 있는가? → 수정. 내공 비용·한계 확인. 무공 수준의 갑작스러운 변화는 과정(수련/깨달음/영약)이 필요.",
+            "source": "C-04"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-N04-02",
+            "category": "martial",
+            "rule": "전투 묘사가 신체 역학적으로 비정밀한가? → 궤적(시작점·경로·속도)/거리/역학 삽입.",
+            "source": "C-04"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-N04-03",
+            "category": "narrative",
+            "rule": "강호 윤리가 단순화되었는가? → 복잡성 부여. 의리가 항상 옳은 것은 아니다. 은원의 연쇄가 비극을 만든다.",
+            "source": "C-04"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-N04-04",
+            "category": "martial",
+            "rule": "무공 수준의 갑작스러운 변화가 있는가? → 과정(수련/깨달음/영약) 확인.",
+            "source": "C-04"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-N04-08",
+            "category": "narrative",
+            "rule": "NPC들이 유저를 통해서만 교류하는가? → 독립 강호 네트워크. NPC들이 강호 정치/은원 안에서 독립적으로 행동.",
+            "source": "C-04"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-N04-09",
+            "category": "dialogue",
+            "rule": "대화 4턴 이상 완벽 핑퐁인가? → 불완전 턴 삽입.",
+            "source": "C-04"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-N04-10",
+            "category": "specificity",
+            "rule": "유저 인풋을 추상 그대로 옮겼는가? → 무기/지형/내공으로 구체화.",
+            "source": "C-04"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-N04-13",
+            "category": "narrative",
+            "rule": "강호 생태계(문파 세력 균형, 소문과 명성, 은원의 연쇄)가 서사 배경에서 작동하고 있는가? → 인물이 경험하는 형태로 기록.",
+            "source": "C-04"
+          }
+        }
+      ],
+      "master_guide_delta": {
+        "jianghu_ecology": "강호의 정치적/사회적/무공적 생태계를 관리한다. 문파 간 세력 균형(한 문파의 약화가 다른 문파의 부상으로), 소문과 명성의 이동(무림에서의 이름값이 행동의 결과를 바꿈), 은원의 연쇄(갚은 원한이 새로운 원한을 만든다). 서술자는 이 생태계의 변화를 인물이 경험하는 형태로 기록.",
+        "morality_of_jianghu": "의리는 항상 옳지 않다. 은원의 연쇄가 비극을 만든다. 강호 윤리의 단순화 금지."
+      },
+      "known_conflicts": [
+        {
+          "with": "A-08",
+          "reason": "A-08 무협적 서술과 함께 사용할 때 최적. A-08이 없어도 동작하나, 서술 문체와 장르 규칙이 함께 작동할 때 시너지가 극대화된다.",
+          "severity": "info"
+        }
+      ],
+      "traits": {
+        "pov": null,
+        "inner_access": null,
+        "fid": "npc-only",
+        "emotion_level": "suppressed",
+        "sentence_length": null,
+        "sensory_anchor": null,
+        "formality": "formal",
+        "lyricism": null,
+        "narrator_presence": null,
+        "personification": "forbidden",
+        "temporal_mode": "martial",
+        "slots_touched": [
+          "{C_NARR_GENRE_VARS}",
+          "{C_DLG_GENRE_STYLE}",
+          "{F_COG_QUIRKS}",
+          "{G_NARR_INITIATIVE}",
+          "{G_NARR_NPC_NETWORK}",
+          "{G_COG_DISTANCE}"
+        ]
+      }
+    },
+    {
+      "id": "C-05",
+      "name": "심리 스릴러",
+      "one_liner": "표면 아래의 전쟁. 일상의 외피 속에서 인물 간 심리적 권력 교전이 벌어지는 장르. 신뢰할 수 없는 서술과 이중 의미의 대사.",
+      "operations": {
+        "{A_VOICE_POV_RATIO}": {
+          "mode": "APPEND",
+          "value": "FID 비율 상승(30~40%). 서술자의 관찰과 인물의 자기기만이 겹치는 구간을 늘린다."
+        },
+        "{A_VOICE_FID_STYLE}": {
+          "mode": "APPEND",
+          "value": "FID에서 자기기만·합리화가 서술을 오염시키는 형태. 인물이 자신에게 하는 설명이 사실과 어긋나는 순간을 독자가 포착하도록."
+        },
+        "{A_PROSE_SENSORY}": {
+          "mode": "APPEND",
+          "value": "시각(감시/분석)이 우선 승격. 인물이 타인을 '읽는' 감각 — 시선 추적, 미세 표정 변화, 손의 위치. 촉각은 권력 관계의 물리적 표현(팔을 잡는 힘의 강도, 어깨에 올린 손의 무게)."
+        },
+        "{A_PROSE_RHYTHM}": {
+          "mode": "APPEND",
+          "value": "축적→균열→복귀 리듬. 평온한 중문이 쌓이다가 단문 하나로 균열. 다시 중문으로 덮는다. 균열의 단문은 감각 하나만."
+        },
+        "{A_PROSE_DESCRIPTION}": {
+          "mode": "APPEND",
+          "value": "위협 디테일: 플롯 무관 사물 중 '잠재적 무기'가 될 수 있는 것(가위, 유리잔, 문 손잡이)을 물성으로 구체화. 반시적(anti-poetic): 비유 사용 시 아름다움이 아닌 불편함을 유발하는 비유."
+        },
+        "{A_PROSE_CAUSALITY}": {
+          "mode": "APPEND",
+          "value": "인물이 부여하는 이유 ≠ 실제 이유. 서술자는 인물의 이유를 그대로 전달하되, 행동의 물리적 결과가 그 이유와 어긋나는 순간을 배치."
+        },
+        "{A_PROSE_PACING}": {
+          "mode": "APPEND",
+          "value": "침묵 = 권력 교전. 침묵의 물리적 묘사에 인물 간 힘 관계가 드러나야 한다. 누가 먼저 말하는가, 누가 시선을 피하는가."
+        },
+        "{D_PROSE_MOOD}": {
+          "mode": "APPEND",
+          "value": "표면 평온 / 이면 불안. 일상적 행동(커피를 마시다, 서류를 넘기다)의 묘사에 미세한 이상 징후(평소보다 느린 동작, 한 박자 늦은 대답)를 섞는다."
+        },
+        "{B_TONE_TEMP}": {
+          "mode": "APPEND",
+          "value": "60% 일상 / 40% 불안·내면 마찰. 감정 절정일수록 더 담담하게, 그러나 감각 디테일은 더 날카롭게."
+        },
+        "{C_NARR_GENRE_VARS}": {
+          "mode": "REPLACE",
+          "value": "거짓말의 물리학. 서사 변수: 1)진술과 행동의 불일치 2)정보 비대칭의 역전(아는 사람이 모르는 척, 모르는 사람이 아는 척) 3)신뢰 손상 후 회복 불가 4)과거 사건의 재해석(같은 장면을 다른 관점에서) 5)일상 패턴의 균열(항상 하던 행동을 안 함, 안 하던 행동을 함)."
+        },
+        "{C_DLG_GENRE_STYLE}": {
+          "mode": "REPLACE",
+          "value": "대사=도구. 모든 대사는 정보 전달 외에 최소 하나의 숨은 기능(떠보기, 자기 방어, 상대 시험, 관계 재정의)을 가진다. 이중 의미: 같은 대사가 화자와 청자에게 다른 의미. 직접적 감정 고백 금지 — 돌려 말하기, 질문으로 대답하기, 화제 전환으로 회피."
+        },
+        "{G_DLG_INCOMPLETE}": {
+          "mode": "APPEND",
+          "value": "화제 전환(핵심을 피해가는 의도적 전환), 질문을 질문으로 받기, 대답 대신 행동(컵을 내려놓다, 자리에서 일어나다)."
+        },
+        "{F_SPEC_EXTRA}": {
+          "mode": "APPEND",
+          "value": "차이축 강화: 인물의 진술과 물리적 사실의 차이를 구체화. '괜찮다'고 말하는 손이 떨리는 것, '관심 없다'는 사람의 시선이 따라가는 것."
+        }
+      },
+      "check_operations": [
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-C05-01",
+            "category": "narrative",
+            "rule": "인물의 진술과 행동이 완전히 일치하는가? → 최소 한 곳에서 미세한 불일치를 배치.",
+            "source": "C-05"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-C05-02",
+            "category": "dialogue",
+            "rule": "대사가 정보 전달만 하는가? → 숨은 기능(떠보기/방어/시험) 하나를 부여.",
+            "source": "C-05"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-C05-03",
+            "category": "prose",
+            "rule": "일상 묘사가 완전히 평온한가? → 미세 이상 징후(느린 동작, 늦은 대답, 시선 회피) 하나를 삽입.",
+            "source": "C-05"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-C05-04",
+            "category": "cognitive",
+            "rule": "NPC의 자기 인식과 행동이 완전히 일치하는가? → 자기기만/합리화의 FID 한 줄 고려.",
+            "source": "C-05"
+          }
+        }
+      ],
+      "master_guide_delta": {
+        "unreliable_surface": "표면의 일상성이 핵심. 스릴러의 긴장은 괴물이 아니라 '평범한 사람의 평범하지 않은 순간'에서 온다.",
+        "power_in_silence": "대화에서 침묵과 회피가 가장 많은 정보를 전달한다. 말하지 않는 것이 말하는 것보다 중요하다.",
+        "trust_economy": "신뢰는 통화. 한 번 손상되면 같은 방식으로는 회복 불가. 회복 시도 자체가 새로운 서사 변수."
+      },
+      "known_conflicts": [
+        {
+          "with": "B-01",
+          "reason": "건조체의 감정 삭제와 심리 스릴러의 FID 자기기만이 긴장. 공존 가능하나 FID 비율이 제한될 수 있다.",
+          "severity": "info"
+        },
+        {
+          "with": "C-01",
+          "reason": "궁정 정치의 이중성과 심리 스릴러의 이중성이 중첩. 시너지 가능하나 대사의 이중 기능이 과잉될 수 있다.",
+          "severity": "info"
+        }
+      ],
+      "traits": {
+        "pov": null,
+        "inner_access": null,
+        "fid": "npc-only",
+        "emotion_level": "restrained",
+        "sentence_length": null,
+        "sensory_anchor": "visual-behavioral",
+        "formality": null,
+        "lyricism": "low",
+        "narrator_presence": null,
+        "personification": null,
+        "slots_touched": [
+          "{A_VOICE_POV_RATIO}",
+          "{A_VOICE_FID_STYLE}",
+          "{A_PROSE_SENSORY}",
+          "{A_PROSE_RHYTHM}",
+          "{A_PROSE_DESCRIPTION}",
+          "{A_PROSE_CAUSALITY}",
+          "{A_PROSE_PACING}",
+          "{D_PROSE_MOOD}",
+          "{B_TONE_TEMP}",
+          "{C_NARR_GENRE_VARS}",
+          "{C_DLG_GENRE_STYLE}",
+          "{G_DLG_INCOMPLETE}",
+          "{F_SPEC_EXTRA}"
+        ]
       }
     }
   ]
