@@ -7,7 +7,7 @@ SillyTavern Modular Prompt System
 | 축 | 모듈 ID | 모듈명 | 상태 |
 |---|---|---|---|
 | **A** | A-00~A-06 | 사용안함, 1인칭~사물 시점 | ✅ 완성 |
-| **S** | S-00~S-03 | 사용안함, 동화적 서술, 무협적 서술, 서간체 | ✅ 완성 |
+| **S** | S-00~S-08 | 사용안함, 동화적 서술, 무협적 서술, 서간체, 극본체, 기록체, 구술체, 회상체, 몽타주 | ✅ 완성 |
 | **B** | B-00~B-07 | 건조체~고풍체 | ✅ 완성 |
 | **C** | C-01~C-05 | 궁정 정치, 추리 색채, 동화/우화, 무협, 심리 스릴러 | ✅ 완성 |
 | **D** | D-01 | 감각적 일상 | ✅ 완성 |
@@ -24,7 +24,7 @@ sillytavern-style-engine/
 │   └── default-template.json
 ├── axes/
 │   ├── axis-a-pov.json             ← A축: 시점. A-00~A-06
-│   ├── axis-s-narration.json       ← S축: 서술 방식. S-00~S-03
+│   ├── axis-s-narration.json       ← S축: 서술 방식. S-00~S-08
 │   ├── axis-b-tone.json            ← B축: 어조·어휘. B-00~B-07
 │   ├── axis-c-genre.json           ← C축: 장르. C-01~C-05
 │   ├── axis-d-mood.json            ← D축: 분위기. D-01
