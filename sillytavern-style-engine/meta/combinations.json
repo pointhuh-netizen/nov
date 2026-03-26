@@ -1,439 +1,556 @@
 {
-  "version": "2.0.0",
-  "description": "모듈 조합 자동 충돌 감지 규칙. traits 필드를 비교하여 경고/오류를 발생시킨다.",
-  "auto_rules": [
-    {
-      "id": "AUTO-SLOT-OVERLAP",
-      "condition": "두 모듈의 slots_touched에 동일 슬롯이 존재",
-      "severity": "info",
-      "message_ko": "같은 슬롯을 건드리는 모듈이 있습니다. 빌드 순서상 나중 축이 덮어씁니다.",
-      "applies_to": "cross-axis"
-    },
-    {
-      "id": "AUTO-POV-CONFLICT",
-      "condition": "두 모듈이 서로 다른 pov 값을 가짐 (둘 다 non-null, non-none)",
-      "severity": "error",
-      "message_ko": "시점이 충돌합니다. 하나만 선택하거나, 빌드 순서 우선 규칙을 확인하세요."
-    },
-    {
-      "id": "AUTO-SENTENCE-TENSION",
-      "condition": "sentence_length 값이 두 모듈 간 반대 (short ↔ long)",
-      "severity": "warning",
-      "message_ko": "문장 길이 규칙이 충돌합니다. 빌드 순서상 나중 축의 append_rules가 실질적 리듬을 변경할 수 있습니다."
-    },
-    {
-      "id": "AUTO-EMOTION-DOUBLE-SUPPRESS",
-      "condition": "emotion_level이 'suppressed' 또는 'forbidden'인 모듈이 2개 이상",
-      "severity": "info",
-      "message_ko": "감정 표현이 이중으로 억제됩니다. 의도된 선택인지 확인하세요."
-    },
-    {
-      "id": "AUTO-FID-CONFLICT",
-      "condition": "한 모듈이 fid: 'forbidden'이고 다른 모듈이 fid를 'all', 'npc-only', 'simple' 중 하나로 요구",
-      "severity": "error",
-      "message_ko": "FID 사용이 금지된 시점에서 FID를 요구하는 모듈이 선택되었습니다."
-    },
-    {
-      "id": "AUTO-LYRICISM-CLASH",
-      "condition": "lyricism: 'forbidden'인 모듈과 lyricism: 'high'인 모듈이 공존",
-      "severity": "warning",
-      "message_ko": "서정성 규칙이 충돌합니다. 빌드 순서상 먼저 적용된 금지 규칙이 우선할 수 있습니다."
-    },
-    {
-      "id": "AUTO-NARRATOR-1ST-CLASH",
-      "condition": "narrator_presence가 'storyteller'인 모듈과 pov가 '1st'인 모듈이 공존",
-      "severity": "error",
-      "message_ko": "서술자 존재감(이야기꾼)과 1인칭 시점이 충돌합니다."
-    },
-    {
-      "id": "AUTO-PERSONIFICATION-CLASH",
-      "condition": "personification: 'forbidden'인 모듈과 personification: 'allowed'인 모듈이 공존",
-      "severity": "warning",
-      "message_ko": "의인화 금지 규칙이 적용된 상태에서 의인화를 허용하는 모듈이 있습니다. 빌드 순서상 먼저 적용된 축이 우선합니다."
-    },
-    {
-      "id": "RULE-POV-CONFLICT",
-      "type": "trait_mismatch",
-      "severity": "error",
-      "condition": {
-        "trait": "pov",
-        "conflict": "different_values"
-      },
-      "description": "N축과 A축의 시점(pov) trait 값이 다르면 조합 불가. 예: N-01(3인칭 고정) + A-01(1인칭).",
-      "affected_axes": [
-        "A"
-      ]
-    },
-    {
-      "id": "RULE-FID-CONFLICT",
-      "type": "trait_mismatch",
-      "severity": "error",
-      "condition": {
-        "trait": "fid",
-        "conflict": "forbidden_vs_required"
-      },
-      "description": "한 모듈이 FID를 금지하고 다른 모듈이 FID를 필수로 요구하면 조합 불가.",
-      "affected_axes": [
-        "A",
-        "B"
-      ]
-    },
-    {
-      "id": "RULE-NARRATOR-1P-CONFLICT",
-      "type": "trait_mismatch",
-      "severity": "error",
-      "condition": {
-        "trait": "narrator_presence",
-        "conflict": "strong_narrator_vs_first_person"
-      },
-      "description": "강한 서술자 존재감 + 1인칭 체험형은 근본적으로 충돌. 서술자가 존재하면 1인칭의 즉시성이 깨진다.",
-      "affected_axes": [
-        "A",
-        "B",
-        "S"
-      ]
-    },
-    {
-      "id": "RULE-SENTENCE-LENGTH-MISMATCH",
-      "type": "trait_mismatch",
-      "severity": "warning",
-      "condition": {
-        "trait": "sentence_length",
-        "conflict": "opposite_values"
-      },
-      "description": "N축이 설정한 문장 길이 경향과 B축이 설정한 경향이 반대일 때 경고. 예: N-01(단문 중심) + B-04(만연체). 빌드 순서상 B축이 최종 우선하지만, N축의 서사 리듬이 깨질 수 있다.",
-      "affected_axes": [
-        "B"
-      ]
-    },
-    {
-      "id": "RULE-FORMALITY-MISMATCH",
-      "type": "trait_mismatch",
-      "severity": "warning",
-      "condition": {
-        "trait": "formality",
-        "conflict": "opposite_values"
-      },
-      "description": "N축/B축 간 격식 수준 불일치. 예: N-04(무협, 격식 높음) + B-03(구어체, 격식 낮음). 의도적 스타일링이 아니면 어색한 결과물이 나올 수 있다.",
-      "affected_axes": [
-        "B"
-      ]
-    },
-    {
-      "id": "RULE-LYRICISM-CONFLICT",
-      "type": "trait_mismatch",
-      "severity": "warning",
-      "condition": {
-        "trait": "lyricism",
-        "conflict": "opposite_values"
-      },
-      "description": "서정성 수준 충돌. 예: N-01(동화, 서정성 높음) + B-01(건조체, 서정성 없음). 빌드 순서상 B축 우선이지만 N축의 서사 분위기가 깨질 수 있다.",
-      "affected_axes": [
-        "B"
-      ]
-    },
-    {
-      "id": "RULE-PERSONIFICATION-CONFLICT",
-      "type": "trait_mismatch",
-      "severity": "warning",
-      "condition": {
-        "trait": "personification",
-        "conflict": "forbidden_vs_allowed"
-      },
-      "description": "A축(A-05 공간시점, A-06 사물시점)이 의인화를 금지하는데, B축이나 F축이 의인화를 허용/요구하면 충돌.",
-      "affected_axes": [
-        "A",
-        "B",
-        "F"
-      ]
-    },
-    {
-      "id": "RULE-EMOTION-DOUBLE-SUPPRESS",
-      "type": "trait_overlap",
-      "severity": "info",
-      "condition": {
-        "trait": "emotion_level",
-        "conflict": "both_suppress"
-      },
-      "description": "여러 모듈이 감정 표현을 동시에 억제하면, 결과물이 지나치게 무미건조할 수 있다. 예: A-05(공간시점, 감정 없음) + B-01(건조체, 감정 억제).",
-      "affected_axes": [
-        "A",
-        "B"
-      ]
-    },
-    {
-      "id": "RULE-SLOT-F-COG-OVERLAP",
-      "type": "slot_overlap",
-      "severity": "info",
-      "condition": {
-        "slot": "{F_COG_QUIRKS}",
-        "conflict": "multiple_replace"
-      },
-      "description": "C-01(궁정 정치)이 {F_COG_QUIRKS}를 REPLACE하고, F축 모듈(F-01/F-02/F-03)도 같은 슬롯을 REPLACE한다. 빌드 순서상 F축이 최종 우선이므로 C-01의 인지 설정은 덮어씌워진다.",
-      "affected_modules": [
-        "C-01",
-        "F-01",
-        "F-02",
-        "F-03"
-      ]
-    },
-    {
-      "id": "RULE-S01-F03-INCOMPATIBLE",
-      "type": "explicit_pair",
-      "severity": "error",
-      "condition": {
-        "modules": [
-          "S-01",
-          "F-03"
-        ]
-      },
-      "description": "동화적 서술(S-01)과 SF/사이버펑크 기술 체계(F-03)는 근본적으로 충돌. 동화 세계관에 고도 기술이 공존하면 서사 톤이 붕괴한다.",
-      "affected_modules": [
-        "S-01",
-        "F-03"
-      ]
-    },
-    {
-      "id": "RULE-S02-F02-OVERLAP",
-      "type": "explicit_pair",
-      "severity": "warning",
-      "condition": {
-        "modules": [
-          "S-02",
-          "F-02"
-        ]
-      },
-      "description": "무협적 서술(S-02)의 내공/경공 체계와 마법 체계(F-02)가 공존하면 두 초자연 체계의 규칙이 혼재할 수 있다. 하나를 주체계로 설정하고 다른 하나를 부차적으로 처리할 것을 권장.",
-      "affected_modules": [
-        "S-02",
-        "F-02"
-      ]
-    },
-    {
-      "id": "RULE-B07-F03-MISMATCH",
-      "type": "explicit_pair",
-      "severity": "warning",
-      "condition": {
-        "modules": [
-          "B-07",
-          "F-03"
-        ]
-      },
-      "description": "고풍체의 어휘와 SF 기술 용어가 충돌할 수 있다. 스팀펑크 같은 의도적 스타일링이 아니면 주의.",
-      "affected_modules": [
-        "B-07",
-        "F-03"
-      ]
-    },
-    {
-      "id": "RULE-C01-B03-FORMALITY",
-      "type": "explicit_pair",
-      "severity": "warning",
-      "condition": {
-        "modules": [
-          "C-01",
-          "B-03"
-        ]
-      },
-      "description": "궁정 정치물의 격식과 구어체의 비격식이 충돌할 수 있다. C-01의 known_conflicts에도 명시됨.",
-      "affected_modules": [
-        "C-01",
-        "B-03"
-      ]
-    },
-    {
-      "id": "RULE-A06-S03-IMPOSSIBLE",
-      "type": "explicit_pair",
-      "severity": "error",
-      "condition": {
-        "modules": [
-          "A-06",
-          "S-03"
-        ]
-      },
-      "description": "사물 시점(A-06)과 서간체(S-03)는 조합 불가. 사물은 편지를 쓸 수 없다.",
-      "affected_modules": [
-        "A-06",
-        "S-03"
-      ]
-    },
-    {
-      "id": "RULE-A05-S03-IMPOSSIBLE",
-      "type": "explicit_pair",
-      "severity": "error",
-      "condition": {
-        "modules": [
-          "A-05",
-          "S-03"
-        ]
-      },
-      "description": "공간 시점(A-05)과 서간체(S-03)는 조합 불가. 공간은 편지를 쓸 수 없다.",
-      "affected_modules": [
-        "A-05",
-        "S-03"
-      ]
-    },
-    {
-      "id": "RULE-S05-A04-INFO",
-      "type": "explicit_pair",
-      "severity": "info",
-      "condition": {
-        "modules": [
-          "S-05",
-          "A-04"
-        ]
-      },
-      "description": "기록체(S-05)와 전지적 작가 시점(A-04)의 조합. 전지적 기록자가 모든 것을 알고 보고서로 쓰는 형식. '관찰만 기록'이 아닌 '전지적 관점에서 문서화'로 해석된다.",
-      "affected_modules": [
-        "S-05",
-        "A-04"
-      ]
-    },
-    {
-      "id": "RULE-S06-A05-INFO",
-      "type": "explicit_pair",
-      "severity": "info",
-      "condition": {
-        "modules": [
-          "S-06",
-          "A-05"
-        ]
-      },
-      "description": "구술체(S-06)와 공간 시점(A-05)의 조합. 공간이 이미 시점을 가지므로 공간이 청자에게 이야기를 들려주는 형식으로 해석된다. 공간이 말하는 것처럼 쓸 수 있다.",
-      "affected_modules": [
-        "S-06",
-        "A-05"
-      ]
-    },
-    {
-      "id": "RULE-S06-A06-INFO",
-      "type": "explicit_pair",
-      "severity": "info",
-      "condition": {
-        "modules": [
-          "S-06",
-          "A-06"
-        ]
-      },
-      "description": "구술체(S-06)와 사물 시점(A-06)의 조합. 사물이 이미 시점을 가지므로 사물이 청자에게 이야기를 들려주는 형식으로 해석된다. 사물이 말하는 것처럼 쓸 수 있다.",
-      "affected_modules": [
-        "S-06",
-        "A-06"
-      ]
-    },
-    {
-      "id": "RULE-S09-A05-INCOMPATIBLE",
-      "type": "explicit_pair",
-      "severity": "error",
-      "condition": {
-        "modules": ["S-09", "A-05"]
-      },
-      "description": "의식의 흐름(S-09)은 인물의 내면이 서술의 본질. 공간에는 의식이 없으므로 조합 불가.",
-      "affected_modules": ["S-09", "A-05"]
-    },
-    {
-      "id": "RULE-S09-A06-INCOMPATIBLE",
-      "type": "explicit_pair",
-      "severity": "error",
-      "condition": {
-        "modules": ["S-09", "A-06"]
-      },
-      "description": "의식의 흐름(S-09)은 인물의 내면이 서술의 본질. 사물에는 의식이 없으므로 조합 불가.",
-      "affected_modules": ["S-09", "A-06"]
-    },
-    {
-      "id": "RULE-S09-B05-TENSION",
-      "type": "explicit_pair",
-      "severity": "warning",
-      "condition": {
-        "modules": ["S-09", "B-05"]
-      },
-      "description": "의식의 흐름(S-09)은 장문 연속 경향인데 간결체(B-05)는 단문 분리를 원칙으로 한다. 의도적이면 실험적 효과.",
-      "affected_modules": ["S-09", "B-05"]
-    },
-    {
-      "id": "RULE-S10-C05-SYNERGY",
-      "type": "explicit_pair",
-      "severity": "info",
-      "condition": {
-        "modules": ["S-10", "C-05"]
-      },
-      "description": "신뢰할 수 없는 서술자(S-10)와 심리 스릴러(C-05)의 궁극 시너지 조합. 서술자의 불성실함과 심리적 권력 교전이 맞물린다.",
-      "affected_modules": ["S-10", "C-05"]
-    },
-    {
-      "id": "RULE-S11-A01-CAUTION",
-      "type": "explicit_pair",
-      "severity": "warning",
-      "condition": {
-        "modules": ["S-11", "A-01"]
-      },
-      "description": "1인칭 다성(S-11+A-01)은 가능하지만 섹션 구분을 명확히 해야 화자 혼란을 방지할 수 있다.",
-      "affected_modules": ["S-11", "A-01"]
-    },
-    {
-      "id": "RULE-S12-A05-INCOMPATIBLE",
-      "type": "explicit_pair",
-      "severity": "error",
-      "condition": {
-        "modules": ["S-12", "A-05"]
-      },
-      "description": "공간(A-05)은 일기를 쓸 수 없다. 일기체(S-12)는 인물이 자기 자신에게 쓰는 기록을 전제한다.",
-      "affected_modules": ["S-12", "A-05"]
-    },
-    {
-      "id": "RULE-S12-A06-INCOMPATIBLE",
-      "type": "explicit_pair",
-      "severity": "error",
-      "condition": {
-        "modules": ["S-12", "A-06"]
-      },
-      "description": "사물(A-06)은 일기를 쓸 수 없다. 일기체(S-12)는 인물이 자기 자신에게 쓰는 기록을 전제한다.",
-      "affected_modules": ["S-12", "A-06"]
-    },
-    {
-      "id": "RULE-S13-A05-INCOMPATIBLE",
-      "type": "explicit_pair",
-      "severity": "error",
-      "condition": {
-        "modules": ["S-13", "A-05"]
-      },
-      "description": "공간(A-05)은 실시간 중계를 할 수 없다. 실시간 중계체(S-13)는 목격자가 보고하는 구조를 전제한다.",
-      "affected_modules": ["S-13", "A-05"]
-    },
-    {
-      "id": "RULE-S13-A06-INCOMPATIBLE",
-      "type": "explicit_pair",
-      "severity": "error",
-      "condition": {
-        "modules": ["S-13", "A-06"]
-      },
-      "description": "사물(A-06)은 실시간 중계를 할 수 없다. 실시간 중계체(S-13)는 목격자가 보고하는 구조를 전제한다.",
-      "affected_modules": ["S-13", "A-06"]
-    },
-    {
-      "id": "RULE-S14-B08-DOUBLE-ARCHAIC",
-      "type": "explicit_pair",
-      "severity": "warning",
-      "condition": {
-        "modules": ["S-14", "B-08"]
-      },
-      "description": "사관 기록체(S-14)의 구조와 사극투(B-08)의 어조가 결합하면 시너지. 단, 한문 투가 이중으로 과잉될 위험이 있다.",
-      "affected_modules": ["S-14", "B-08"]
-    },
-    {
-      "id": "RULE-B08-F03-INCOMPATIBLE",
-      "type": "explicit_pair",
-      "severity": "error",
-      "condition": {
-        "modules": ["B-08", "F-03"]
-      },
-      "description": "사극투(B-08)의 한문 투·고어 어휘와 SF/사이버펑크 기술 용어(F-03)는 근본적으로 충돌한다.",
-      "affected_modules": ["B-08", "F-03"]
+    "version": "2.0.0",
+    "description": "모듈 조합 자동 충돌 감지 규칙. traits 필드를 비교하여 경고/오류를 발생시킨다.",
+    "auto_rules": [
+        {
+            "id": "AUTO-SLOT-OVERLAP",
+            "condition": "두 모듈의 slots_touched에 동일 슬롯이 존재",
+            "severity": "info",
+            "message_ko": "같은 슬롯을 건드리는 모듈이 있습니다. 빌드 순서상 나중 축이 덮어씁니다.",
+            "applies_to": "cross-axis"
+        },
+        {
+            "id": "AUTO-POV-CONFLICT",
+            "condition": "두 모듈이 서로 다른 pov 값을 가짐 (둘 다 non-null, non-none)",
+            "severity": "error",
+            "message_ko": "시점이 충돌합니다. 하나만 선택하거나, 빌드 순서 우선 규칙을 확인하세요."
+        },
+        {
+            "id": "AUTO-SENTENCE-TENSION",
+            "condition": "sentence_length 값이 두 모듈 간 반대 (short ↔ long)",
+            "severity": "warning",
+            "message_ko": "문장 길이 규칙이 충돌합니다. 빌드 순서상 나중 축의 append_rules가 실질적 리듬을 변경할 수 있습니다."
+        },
+        {
+            "id": "AUTO-EMOTION-DOUBLE-SUPPRESS",
+            "condition": "emotion_level이 'suppressed' 또는 'forbidden'인 모듈이 2개 이상",
+            "severity": "info",
+            "message_ko": "감정 표현이 이중으로 억제됩니다. 의도된 선택인지 확인하세요."
+        },
+        {
+            "id": "AUTO-FID-CONFLICT",
+            "condition": "한 모듈이 fid: 'forbidden'이고 다른 모듈이 fid를 'all', 'npc-only', 'simple' 중 하나로 요구",
+            "severity": "error",
+            "message_ko": "FID 사용이 금지된 시점에서 FID를 요구하는 모듈이 선택되었습니다."
+        },
+        {
+            "id": "AUTO-LYRICISM-CLASH",
+            "condition": "lyricism: 'forbidden'인 모듈과 lyricism: 'high'인 모듈이 공존",
+            "severity": "warning",
+            "message_ko": "서정성 규칙이 충돌합니다. 빌드 순서상 먼저 적용된 금지 규칙이 우선할 수 있습니다."
+        },
+        {
+            "id": "AUTO-NARRATOR-1ST-CLASH",
+            "condition": "narrator_presence가 'storyteller'인 모듈과 pov가 '1st'인 모듈이 공존",
+            "severity": "error",
+            "message_ko": "서술자 존재감(이야기꾼)과 1인칭 시점이 충돌합니다."
+        },
+        {
+            "id": "AUTO-PERSONIFICATION-CLASH",
+            "condition": "personification: 'forbidden'인 모듈과 personification: 'allowed'인 모듈이 공존",
+            "severity": "warning",
+            "message_ko": "의인화 금지 규칙이 적용된 상태에서 의인화를 허용하는 모듈이 있습니다. 빌드 순서상 먼저 적용된 축이 우선합니다."
+        },
+        {
+            "id": "RULE-POV-CONFLICT",
+            "type": "trait_mismatch",
+            "severity": "error",
+            "condition": {
+                "trait": "pov",
+                "conflict": "different_values"
+            },
+            "description": "N축과 A축의 시점(pov) trait 값이 다르면 조합 불가. 예: N-01(3인칭 고정) + A-01(1인칭).",
+            "affected_axes": [
+                "A"
+            ]
+        },
+        {
+            "id": "RULE-FID-CONFLICT",
+            "type": "trait_mismatch",
+            "severity": "error",
+            "condition": {
+                "trait": "fid",
+                "conflict": "forbidden_vs_required"
+            },
+            "description": "한 모듈이 FID를 금지하고 다른 모듈이 FID를 필수로 요구하면 조합 불가.",
+            "affected_axes": [
+                "A",
+                "B"
+            ]
+        },
+        {
+            "id": "RULE-NARRATOR-1P-CONFLICT",
+            "type": "trait_mismatch",
+            "severity": "error",
+            "condition": {
+                "trait": "narrator_presence",
+                "conflict": "strong_narrator_vs_first_person"
+            },
+            "description": "강한 서술자 존재감 + 1인칭 체험형은 근본적으로 충돌. 서술자가 존재하면 1인칭의 즉시성이 깨진다.",
+            "affected_axes": [
+                "A",
+                "B",
+                "S"
+            ]
+        },
+        {
+            "id": "RULE-SENTENCE-LENGTH-MISMATCH",
+            "type": "trait_mismatch",
+            "severity": "warning",
+            "condition": {
+                "trait": "sentence_length",
+                "conflict": "opposite_values"
+            },
+            "description": "N축이 설정한 문장 길이 경향과 B축이 설정한 경향이 반대일 때 경고. 예: N-01(단문 중심) + B-04(만연체). 빌드 순서상 B축이 최종 우선하지만, N축의 서사 리듬이 깨질 수 있다.",
+            "affected_axes": [
+                "B"
+            ]
+        },
+        {
+            "id": "RULE-FORMALITY-MISMATCH",
+            "type": "trait_mismatch",
+            "severity": "warning",
+            "condition": {
+                "trait": "formality",
+                "conflict": "opposite_values"
+            },
+            "description": "N축/B축 간 격식 수준 불일치. 예: N-04(무협, 격식 높음) + B-03(구어체, 격식 낮음). 의도적 스타일링이 아니면 어색한 결과물이 나올 수 있다.",
+            "affected_axes": [
+                "B"
+            ]
+        },
+        {
+            "id": "RULE-LYRICISM-CONFLICT",
+            "type": "trait_mismatch",
+            "severity": "warning",
+            "condition": {
+                "trait": "lyricism",
+                "conflict": "opposite_values"
+            },
+            "description": "서정성 수준 충돌. 예: N-01(동화, 서정성 높음) + B-01(건조체, 서정성 없음). 빌드 순서상 B축 우선이지만 N축의 서사 분위기가 깨질 수 있다.",
+            "affected_axes": [
+                "B"
+            ]
+        },
+        {
+            "id": "RULE-PERSONIFICATION-CONFLICT",
+            "type": "trait_mismatch",
+            "severity": "warning",
+            "condition": {
+                "trait": "personification",
+                "conflict": "forbidden_vs_allowed"
+            },
+            "description": "A축(A-05 공간시점, A-06 사물시점)이 의인화를 금지하는데, B축이나 F축이 의인화를 허용/요구하면 충돌.",
+            "affected_axes": [
+                "A",
+                "B",
+                "F"
+            ]
+        },
+        {
+            "id": "RULE-EMOTION-DOUBLE-SUPPRESS",
+            "type": "trait_overlap",
+            "severity": "info",
+            "condition": {
+                "trait": "emotion_level",
+                "conflict": "both_suppress"
+            },
+            "description": "여러 모듈이 감정 표현을 동시에 억제하면, 결과물이 지나치게 무미건조할 수 있다. 예: A-05(공간시점, 감정 없음) + B-01(건조체, 감정 억제).",
+            "affected_axes": [
+                "A",
+                "B"
+            ]
+        },
+        {
+            "id": "RULE-SLOT-F-COG-OVERLAP",
+            "type": "slot_overlap",
+            "severity": "info",
+            "condition": {
+                "slot": "{F_COG_QUIRKS}",
+                "conflict": "multiple_replace"
+            },
+            "description": "C-01(궁정 정치)이 {F_COG_QUIRKS}를 REPLACE하고, F축 모듈(F-01/F-02/F-03)도 같은 슬롯을 REPLACE한다. 빌드 순서상 F축이 최종 우선이므로 C-01의 인지 설정은 덮어씌워진다.",
+            "affected_modules": [
+                "C-01",
+                "F-01",
+                "F-02",
+                "F-03"
+            ]
+        },
+        {
+            "id": "RULE-S01-F03-INCOMPATIBLE",
+            "type": "explicit_pair",
+            "severity": "error",
+            "condition": {
+                "modules": [
+                    "S-01",
+                    "F-03"
+                ]
+            },
+            "description": "동화적 서술(S-01)과 SF/사이버펑크 기술 체계(F-03)는 근본적으로 충돌. 동화 세계관에 고도 기술이 공존하면 서사 톤이 붕괴한다.",
+            "affected_modules": [
+                "S-01",
+                "F-03"
+            ]
+        },
+        {
+            "id": "RULE-S02-F02-OVERLAP",
+            "type": "explicit_pair",
+            "severity": "warning",
+            "condition": {
+                "modules": [
+                    "S-02",
+                    "F-02"
+                ]
+            },
+            "description": "무협적 서술(S-02)의 내공/경공 체계와 마법 체계(F-02)가 공존하면 두 초자연 체계의 규칙이 혼재할 수 있다. 하나를 주체계로 설정하고 다른 하나를 부차적으로 처리할 것을 권장.",
+            "affected_modules": [
+                "S-02",
+                "F-02"
+            ]
+        },
+        {
+            "id": "RULE-B07-F03-MISMATCH",
+            "type": "explicit_pair",
+            "severity": "warning",
+            "condition": {
+                "modules": [
+                    "B-07",
+                    "F-03"
+                ]
+            },
+            "description": "고풍체의 어휘와 SF 기술 용어가 충돌할 수 있다. 스팀펑크 같은 의도적 스타일링이 아니면 주의.",
+            "affected_modules": [
+                "B-07",
+                "F-03"
+            ]
+        },
+        {
+            "id": "RULE-C01-B03-FORMALITY",
+            "type": "explicit_pair",
+            "severity": "warning",
+            "condition": {
+                "modules": [
+                    "C-01",
+                    "B-03"
+                ]
+            },
+            "description": "궁정 정치물의 격식과 구어체의 비격식이 충돌할 수 있다. C-01의 known_conflicts에도 명시됨.",
+            "affected_modules": [
+                "C-01",
+                "B-03"
+            ]
+        },
+        {
+            "id": "RULE-A06-S03-IMPOSSIBLE",
+            "type": "explicit_pair",
+            "severity": "error",
+            "condition": {
+                "modules": [
+                    "A-06",
+                    "S-03"
+                ]
+            },
+            "description": "사물 시점(A-06)과 서간체(S-03)는 조합 불가. 사물은 편지를 쓸 수 없다.",
+            "affected_modules": [
+                "A-06",
+                "S-03"
+            ]
+        },
+        {
+            "id": "RULE-A05-S03-IMPOSSIBLE",
+            "type": "explicit_pair",
+            "severity": "error",
+            "condition": {
+                "modules": [
+                    "A-05",
+                    "S-03"
+                ]
+            },
+            "description": "공간 시점(A-05)과 서간체(S-03)는 조합 불가. 공간은 편지를 쓸 수 없다.",
+            "affected_modules": [
+                "A-05",
+                "S-03"
+            ]
+        },
+        {
+            "id": "RULE-S05-A04-INFO",
+            "type": "explicit_pair",
+            "severity": "info",
+            "condition": {
+                "modules": [
+                    "S-05",
+                    "A-04"
+                ]
+            },
+            "description": "기록체(S-05)와 전지적 작가 시점(A-04)의 조합. 전지적 기록자가 모든 것을 알고 보고서로 쓰는 형식. '관찰만 기록'이 아닌 '전지적 관점에서 문서화'로 해석된다.",
+            "affected_modules": [
+                "S-05",
+                "A-04"
+            ]
+        },
+        {
+            "id": "RULE-S06-A05-INFO",
+            "type": "explicit_pair",
+            "severity": "info",
+            "condition": {
+                "modules": [
+                    "S-06",
+                    "A-05"
+                ]
+            },
+            "description": "구술체(S-06)와 공간 시점(A-05)의 조합. 공간이 이미 시점을 가지므로 공간이 청자에게 이야기를 들려주는 형식으로 해석된다. 공간이 말하는 것처럼 쓸 수 있다.",
+            "affected_modules": [
+                "S-06",
+                "A-05"
+            ]
+        },
+        {
+            "id": "RULE-S06-A06-INFO",
+            "type": "explicit_pair",
+            "severity": "info",
+            "condition": {
+                "modules": [
+                    "S-06",
+                    "A-06"
+                ]
+            },
+            "description": "구술체(S-06)와 사물 시점(A-06)의 조합. 사물이 이미 시점을 가지므로 사물이 청자에게 이야기를 들려주는 형식으로 해석된다. 사물이 말하는 것처럼 쓸 수 있다.",
+            "affected_modules": [
+                "S-06",
+                "A-06"
+            ]
+        },
+        {
+            "id": "RULE-S09-A05-INCOMPATIBLE",
+            "type": "explicit_pair",
+            "severity": "error",
+            "condition": {
+                "modules": [
+                    "S-09",
+                    "A-05"
+                ]
+            },
+            "description": "의식의 흐름(S-09)은 인물의 내면이 서술의 본질. 공간에는 의식이 없으므로 조합 불가.",
+            "affected_modules": [
+                "S-09",
+                "A-05"
+            ]
+        },
+        {
+            "id": "RULE-S09-A06-INCOMPATIBLE",
+            "type": "explicit_pair",
+            "severity": "error",
+            "condition": {
+                "modules": [
+                    "S-09",
+                    "A-06"
+                ]
+            },
+            "description": "의식의 흐름(S-09)은 인물의 내면이 서술의 본질. 사물에는 의식이 없으므로 조합 불가.",
+            "affected_modules": [
+                "S-09",
+                "A-06"
+            ]
+        },
+        {
+            "id": "RULE-S09-B05-TENSION",
+            "type": "explicit_pair",
+            "severity": "warning",
+            "condition": {
+                "modules": [
+                    "S-09",
+                    "B-05"
+                ]
+            },
+            "description": "의식의 흐름(S-09)은 장문 연속 경향인데 간결체(B-05)는 단문 분리를 원칙으로 한다. 의도적이면 실험적 효과.",
+            "affected_modules": [
+                "S-09",
+                "B-05"
+            ]
+        },
+        {
+            "id": "RULE-S10-C05-SYNERGY",
+            "type": "explicit_pair",
+            "severity": "info",
+            "condition": {
+                "modules": [
+                    "S-10",
+                    "C-05"
+                ]
+            },
+            "description": "신뢰할 수 없는 서술자(S-10)와 심리 스릴러(C-05)의 궁극 시너지 조합. 서술자의 불성실함과 심리적 권력 교전이 맞물린다.",
+            "affected_modules": [
+                "S-10",
+                "C-05"
+            ]
+        },
+        {
+            "id": "RULE-S11-A01-CAUTION",
+            "type": "explicit_pair",
+            "severity": "warning",
+            "condition": {
+                "modules": [
+                    "S-11",
+                    "A-01"
+                ]
+            },
+            "description": "1인칭 다성(S-11+A-01)은 가능하지만 섹션 구분을 명확히 해야 화자 혼란을 방지할 수 있다.",
+            "affected_modules": [
+                "S-11",
+                "A-01"
+            ]
+        },
+        {
+            "id": "RULE-S12-A05-INCOMPATIBLE",
+            "type": "explicit_pair",
+            "severity": "error",
+            "condition": {
+                "modules": [
+                    "S-12",
+                    "A-05"
+                ]
+            },
+            "description": "공간(A-05)은 일기를 쓸 수 없다. 일기체(S-12)는 인물이 자기 자신에게 쓰는 기록을 전제한다.",
+            "affected_modules": [
+                "S-12",
+                "A-05"
+            ]
+        },
+        {
+            "id": "RULE-S12-A06-INCOMPATIBLE",
+            "type": "explicit_pair",
+            "severity": "error",
+            "condition": {
+                "modules": [
+                    "S-12",
+                    "A-06"
+                ]
+            },
+            "description": "사물(A-06)은 일기를 쓸 수 없다. 일기체(S-12)는 인물이 자기 자신에게 쓰는 기록을 전제한다.",
+            "affected_modules": [
+                "S-12",
+                "A-06"
+            ]
+        },
+        {
+            "id": "RULE-S13-A05-INCOMPATIBLE",
+            "type": "explicit_pair",
+            "severity": "error",
+            "condition": {
+                "modules": [
+                    "S-13",
+                    "A-05"
+                ]
+            },
+            "description": "공간(A-05)은 실시간 중계를 할 수 없다. 실시간 중계체(S-13)는 목격자가 보고하는 구조를 전제한다.",
+            "affected_modules": [
+                "S-13",
+                "A-05"
+            ]
+        },
+        {
+            "id": "RULE-S13-A06-INCOMPATIBLE",
+            "type": "explicit_pair",
+            "severity": "error",
+            "condition": {
+                "modules": [
+                    "S-13",
+                    "A-06"
+                ]
+            },
+            "description": "사물(A-06)은 실시간 중계를 할 수 없다. 실시간 중계체(S-13)는 목격자가 보고하는 구조를 전제한다.",
+            "affected_modules": [
+                "S-13",
+                "A-06"
+            ]
+        },
+        {
+            "id": "RULE-S14-B08-DOUBLE-ARCHAIC",
+            "type": "explicit_pair",
+            "severity": "warning",
+            "condition": {
+                "modules": [
+                    "S-14",
+                    "B-08"
+                ]
+            },
+            "description": "사관 기록체(S-14)의 구조와 사극투(B-08)의 어조가 결합하면 시너지. 단, 한문 투가 이중으로 과잉될 위험이 있다.",
+            "affected_modules": [
+                "S-14",
+                "B-08"
+            ]
+        },
+        {
+            "id": "RULE-B08-F03-INCOMPATIBLE",
+            "type": "explicit_pair",
+            "severity": "error",
+            "condition": {
+                "modules": [
+                    "B-08",
+                    "F-03"
+                ]
+            },
+            "description": "사극투(B-08)의 한문 투·고어 어휘와 SF/사이버펑크 기술 용어(F-03)는 근본적으로 충돌한다.",
+            "affected_modules": [
+                "B-08",
+                "F-03"
+            ]
+        },
+        {
+            "id": "RULE-G-CAT1-MUTEX",
+            "type": "mutex_group",
+            "severity": "error",
+            "condition": {
+                "modules": [
+                    "G-01",
+                    "G-02",
+                    "G-03"
+                ],
+                "min_selected": 2
+            },
+            "description": "카테고리 ① 서사 주도권 모듈은 상호 배타. G-01(능동형), G-02(수동형), G-03(대등형) 중 하나만 선택 가능.",
+            "affected_modules": [
+                "G-01",
+                "G-02",
+                "G-03"
+            ]
+        },
+        {
+            "id": "RULE-G10-G15-ISOLATION",
+            "type": "explicit_pair",
+            "severity": "info",
+            "condition": {
+                "modules": [
+                    "G-10",
+                    "G-15"
+                ]
+            },
+            "description": "현실적(G-10)과 냉담한(G-15)의 조합: NPC 독립 생활과 냉담함이 합쳐져 유저와의 접점이 매우 줄어들 수 있음. 의도적인 선택이라면 NPC가 거의 접촉하지 않는 관계를 전제로 한다.",
+            "affected_modules": [
+                "G-10",
+                "G-15"
+            ]
+        },
+        {
+            "id": "RULE-G10-G13-SYNERGY",
+            "type": "explicit_pair",
+            "severity": "info",
+            "condition": {
+                "modules": [
+                    "G-10",
+                    "G-13"
+                ]
+            },
+            "description": "현실적(G-10)과 수상한(G-13)의 시너지: NPC가 단순히 자기 삶이 있어서 비는 시간인지, 진짜 뭔가 숨기는 건지 구분이 안 됨. 모호함이 서스펜스를 강화하는 의도적 조합.",
+            "affected_modules": [
+                "G-10",
+                "G-13"
+            ]
+        }
+    ],
+    "manual_overrides": {
+        "description": "auto_rules로 감지할 수 없는 특수 케이스. 각 모듈의 known_conflicts에 이미 기록된 것과 보완적으로 사용.",
+        "overrides": []
     }
-  ],
-  "manual_overrides": {
-    "description": "auto_rules로 감지할 수 없는 특수 케이스. 각 모듈의 known_conflicts에 이미 기록된 것과 보완적으로 사용.",
-    "overrides": []
-  }
 }
