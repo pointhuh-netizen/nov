@@ -239,6 +239,27 @@
       "name": "무협",
       "one_liner": "강호는 하나의 세계. 문파·내공·경공·검법·의리·배신이 서사의 기본 어휘. 김용식 신체 역학적 전투와 강호 생태계.",
       "file": "axes/axis-n-narrative-mode.json"
+    },
+    {
+      "id": "F-01",
+      "axis": "F",
+      "name": "비인간 종족 체계",
+      "one_liner": "인간과 다른 감각·수명·사고 체계를 가진 종족이 등장할 때, 그 인지적 차이를 서술에 반영하는 모듈.",
+      "file": "axes/axis-f-special.json"
+    },
+    {
+      "id": "F-02",
+      "axis": "F",
+      "name": "마법 체계",
+      "one_liner": "대가가 있는 마법. 시전의 물리적·정신적 비용과 감각적 현현을 서술에 반영하는 모듈.",
+      "file": "axes/axis-f-special.json"
+    },
+    {
+      "id": "F-03",
+      "axis": "F",
+      "name": "기술 레벨 오버라이드",
+      "one_liner": "SF/사이버펑크 등 고도 기술 세계관의 기술적 장치와 인간-기계 인지 경계를 서술에 반영하는 모듈.",
+      "file": "axes/axis-f-special.json"
     }
   ]
 }

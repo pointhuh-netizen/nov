@@ -50,6 +50,145 @@
       "condition": "personification: 'forbidden'인 모듈과 personification: 'allowed'인 모듈이 공존",
       "severity": "warning",
       "message_ko": "의인화 금지 규칙이 적용된 상태에서 의인화를 허용하는 모듈이 있습니다. 빌드 순서상 먼저 적용된 축이 우선합니다."
+    },
+    {
+      "id": "RULE-POV-CONFLICT",
+      "type": "trait_mismatch",
+      "severity": "error",
+      "condition": {
+        "trait": "pov",
+        "conflict": "different_values"
+      },
+      "description": "N축과 A축의 시점(pov) trait 값이 다르면 조합 불가. 예: N-01(3인칭 고정) + A-01(1인칭).",
+      "affected_axes": ["N", "A"]
+    },
+    {
+      "id": "RULE-FID-CONFLICT",
+      "type": "trait_mismatch",
+      "severity": "error",
+      "condition": {
+        "trait": "fid",
+        "conflict": "forbidden_vs_required"
+      },
+      "description": "한 모듈이 FID를 금지하고 다른 모듈이 FID를 필수로 요구하면 조합 불가.",
+      "affected_axes": ["N", "A", "B"]
+    },
+    {
+      "id": "RULE-NARRATOR-1P-CONFLICT",
+      "type": "trait_mismatch",
+      "severity": "error",
+      "condition": {
+        "trait": "narrator_presence",
+        "conflict": "strong_narrator_vs_first_person"
+      },
+      "description": "강한 서술자 존재감 + 1인칭 체험형은 근본적으로 충돌. 서술자가 존재하면 1인칭의 즉시성이 깨진다.",
+      "affected_axes": ["N", "A", "B"]
+    },
+    {
+      "id": "RULE-SENTENCE-LENGTH-MISMATCH",
+      "type": "trait_mismatch",
+      "severity": "warning",
+      "condition": {
+        "trait": "sentence_length",
+        "conflict": "opposite_values"
+      },
+      "description": "N축이 설정한 문장 길이 경향과 B축이 설정한 경향이 반대일 때 경고. 예: N-01(단문 중심) + B-04(만연체). 빌드 순서상 B축이 최종 우선하지만, N축의 서사 리듬이 깨질 수 있다.",
+      "affected_axes": ["N", "B"]
+    },
+    {
+      "id": "RULE-FORMALITY-MISMATCH",
+      "type": "trait_mismatch",
+      "severity": "warning",
+      "condition": {
+        "trait": "formality",
+        "conflict": "opposite_values"
+      },
+      "description": "N축/B축 간 격식 수준 불일치. 예: N-04(무협, 격식 높음) + B-03(구어체, 격식 낮음). 의도적 스타일링이 아니면 어색한 결과물이 나올 수 있다.",
+      "affected_axes": ["N", "B"]
+    },
+    {
+      "id": "RULE-LYRICISM-CONFLICT",
+      "type": "trait_mismatch",
+      "severity": "warning",
+      "condition": {
+        "trait": "lyricism",
+        "conflict": "opposite_values"
+      },
+      "description": "서정성 수준 충돌. 예: N-01(동화, 서정성 높음) + B-01(건조체, 서정성 없음). 빌드 순서상 B축 우선이지만 N축의 서사 분위기가 깨질 수 있다.",
+      "affected_axes": ["N", "B"]
+    },
+    {
+      "id": "RULE-PERSONIFICATION-CONFLICT",
+      "type": "trait_mismatch",
+      "severity": "warning",
+      "condition": {
+        "trait": "personification",
+        "conflict": "forbidden_vs_allowed"
+      },
+      "description": "A축(A-05 공간시점, A-06 사물시점)이 의인화를 금지하는데, B축이나 F축이 의인화를 허용/요구하면 충돌.",
+      "affected_axes": ["A", "B", "F"]
+    },
+    {
+      "id": "RULE-EMOTION-DOUBLE-SUPPRESS",
+      "type": "trait_overlap",
+      "severity": "info",
+      "condition": {
+        "trait": "emotion_level",
+        "conflict": "both_suppress"
+      },
+      "description": "여러 모듈이 감정 표현을 동시에 억제하면, 결과물이 지나치게 무미건조할 수 있다. 예: A-05(공간시점, 감정 없음) + B-01(건조체, 감정 억제).",
+      "affected_axes": ["N", "A", "B"]
+    },
+    {
+      "id": "RULE-SLOT-F-COG-OVERLAP",
+      "type": "slot_overlap",
+      "severity": "info",
+      "condition": {
+        "slot": "{F_COG_QUIRKS}",
+        "conflict": "multiple_replace"
+      },
+      "description": "C-01(궁정 정치)이 {F_COG_QUIRKS}를 REPLACE하고, F축 모듈(F-01/F-02/F-03)도 같은 슬롯을 REPLACE한다. 빌드 순서상 F축이 최종 우선이므로 C-01의 인지 설정은 덮어씌워진다.",
+      "affected_modules": ["C-01", "F-01", "F-02", "F-03"]
+    },
+    {
+      "id": "RULE-N01-F03-INCOMPATIBLE",
+      "type": "explicit_pair",
+      "severity": "error",
+      "condition": {
+        "modules": ["N-01", "F-03"]
+      },
+      "description": "동화/우화 서사 모드와 SF/사이버펑크 기술 체계는 근본적으로 충돌. 동화 세계관에 고도 기술이 공존하면 서사 톤이 붕괴한다.",
+      "affected_modules": ["N-01", "F-03"]
+    },
+    {
+      "id": "RULE-N04-F02-OVERLAP",
+      "type": "explicit_pair",
+      "severity": "warning",
+      "condition": {
+        "modules": ["N-04", "F-02"]
+      },
+      "description": "무협의 내공/경공 체계와 마법 체계가 공존하면 두 초자연 체계의 규칙이 혼재할 수 있다. 하나를 주체계로 설정하고 다른 하나를 부차적으로 처리할 것을 권장.",
+      "affected_modules": ["N-04", "F-02"]
+    },
+    {
+      "id": "RULE-B07-F03-MISMATCH",
+      "type": "explicit_pair",
+      "severity": "warning",
+      "condition": {
+        "modules": ["B-07", "F-03"]
+      },
+      "description": "고풍체의 어휘와 SF 기술 용어가 충돌할 수 있다. 스팀펑크 같은 의도적 스타일링이 아니면 주의.",
+      "affected_modules": ["B-07", "F-03"]
+    },
+    {
+      "id": "RULE-C01-B03-FORMALITY",
+      "type": "explicit_pair",
+      "severity": "warning",
+      "condition": {
+        "modules": ["C-01", "B-03"]
+      },
+      "description": "궁정 정치물의 격식과 구어체의 비격식이 충돌할 수 있다. C-01의 known_conflicts에도 명시됨.",
+      "affected_modules": ["C-01", "B-03"]
     }
   ],
   "manual_overrides": {

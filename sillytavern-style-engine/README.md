@@ -20,7 +20,7 @@ sillytavern-style-engine/
 │   ├── axis-c-genre.json          ← C축: 장르. 2계층. 비어있음
 │   ├── axis-d-mood.json           ← D축: 분위기. 2계층. 비어있음
 │   ├── axis-e-setting.json        ← E축: 배경. 2계층. 비어있음
-│   ├── axis-f-special.json        ← F축: 특별 요소. 2계층. 비어있음
+│   ├── axis-f-special.json        ← F축: 특별 요소. 2계층. F-01~F-03
 │   └── axis-g-interaction.json    ← G축: 상호작용. 2계층. 비어있음
 ├── meta/
 │   ├── catalog.json               ← UI 카탈로그 (모든 축/모듈 등록)
@@ -234,7 +234,9 @@ AI가 생성하는 콘텐츠의 성적·폭력 묘사 수위를 결정합니다.
 | **C** | C-02 | 추리 색채 | ✅ 완성 |
 | **D** | — | (없음) | ❌ 미구현 |
 | **E** | — | (없음) | ❌ 미구현 |
-| **F** | — | (없음) | ❌ 미구현 |
+| **F** | F-01 | 비인간 종족 체계 | ✅ 완성 |
+| **F** | F-02 | 마법 체계 | ✅ 완성 |
+| **F** | F-03 | 기술 레벨 오버라이드 | ✅ 완성 |
 | **G** | — | (없음) | ❌ 미구현 |
 
 ---
@@ -251,10 +253,10 @@ AI가 생성하는 콘텐츠의 성적·폭력 묘사 수위를 결정합니다.
 - [x] **[MED] C축 장르 모듈 작성**: C-01 궁정 정치/전쟁 서사, C-02 추리 색채 ✅ 완료
 - [ ] **[MED] N-04 본격 추리 추가**: MODULE 전체를 추리 서술 문법으로 재구성하는 복합 문체. AI 모델의 한계로 완벽한 추리 플롯이 아닌 그럴듯한 추리 분위기를 목적으로 함
 - [ ] **[MED] D축 분위기 모듈 작성**: `{D_PROSE_MOOD}` 슬롯 사용
-- [ ] **[MED] F축 특별 요소 모듈 작성**: `{F_COG_QUIRKS}`, `{F_SPEC_EXTRA}` 슬롯 사용
+- [x] **[MED] F축 특별 요소 모듈 작성**: F-01 비인간 종족 체계, F-02 마법 체계, F-03 기술 레벨 오버라이드 ✅ 완료
 - [ ] **[LOW] E축 배경 모듈 작성**: `{E_NARR_SETTING_VARS}` 슬롯 사용
 - [ ] **[LOW] G축 상호작용 모듈 작성**: `{G_*}` 슬롯 사용
-- [ ] **[LOW] combinations.json 채우기**: 권장/비권장 조합 등록
+- [x] **[LOW] combinations.json 채우기**: traits 기반 자동 충돌 감지 규칙 13개 등록 ✅ 완료
 - [ ] **[LOW] N-05 극본체 추가**: 대사 중심 서사 모드
 - [ ] **[LOW] N-06 웹소설체 추가**: 장르 관습 기반 복합 모드
 - [ ] **[LOW] presets/ 채우기**: 인기 조합 저장
@@ -465,3 +467,4 @@ sillytavern-style-engine/
 | NSFW Config 추가 | **NSFW 등급 제어 Config 신설**: NSFW-00(사용안함)~NSFW-04(R18) 5단계. `{B_TONE_VOCAB}` 슬롯 오버라이드 + `[CONTENT_RATING_*]` 디렉티브 주입. config-schema.json, catalog.json 등록. 다국어 지원 분석 기록 추가 |
 | C축 추가 | **C-02(추리 색채) 신설**: 추리 장르 변수(증거, 증언, 탐문) 경량 모듈. C-01(궁정 정치/전쟁 서사) README 반영. catalog.json에 C-02 등록 |
 | 하드코딩 마이그레이션 | **godmoding_rule 중립화**: `master-rules.json`의 `godmoding_rule`을 `null`로 전환, UCC config 의존. `default-template.json`의 MODULE_1_VOICE static 업데이트. A-01/A-02의 유저 캐릭터 하드코딩을 UCC 의존으로 전환. A-05는 시점 본질 제약으로 유지 |
+| F축 추가 + combinations | **F축(특별 요소) 신설**: F-01(비인간 종족 체계), F-02(마법 체계), F-03(기술 레벨 오버라이드). catalog.json 등록. **combinations.json**: traits 기반 자동 충돌 감지 규칙 13개(error 3, warning 6, info 4) 채움 |
