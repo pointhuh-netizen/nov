@@ -3,5 +3,118 @@
   "axis_name_ko": "분위기",
   "axis_name_en": "Mood & Atmosphere",
   "type": "combinable",
-  "modules": []
+  "modules": [
+    {
+      "id": "D-01",
+      "name": "감성/로맨스",
+      "one_liner": "감각 밀도와 내면 접근을 높여 감성적 분위기를 조성. 서술 문법은 유지하되 파라미터를 튜닝한다.",
+      "operations": {
+        "{D_PROSE_MOOD}": {
+          "mode": "REPLACE",
+          "value": "감정의 결이 서술의 질감을 결정한다. 감정 절정일수록 문장이 짧아지고 감각이 날것으로 드러난다. 평온한 구간에서는 감각이 인물에게 천천히 닿는다. 행동과 감정 사이의 간극을 좁히되, 감정을 명명하지는 않는다."
+        },
+        "{A_PROSE_SENSORY}": {
+          "mode": "REPLACE",
+          "value": "촉각 > 온도 >> 청각 > 후각 > 시각. 촉각과 온도를 최우선. 피부에 닿는 감각, 체온의 변화, 손끝의 질감이 장면의 핵심 앵커. 시각은 '상대의 표정/시선을 읽는 것'에 한정하여 사용. 감각은 항상 [감각 + 신체 부위 + 접촉 동사] 세트."
+        },
+        "{A_VOICE_FID_STYLE}": {
+          "mode": "REPLACE",
+          "value": "적극적 사용. NPC 40~50%, 유저 캐릭터는 UCC config에 따름. FID 구간에서 인물의 망설임, 자기 설득, 감정의 명명 직전에서 멈추는 순간을 포착. 3인칭 과거형 유지, 괄호 금지. FID는 '생각했다'가 아니라 서술 자체가 인물의 사고 패턴으로 오염되는 형태."
+        },
+        "{A_PROSE_PHYSICAL_DISTANCE}": {
+          "mode": "REPLACE",
+          "value": "가까워짐=극도의 수동. '어느새 그렇게 되어 있는' 상태형 필수. 의도를 확정하지 않는다. 접촉은 항상 부분적(손끝, 어깨, 팔꿈치)에서 시작. 전신 접촉은 감정적 임계점에서만. 멀어짐=능동형 가능하되, 이유를 확정하지 않는다."
+        },
+        "{A_PROSE_MEDITATIVE}": {
+          "mode": "REPLACE",
+          "value": "적극적 사용. 한 턴 최대 2회, 2턴에 한 번 권장, 3턴 연속 금지. 관계의 의미, 함께 있는 것의 무게, 부재의 감각을 서술. 감정 명명 금지, 교훈 금지. '~라는 것은 ~라는 뜻이었다' 구조 허용."
+        },
+        "{B_TONE_TEMP}": {
+          "mode": "REPLACE",
+          "value": "30% 일상 / 70% 결핍·내면 마찰. 감정 절정일수록 오히려 담담하게(감정 브레이크). 평온한 순간에 결핍의 자각이 스며든다."
+        },
+        "{B_TONE_FID_GRAMMAR}": {
+          "mode": "REPLACE",
+          "value": "50% 3인칭 / 50% FID. FID 구간 확대. 인물의 내면이 서술에 깊이 침투."
+        }
+      },
+      "check_operations": [
+        {
+          "mode": "REPLACE",
+          "target_id": "CHK-03",
+          "reason": "감성 분위기에서 비유 밀도를 살짝 높인다",
+          "check": {
+            "id": "CHK-03",
+            "category": "prose",
+            "rule": "비유가 한 문단에 3개 이상인가? → 2개까지 허용. 단, 같은 감각 채널의 비유 연속 금지.",
+            "source": "D-01"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-D01-01",
+            "category": "character",
+            "rule": "감정 브레이크: 감정 절정 순간에 문장이 길어지거나 감각이 과잉되었는가? → 문장을 짧게, 감각 1개로. 절정에서 담담해야 독자가 감정을 느낀다.",
+            "source": "D-01"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-D01-02",
+            "category": "prose",
+            "rule": "접촉 묘사가 전신에서 시작하는가? → 부분(손끝, 어깨, 팔꿈치)에서 시작. 전신 접촉은 임계점에서만.",
+            "source": "D-01"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-D01-03",
+            "category": "narrative",
+            "rule": "관계 진전이 급격한가? → 한 턴에 한 단계. 물리적 거리 좁힘과 심리적 거리 좁힘을 같은 턴에 동시 진행 금지.",
+            "source": "D-01"
+          }
+        }
+      ],
+      "static_overrides": {},
+      "master_guide_delta": {
+        "emotional_brake": "감정이 가장 강한 순간에 서술은 가장 절제된다. 독자가 감정을 채우는 공간을 남긴다.",
+        "subtext_direction": "말하지 않은 것이 말한 것보다 크다. 대사의 이면, 행동의 이면에 감정이 있다. 서술자는 그것을 가리키되 명명하지 않는다.",
+        "pacing_gravity": "관계의 무게감. 모든 접촉, 모든 시선, 모든 침묵에 무게가 있다. 가볍게 처리하지 않는다."
+      },
+      "known_conflicts": [
+        {
+          "with": "B-01",
+          "severity": "warning",
+          "reason": "건조체는 감정 표현을 극도로 억제한다. D-01의 FID 확대 및 감각 밀도 강화와 긴장 관계. 빌드 순서상 D가 B 뒤이므로 D-01이 우선하지만, 건조체의 어휘 제한은 유지된다."
+        },
+        {
+          "with": "B-05",
+          "severity": "info",
+          "reason": "간결체의 짧은 문장과 D-01의 감각 밀도 강화가 공존. 결과: 짧고 밀도 높은 감각 문장. 의도된 조합일 수 있음."
+        },
+        {
+          "with": "A-05",
+          "severity": "warning",
+          "reason": "공간 시점은 인물 내면 접근이 제한적. D-01의 FID 50% 확대와 충돌. 빌드 순서상 D가 A 뒤이므로 FID 비율이 덮어쓰이나, 공간 시점의 구조적 제약과 긴장."
+        }
+      ],
+      "traits": {
+        "emotion_level": "heightened",
+        "sensory_anchor": "tactile-thermal",
+        "lyricism": "moderate",
+        "slots_touched": [
+          "{D_PROSE_MOOD}",
+          "{A_PROSE_SENSORY}",
+          "{A_VOICE_FID_STYLE}",
+          "{A_PROSE_PHYSICAL_DISTANCE}",
+          "{A_PROSE_MEDITATIVE}",
+          "{B_TONE_TEMP}",
+          "{B_TONE_FID_GRAMMAR}"
+        ]
+      }
+    }
+  ]
 }
