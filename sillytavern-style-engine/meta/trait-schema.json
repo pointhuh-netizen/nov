@@ -181,6 +181,17 @@
         "F",
         "G"
       ]
+    },
+    "power_dynamic": {
+      "type": "enum",
+      "values": [
+        "submission",
+        "none"
+      ],
+      "description": "권력 구조 / 위계 관계 유형. G-19(복종) 모듈이 설정.",
+      "applicable_axes": [
+        "G"
+      ]
     }
   }
 }
