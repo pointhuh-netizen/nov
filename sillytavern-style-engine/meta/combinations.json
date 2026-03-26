@@ -320,6 +320,116 @@
         "S-06",
         "A-06"
       ]
+    },
+    {
+      "id": "RULE-S09-A05-INCOMPATIBLE",
+      "type": "explicit_pair",
+      "severity": "error",
+      "condition": {
+        "modules": ["S-09", "A-05"]
+      },
+      "description": "의식의 흐름(S-09)은 인물의 내면이 서술의 본질. 공간에는 의식이 없으므로 조합 불가.",
+      "affected_modules": ["S-09", "A-05"]
+    },
+    {
+      "id": "RULE-S09-A06-INCOMPATIBLE",
+      "type": "explicit_pair",
+      "severity": "error",
+      "condition": {
+        "modules": ["S-09", "A-06"]
+      },
+      "description": "의식의 흐름(S-09)은 인물의 내면이 서술의 본질. 사물에는 의식이 없으므로 조합 불가.",
+      "affected_modules": ["S-09", "A-06"]
+    },
+    {
+      "id": "RULE-S09-B05-TENSION",
+      "type": "explicit_pair",
+      "severity": "warning",
+      "condition": {
+        "modules": ["S-09", "B-05"]
+      },
+      "description": "의식의 흐름(S-09)은 장문 연속 경향인데 간결체(B-05)는 단문 분리를 원칙으로 한다. 의도적이면 실험적 효과.",
+      "affected_modules": ["S-09", "B-05"]
+    },
+    {
+      "id": "RULE-S10-C05-SYNERGY",
+      "type": "explicit_pair",
+      "severity": "info",
+      "condition": {
+        "modules": ["S-10", "C-05"]
+      },
+      "description": "신뢰할 수 없는 서술자(S-10)와 심리 스릴러(C-05)의 궁극 시너지 조합. 서술자의 불성실함과 심리적 권력 교전이 맞물린다.",
+      "affected_modules": ["S-10", "C-05"]
+    },
+    {
+      "id": "RULE-S11-A01-CAUTION",
+      "type": "explicit_pair",
+      "severity": "warning",
+      "condition": {
+        "modules": ["S-11", "A-01"]
+      },
+      "description": "1인칭 다성(S-11+A-01)은 가능하지만 섹션 구분을 명확히 해야 화자 혼란을 방지할 수 있다.",
+      "affected_modules": ["S-11", "A-01"]
+    },
+    {
+      "id": "RULE-S12-A05-INCOMPATIBLE",
+      "type": "explicit_pair",
+      "severity": "error",
+      "condition": {
+        "modules": ["S-12", "A-05"]
+      },
+      "description": "공간(A-05)은 일기를 쓸 수 없다. 일기체(S-12)는 인물이 자기 자신에게 쓰는 기록을 전제한다.",
+      "affected_modules": ["S-12", "A-05"]
+    },
+    {
+      "id": "RULE-S12-A06-INCOMPATIBLE",
+      "type": "explicit_pair",
+      "severity": "error",
+      "condition": {
+        "modules": ["S-12", "A-06"]
+      },
+      "description": "사물(A-06)은 일기를 쓸 수 없다. 일기체(S-12)는 인물이 자기 자신에게 쓰는 기록을 전제한다.",
+      "affected_modules": ["S-12", "A-06"]
+    },
+    {
+      "id": "RULE-S13-A05-INCOMPATIBLE",
+      "type": "explicit_pair",
+      "severity": "error",
+      "condition": {
+        "modules": ["S-13", "A-05"]
+      },
+      "description": "공간(A-05)은 실시간 중계를 할 수 없다. 실시간 중계체(S-13)는 목격자가 보고하는 구조를 전제한다.",
+      "affected_modules": ["S-13", "A-05"]
+    },
+    {
+      "id": "RULE-S13-A06-INCOMPATIBLE",
+      "type": "explicit_pair",
+      "severity": "error",
+      "condition": {
+        "modules": ["S-13", "A-06"]
+      },
+      "description": "사물(A-06)은 실시간 중계를 할 수 없다. 실시간 중계체(S-13)는 목격자가 보고하는 구조를 전제한다.",
+      "affected_modules": ["S-13", "A-06"]
+    },
+    {
+      "id": "RULE-S14-B08-DOUBLE-ARCHAIC",
+      "type": "explicit_pair",
+      "severity": "warning",
+      "condition": {
+        "modules": ["S-14", "B-08"]
+      },
+      "description": "사관 기록체(S-14)의 구조와 사극투(B-08)의 어조가 결합하면 시너지. 단, 한문 투가 이중으로 과잉될 위험이 있다.",
+      "affected_modules": ["S-14", "B-08"]
+    },
+    {
+      "id": "RULE-B08-F03-INCOMPATIBLE",
+      "type": "explicit_pair",
+      "severity": "error",
+      "condition": {
+        "modules": ["B-08", "F-03"]
+      },
+      "description": "사극투(B-08)의 한문 투·고어 어휘와 SF/사이버펑크 기술 용어(F-03)는 근본적으로 충돌한다.",
+      "affected_modules": ["B-08", "F-03"]
     }
   ],
   "manual_overrides": {

@@ -209,6 +209,48 @@
       "file": "axes/axis-s-narration.json"
     },
     {
+      "id": "S-09",
+      "axis": "S",
+      "name": "의식의 흐름",
+      "one_liner": "문법·시간·논리 경계가 해체된 서술. 감각↔기억↔사유가 구분 없이 흐른다.",
+      "file": "axes/axis-s-narration.json"
+    },
+    {
+      "id": "S-10",
+      "axis": "S",
+      "name": "신뢰할 수 없는 서술자",
+      "one_liner": "서술자가 거짓말하거나, 빠뜨리거나, 자기합리화한다. 독자는 서술의 균열에서 진실을 추론.",
+      "file": "axes/axis-s-narration.json"
+    },
+    {
+      "id": "S-11",
+      "axis": "S",
+      "name": "다성 서술",
+      "one_liner": "한 턴 안에서 여러 인물의 시선이 교대. 라쇼몽 효과. 섹션 구분자로 시점 전환.",
+      "file": "axes/axis-s-narration.json"
+    },
+    {
+      "id": "S-12",
+      "axis": "S",
+      "name": "일기체",
+      "one_liner": "수신자 없는 자기 기록. 검열과 솔직함의 경계. 날짜 헤더 + 사적 어조.",
+      "file": "axes/axis-s-narration.json"
+    },
+    {
+      "id": "S-13",
+      "axis": "S",
+      "name": "실시간 중계체",
+      "one_liner": "현재진행형 실황. 과거형 금지. 전투 중계, 속보, 스포츠 실황의 어조.",
+      "file": "axes/axis-s-narration.json"
+    },
+    {
+      "id": "S-14",
+      "axis": "S",
+      "name": "사관 기록체",
+      "one_liner": "실록·승정원일기 형식. 사관의 시선으로 사건을 한문 투 기록 구조로 서술.",
+      "file": "axes/axis-s-narration.json"
+    },
+    {
       "id": "B-00",
       "axis": "B",
       "name": "사용하지 않음",
@@ -262,6 +304,13 @@
       "axis": "B",
       "name": "고풍체",
       "one_liner": "한문 투·고어를 절제 있게 살린 아카이브형 어조.",
+      "file": "axes/axis-b-tone.json"
+    },
+    {
+      "id": "B-08",
+      "axis": "B",
+      "name": "사극투",
+      "one_liner": "한문 투·궁체·고어가 어휘와 종결어미를 지배하는 사극 어조.",
       "file": "axes/axis-b-tone.json"
     },
     {
