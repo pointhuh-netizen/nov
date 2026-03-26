@@ -39,11 +39,18 @@
   ],
   "axes": {
     "A": {
-      "name_ko": "시점 · 서술방식",
-      "name_en": "POV & Narration Style",
+      "name_ko": "시점",
+      "name_en": "POV",
       "type": "mutex",
-      "ui_description": "글의 뼈대가 되는 시점과 서술 구조. 하나만 선택 가능.",
+      "ui_description": "누가 보는가/말하는가. 1인칭, 2인칭, 3인칭 제한, 전지적, 공간, 사물 시점. 하나만 선택 가능.",
       "icon": "👁️"
+    },
+    "S": {
+      "name_ko": "서술 방식",
+      "name_en": "Narration Style",
+      "type": "mutex",
+      "ui_description": "글의 서술 문법과 구조. 동화적, 무협적, 서간체 등. 하나만 선택 가능.",
+      "icon": "📝"
     },
     "B": {
       "name_ko": "어조 · 어휘",
@@ -137,6 +144,34 @@
       "name": "사물 시점",
       "one_liner": "특정 사물 하나가 관찰자. 그 사물의 물리적 감각 범위만으로 세계를 기록.",
       "file": "axes/axis-a-pov.json"
+    },
+    {
+      "id": "S-00",
+      "axis": "S",
+      "name": "사용하지 않음",
+      "one_liner": "서술 방식 지시를 주입하지 않음. 기존 설정을 그대로 사용.",
+      "file": "axes/axis-s-narration.json"
+    },
+    {
+      "id": "S-01",
+      "axis": "S",
+      "name": "동화적 서술",
+      "one_liner": "잔혹한 동화의 문법. 서술자 존재감, 3의 법칙, 금기와 위반, 페미니스트 재해석.",
+      "file": "axes/axis-s-narration.json"
+    },
+    {
+      "id": "S-02",
+      "axis": "S",
+      "name": "무협적 서술",
+      "one_liner": "강호는 하나의 세계. 문파·내공·경공·검법·의리·배신이 서사의 기본 어휘. 무공 묘사는 신체 역학적으로 정밀하되, 일관된 규칙 안에서 과장이 허용되는 김용식 서사.",
+      "file": "axes/axis-s-narration.json"
+    },
+    {
+      "id": "S-03",
+      "axis": "S",
+      "name": "서간체",
+      "one_liner": "편지 형식으로 서술하는 1인칭 고백 문체. 회상과 현재를 오가며 수신자에게 말을 건다.",
+      "file": "axes/axis-s-narration.json"
     },
     {
       "id": "B-00",
@@ -242,27 +277,6 @@
       "name": "기술 레벨 오버라이드",
       "one_liner": "SF/사이버펑크 등 고도 기술 세계관의 기술적 장치와 인간-기계 인지 경계를 서술에 반영하는 모듈.",
       "file": "axes/axis-f-special.json"
-    },
-    {
-      "id": "A-07",
-      "axis": "A",
-      "name": "동화적 서술",
-      "one_liner": "잔혹한 동화의 문법. 서술자 존재감, 3의 법칙, 금기와 위반, 페미니스트 재해석.",
-      "file": "axes/axis-a-pov.json"
-    },
-    {
-      "id": "A-08",
-      "axis": "A",
-      "name": "무협적 서술",
-      "one_liner": "강호는 하나의 세계. 문파·내공·경공·검법·의리·배신이 서사의 기본 어휘. 무공 묘사는 신체 역학적으로 정밀하되, 일관된 규칙 안에서 과장이 허용되는 김용식 서사.",
-      "file": "axes/axis-a-pov.json"
-    },
-    {
-      "id": "A-09",
-      "axis": "A",
-      "name": "서간체",
-      "one_liner": "편지 형식으로 서술하는 1인칭 고백 문체. 회상과 현재를 오가며 수신자에게 말을 건다.",
-      "file": "axes/axis-a-pov.json"
     },
     {
       "id": "C-03",

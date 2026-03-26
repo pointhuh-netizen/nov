@@ -6,6 +6,7 @@
   "build_order": [
     "configs",
     "A",
+    "S",
     "B",
     "C",
     "D",

@@ -89,7 +89,8 @@
       "description": "강한 서술자 존재감 + 1인칭 체험형은 근본적으로 충돌. 서술자가 존재하면 1인칭의 즉시성이 깨진다.",
       "affected_axes": [
         "A",
-        "B"
+        "B",
+        "S"
       ]
     },
     {
@@ -177,34 +178,34 @@
       ]
     },
     {
-      "id": "RULE-N01-F03-INCOMPATIBLE",
+      "id": "RULE-S01-F03-INCOMPATIBLE",
       "type": "explicit_pair",
       "severity": "error",
       "condition": {
         "modules": [
-          "N-01",
+          "S-01",
           "F-03"
         ]
       },
-      "description": "동화/우화 서사 모드와 SF/사이버펑크 기술 체계는 근본적으로 충돌. 동화 세계관에 고도 기술이 공존하면 서사 톤이 붕괴한다.",
+      "description": "동화적 서술(S-01)과 SF/사이버펑크 기술 체계(F-03)는 근본적으로 충돌. 동화 세계관에 고도 기술이 공존하면 서사 톤이 붕괴한다.",
       "affected_modules": [
-        "N-01",
+        "S-01",
         "F-03"
       ]
     },
     {
-      "id": "RULE-N04-F02-OVERLAP",
+      "id": "RULE-S02-F02-OVERLAP",
       "type": "explicit_pair",
       "severity": "warning",
       "condition": {
         "modules": [
-          "N-04",
+          "S-02",
           "F-02"
         ]
       },
-      "description": "무협의 내공/경공 체계와 마법 체계가 공존하면 두 초자연 체계의 규칙이 혼재할 수 있다. 하나를 주체계로 설정하고 다른 하나를 부차적으로 처리할 것을 권장.",
+      "description": "무협적 서술(S-02)의 내공/경공 체계와 마법 체계(F-02)가 공존하면 두 초자연 체계의 규칙이 혼재할 수 있다. 하나를 주체계로 설정하고 다른 하나를 부차적으로 처리할 것을 권장.",
       "affected_modules": [
-        "N-04",
+        "S-02",
         "F-02"
       ]
     },
@@ -238,6 +239,38 @@
       "affected_modules": [
         "C-01",
         "B-03"
+      ]
+    },
+    {
+      "id": "RULE-A06-S03-IMPOSSIBLE",
+      "type": "explicit_pair",
+      "severity": "error",
+      "condition": {
+        "modules": [
+          "A-06",
+          "S-03"
+        ]
+      },
+      "description": "사물 시점(A-06)과 서간체(S-03)는 조합 불가. 사물은 편지를 쓸 수 없다.",
+      "affected_modules": [
+        "A-06",
+        "S-03"
+      ]
+    },
+    {
+      "id": "RULE-A05-S03-IMPOSSIBLE",
+      "type": "explicit_pair",
+      "severity": "error",
+      "condition": {
+        "modules": [
+          "A-05",
+          "S-03"
+        ]
+      },
+      "description": "공간 시점(A-05)과 서간체(S-03)는 조합 불가. 공간은 편지를 쓸 수 없다.",
+      "affected_modules": [
+        "A-05",
+        "S-03"
       ]
     }
   ],
