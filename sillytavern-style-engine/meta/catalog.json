@@ -227,6 +227,13 @@
       "file": "axes/axis-c-genre.json"
     },
     {
+      "id": "D-01",
+      "axis": "D",
+      "name": "감성/로맨스",
+      "one_liner": "감각 밀도와 내면 접근을 높여 감성적 분위기를 조성. 서술 문법은 유지하되 파라미터를 튜닝한다.",
+      "file": "axes/axis-d-mood.json"
+    },
+    {
       "id": "E-01",
       "axis": "E",
       "name": "전근대 궁정 / 고대 세계",
