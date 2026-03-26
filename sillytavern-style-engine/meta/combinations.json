@@ -274,48 +274,48 @@
       ]
     },
     {
-      "id": "RULE-S05-A04-WARNING",
+      "id": "RULE-S05-A04-INFO",
       "type": "explicit_pair",
-      "severity": "warning",
+      "severity": "info",
       "condition": {
         "modules": [
           "S-05",
           "A-04"
         ]
       },
-      "description": "기록체(S-05)와 전지적 작가 시점(A-04)의 조합 주의. 기록자가 전지적이면 '관찰한 것만 기록'하는 기록체의 원칙과 충돌한다.",
+      "description": "기록체(S-05)와 전지적 작가 시점(A-04)의 조합. 전지적 기록자가 모든 것을 알고 보고서로 쓰는 형식. '관찰만 기록'이 아닌 '전지적 관점에서 문서화'로 해석된다.",
       "affected_modules": [
         "S-05",
         "A-04"
       ]
     },
     {
-      "id": "RULE-S06-A05-IMPOSSIBLE",
+      "id": "RULE-S06-A05-INFO",
       "type": "explicit_pair",
-      "severity": "error",
+      "severity": "info",
       "condition": {
         "modules": [
           "S-06",
           "A-05"
         ]
       },
-      "description": "구술체(S-06)와 공간 시점(A-05)은 조합 불가. 공간은 청자에게 이야기를 구술할 수 없다.",
+      "description": "구술체(S-06)와 공간 시점(A-05)의 조합. 공간이 이미 시점을 가지므로 공간이 청자에게 이야기를 들려주는 형식으로 해석된다. 공간이 말하는 것처럼 쓸 수 있다.",
       "affected_modules": [
         "S-06",
         "A-05"
       ]
     },
     {
-      "id": "RULE-S06-A06-IMPOSSIBLE",
+      "id": "RULE-S06-A06-INFO",
       "type": "explicit_pair",
-      "severity": "error",
+      "severity": "info",
       "condition": {
         "modules": [
           "S-06",
           "A-06"
         ]
       },
-      "description": "구술체(S-06)와 사물 시점(A-06)은 조합 불가. 사물은 청자에게 이야기를 구술할 수 없다.",
+      "description": "구술체(S-06)와 사물 시점(A-06)의 조합. 사물이 이미 시점을 가지므로 사물이 청자에게 이야기를 들려주는 형식으로 해석된다. 사물이 말하는 것처럼 쓸 수 있다.",
       "affected_modules": [
         "S-06",
         "A-06"
