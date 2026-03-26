@@ -1,6 +1,14 @@
 {
   "version": "1.1.0",
   "trait_schema": "meta/trait-schema.json",
+  "file_split_policy": {
+    "threshold_kb": 100,
+    "description": "축 JSON 파일이 이 크기(KB)를 초과하면 디렉토리 구조로 분리. 분리 시 _index.json + 개별 모듈 파일로 구성.",
+    "split_structure": {
+      "index_file": "_index.json",
+      "module_file_pattern": "{id_lower}-{name_slug}.json"
+    }
+  },
   "configs": [
     {
       "id": "user_character_control",

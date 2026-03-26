@@ -424,3 +424,53 @@ sillytavern-style-engine/
 | 하드코딩 마이그레이션 | **godmoding_rule 중립화**: `master-rules.json`의 `godmoding_rule`을 `null`로 전환, UCC config 의존. `default-template.json`의 MODULE_1_VOICE static 업데이트. A-01/A-02의 유저 캐릭터 하드코딩을 UCC 의존으로 전환. A-05는 시점 본질 제약으로 유지 |
 | F축 추가 + combinations | **F축(특별 요소) 신설**: F-01(비인간 종족 체계), F-02(마법 체계), F-03(기술 레벨 오버라이드). catalog.json 등록. **combinations.json**: traits 기반 자동 충돌 감지 규칙 13개(error 3, warning 6, info 4) 채움 |
 | D축 추가 | **D-01(감성/로맨스) 신설**: 감각 밀도·내면 접근·문체 온도 파라미터 튜닝으로 감성적 분위기 조성. 서술 문법은 유지. catalog.json에 D-01 등록 |
+
+---
+
+## 축 파일 분리 규칙
+
+축 JSON 파일(axes/axis-*.json)은 단일 파일로 운영하되, 파일 크기가 100KB를 초과하면 디렉토리 구조로 분리한다.
+
+### 기준
+- 100KB 이하: 단일 파일 유지 (axes/axis-a-pov.json)
+- 100KB 초과: 디렉토리로 분리 (axes/axis-a-pov/)
+
+### 분리 후 구조
+axes/
+├── axis-a-pov/                    ← 분리된 축 (100KB 초과)
+│   ├── _index.json                ← 축 메타데이터 + 모듈 파일 목록
+│   ├── a-00-none.json
+│   ├── a-01-first-person.json
+│   └── ...
+├── axis-b-tone.json               ← 단일 파일 유지 (100KB 이하)
+└── ...
+
+### _index.json 포맷
+분리 시 _index.json은 기존 축 파일의 메타 필드를 유지하고, modules는 파일 참조로 대체:
+{
+  "axis": "A",
+  "axis_name_ko": "시점 · 서술방식",
+  "axis_name_en": "POV and Narration Style",
+  "type": "mutex",
+  "module_files": [
+    "a-00-none.json",
+    "a-01-first-person.json",
+    ...
+  ]
+}
+각 모듈 파일은 기존 modules 배열의 개별 요소를 그대로 포함.
+
+### catalog.json 반영
+분리 시 catalog.json의 해당 모듈 file 필드를 개별 파일 경로로 업데이트:
+{
+  "id": "A-01",
+  "file": "axes/axis-a-pov/a-01-first-person.json"
+}
+
+### 분리 시점 판단
+- 모듈 추가 PR을 만들 때, 해당 축 파일의 변경 후 예상 크기가 100KB를 초과하면 같은 PR에서 분리를 수행
+- 현재 파일 크기 참고 (2026-03-26 기준):
+  - axis-a-pov.json: 약 77KB (근접 주의)
+  - axis-c-genre.json: 약 29KB
+  - axis-b-tone.json: 약 18KB
+  - 나머지: 12KB 이하
