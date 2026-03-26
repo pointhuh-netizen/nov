@@ -174,6 +174,41 @@
       "file": "axes/axis-s-narration.json"
     },
     {
+      "id": "S-04",
+      "axis": "S",
+      "name": "극본체",
+      "one_liner": "지문+대사 구조. 서술을 최소화하고, 행동과 대사로만 장면을 구성하는 각본 서술 방식.",
+      "file": "axes/axis-s-narration.json"
+    },
+    {
+      "id": "S-05",
+      "axis": "S",
+      "name": "기록체",
+      "one_liner": "날짜·항목 기반 관찰 보고 형식. 기록자가 사건을 문서화하는 서술 구조.",
+      "file": "axes/axis-s-narration.json"
+    },
+    {
+      "id": "S-06",
+      "axis": "S",
+      "name": "구술체",
+      "one_liner": "청자에게 이야기를 들려주는 구연 구조. 서술자의 존재감이 강하고, 탈선과 복귀가 리듬을 만든다.",
+      "file": "axes/axis-s-narration.json"
+    },
+    {
+      "id": "S-07",
+      "axis": "S",
+      "name": "회상체",
+      "one_liner": "현재의 서술자가 과거를 돌아보는 서술. 시제 교차와 사후 인식이 핵심 문법.",
+      "file": "axes/axis-s-narration.json"
+    },
+    {
+      "id": "S-08",
+      "axis": "S",
+      "name": "몽타주",
+      "one_liner": "장면을 병렬 배치하고, 인과 설명 없이 이미지의 나열로 의미를 구성. 독자가 연결을 만든다.",
+      "file": "axes/axis-s-narration.json"
+    },
+    {
       "id": "B-00",
       "axis": "B",
       "name": "사용하지 않음",
