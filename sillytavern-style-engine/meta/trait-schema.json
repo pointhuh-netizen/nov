@@ -197,6 +197,20 @@
       "applicable_axes": [
         "G"
       ]
+    },
+    "mood_category": {
+      "type": "enum",
+      "values": [
+        "고요/내성",
+        "긴장/위협",
+        "몽환/초현실",
+        "고양/에너지",
+        "서정/감성"
+      ],
+      "description": "D축 분위기 모듈의 카테고리 분류.",
+      "applicable_axes": [
+        "D"
+      ]
     }
   }
 }
