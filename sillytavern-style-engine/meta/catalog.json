@@ -496,6 +496,48 @@
       "file": "axes/axis-e-setting.json"
     },
     {
+      "id": "E-03",
+      "axis": "E",
+      "name": "현대 도시",
+      "one_liner": "지하철·편의점·스마트폰·카페의 물질문화. 도시의 소음과 불빛이 감각의 기본값. 물리적으로 가깝지만 심리적으로 먼 사람들.",
+      "file": "axes/axis-e-setting.json"
+    },
+    {
+      "id": "E-04",
+      "axis": "E",
+      "name": "학교 / 캠퍼스",
+      "one_liner": "교실·복도·매점·체육관의 물질문화. 수업 시간이 리듬을 만들고, 학년·반이 관계를 규정한다. 어른이 되기 직전의 시간.",
+      "file": "axes/axis-e-setting.json"
+    },
+    {
+      "id": "E-05",
+      "axis": "E",
+      "name": "서양 중세 ~ 르네상스",
+      "one_liner": "성·기사·교회·길드의 물질문화. 신분과 신앙이 행동을 결정하고, 명예가 화폐다.",
+      "file": "axes/axis-e-setting.json"
+    },
+    {
+      "id": "E-06",
+      "axis": "E",
+      "name": "한국 근현대 (1945~1980년대)",
+      "one_liner": "전쟁·분단·산업화의 물질문화. 라디오·연탄·전보의 질감. 시대의 상흔이 인물에 묻어 있다.",
+      "file": "axes/axis-e-setting.json"
+    },
+    {
+      "id": "E-07",
+      "axis": "E",
+      "name": "직장 / 오피스",
+      "one_liner": "데스크·회의실·야근·명함의 물질문화. 직급이 호칭을 결정하고, 업무가 시간을 지배한다. 능력과 정치가 공존하는 생존의 공간.",
+      "file": "axes/axis-e-setting.json"
+    },
+    {
+      "id": "E-09",
+      "axis": "E",
+      "name": "밀실 / 폐쇄 공간",
+      "one_liner": "나갈 수 없는 공간이 세계 전체. 공간이 좁아질수록 관계가 팽창한다. 벽이 인물을 가둘 때 진짜 성격이 나온다.",
+      "file": "axes/axis-e-setting.json"
+    },
+    {
       "id": "G-01",
       "axis": "G",
       "name": "능동형",
