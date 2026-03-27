@@ -211,6 +211,34 @@
       "applicable_axes": [
         "D"
       ]
+    },
+    "setting_era": {
+      "type": "enum",
+      "values": [
+        "pre-modern",
+        "modern",
+        "modern-historical",
+        "future"
+      ],
+      "description": "E축 배경 모듈의 시대 구분.",
+      "applicable_axes": [
+        "E"
+      ]
+    },
+    "setting_space": {
+      "type": "enum",
+      "values": [
+        "general",
+        "school",
+        "office",
+        "arena",
+        "enclosed",
+        "travel"
+      ],
+      "description": "E축 배경 모듈의 공간 유형.",
+      "applicable_axes": [
+        "E"
+      ]
     }
   }
 }
