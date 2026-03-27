@@ -91,7 +91,8 @@
         "default",
         "tactile-thermal",
         "auditory-tactile",
-        "visual-behavioral"
+        "visual-behavioral",
+        "olfactory"
       ],
       "description": "감각 우선순위의 앵커.",
       "applicable_axes": [
