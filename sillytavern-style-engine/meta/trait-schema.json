@@ -186,9 +186,14 @@
       "type": "enum",
       "values": [
         "submission",
+        "protection",
+        "advisory",
+        "rivalry",
+        "domination",
+        "mentorship",
         "none"
       ],
-      "description": "권력 구조 / 위계 관계 유형. G-19(복종) 모듈이 설정.",
+      "description": "권력 구조 / 위계 관계 유형. 카테고리 ③ 모듈들이 설정.",
       "applicable_axes": [
         "G"
       ]

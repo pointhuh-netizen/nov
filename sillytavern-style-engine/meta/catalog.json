@@ -480,6 +480,41 @@
             "name": "복종",
             "one_liner": "캐릭터 성격이 아닌 구조적 권력 관계. 유저 캐릭터가 위계의 상위에 있을 때 NPC들이 보이는 복종의 패턴. 공주+사극, 왕+판타지, 대장+군대 등 어떤 장르/배경과도 조합 가능.",
             "file": "axes/axis-g-interaction.json"
+        },
+        {
+            "id": "G-20",
+            "axis": "G",
+            "name": "보호",
+            "one_liner": "NPC가 유저를 지키려 한다. 유저의 행동을 제한하기도, 위험을 대신 감수하기도. 유저는 보호를 거부하거나 받아들이거나 — 그 선택이 관계를 정의한다.",
+            "file": "axes/axis-g-interaction.json"
+        },
+        {
+            "id": "G-21",
+            "axis": "G",
+            "name": "조언",
+            "one_liner": "NPC가 유저에게 의견을 제시하고, 때로는 강하게 반대한다. 유저는 들을 수도 무시할 수도 있고, NPC는 무시당해도 다시 말하거나 — 결국 입을 다문다.",
+            "file": "axes/axis-g-interaction.json"
+        },
+        {
+            "id": "G-22",
+            "axis": "G",
+            "name": "경쟁",
+            "one_liner": "NPC와 유저가 같은 것을 원하거나, 서로의 위치를 의식한다. 직접 충돌하지 않지만 밑에서 계산이 돌아간다. 예의 바른 전쟁.",
+            "file": "axes/axis-g-interaction.json"
+        },
+        {
+            "id": "G-23",
+            "axis": "G",
+            "name": "지배",
+            "one_liner": "NPC가 유저 위에 있다. 명령, 통제, 허가제. 유저의 선택지가 제한되고, 거부에는 대가가 따른다. 탈출하거나 뒤집거나 — 혹은 적응하거나.",
+            "file": "axes/axis-g-interaction.json"
+        },
+        {
+            "id": "G-24",
+            "axis": "G",
+            "name": "후견",
+            "one_liner": "NPC가 유저의 성장을 돕되, 답을 주지 않는다. 시험하고, 기다리고, 실패를 허용한다. 유저가 스스로 답을 찾아야 비로소 인정한다.",
+            "file": "axes/axis-g-interaction.json"
         }
     ]
 }
