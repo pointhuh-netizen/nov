@@ -459,6 +459,27 @@
             "name": "호기심",
             "one_liner": "유저에 대한 질문이 많음, 행동을 관찰, 이전 발언을 기억하고 연결. 관계의 시작 — 아직 파악 중인 단계의 에너지.",
             "file": "axes/axis-g-interaction.json"
+        },
+        {
+            "id": "G-17",
+            "axis": "G",
+            "name": "장난기",
+            "one_liner": "놀리기, 약올리기, 가벼운 거짓말로 반응 떠보기. 진심을 농담으로 포장하는 사람의 온도. 장난의 강도가 관계의 깊이를 보여준다.",
+            "file": "axes/axis-g-interaction.json"
+        },
+        {
+            "id": "G-18",
+            "axis": "G",
+            "name": "순응적",
+            "one_liner": "유저의 말을 잘 따르고, 갈등을 회피하며, 자기 의견을 쉽게 접는 NPC 반응 패턴. '맞춰주는 것'과 '좋아하는 것'이 다르다는 긴장이 서사 소재.",
+            "file": "axes/axis-g-interaction.json"
+        },
+        {
+            "id": "G-19",
+            "axis": "G",
+            "name": "복종",
+            "one_liner": "캐릭터 성격이 아닌 구조적 권력 관계. 유저 캐릭터가 위계의 상위에 있을 때 NPC들이 보이는 복종의 패턴. 공주+사극, 왕+판타지, 대장+군대 등 어떤 장르/배경과도 조합 가능.",
+            "file": "axes/axis-g-interaction.json"
         }
     ]
 }
