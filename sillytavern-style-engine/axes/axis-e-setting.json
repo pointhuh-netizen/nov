@@ -100,7 +100,28 @@
           "severity": "info",
           "reason": "B-07과 조합 시 시너지. 고풍체의 한문 투가 전근대 배경에 자연스럽게 녹아든다."
         }
-      ]
+      ],
+      "traits": {
+        "pov": null,
+        "inner_access": null,
+        "fid": null,
+        "emotion_level": null,
+        "sentence_length": null,
+        "sensory_anchor": null,
+        "formality": "formal",
+        "lyricism": null,
+        "narrator_presence": null,
+        "personification": null,
+        "temporal_mode": null,
+        "setting_era": "pre-modern",
+        "slots_touched": [
+          "{A_PROSE_DESCRIPTION}",
+          "{A_PROSE_SENSORY}",
+          "{B_TONE_VOCAB}",
+          "{B_TONE_TEMP}",
+          "{F_COG_QUIRKS}"
+        ]
+      }
     },
     {
       "id": "E-02",
