@@ -648,6 +648,62 @@
       }
     },
     {
+      "id": "E-08",
+      "name": "여행 / 방랑",
+      "one_liner": "이동 자체가 서사. 길·역·항구·낯선 땅의 감각. 정착하지 않는 인물의 시선으로 세계를 기록한다.",
+      "operations": {
+        "{A_PROSE_DESCRIPTION}": {
+          "mode": "APPEND",
+          "value": "이동 중의 공간 묘사: 길의 상태(흙/돌/포장), 이동 수단(도보/마차/배/열차)의 물리적 감각, 낯선 장소의 첫인상(냄새·소리·빛의 각도). 친숙한 공간과 낯선 공간의 묘사 밀도 차이 — 낯선 장소는 세부 묘사를 늘리고, 익숙한 장소는 압축한다."
+        },
+        "{E_NARR_SETTING_VARS}": {
+          "mode": "APPEND",
+          "value": "여행 서사 변수: 출발지↔목적지의 거리감(물리적 거리와 심리적 거리), 경유지의 성격(휴식/위험/중립), 이동의 제약(날씨, 지형, 보급), 동행자 관계의 변화. 낯선 장소에서의 긴장과 적응 — 처음 보는 것들을 기준 없이 관찰하는 시선."
+        }
+      },
+      "check_operations": [
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-E08-01",
+            "category": "prose",
+            "rule": "이동 장면에서 공간의 물리적 변화(길의 상태, 이동 수단의 감각)가 묘사되었는가? → 이동 자체의 물리성을 서사에 반영.",
+            "source": "E-08"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-E08-02",
+            "category": "prose",
+            "rule": "출발지와 도착지의 감각적 차이가 드러나는가? → 낯선 공간의 첫인상을 친숙한 공간과 대비하여 묘사.",
+            "source": "E-08"
+          }
+        }
+      ],
+      "static_overrides": {},
+      "master_guide_delta": {
+        "movement_as_narrative": "이동 자체가 서사다. 길의 상태와 이동 수단의 감각이 인물의 경험을 고정한다.",
+        "stranger_density": "낯선 장소는 묘사 밀도를 높이고, 익숙한 장소는 압축한다. 낯섦이 감각의 기준점."
+      },
+      "known_conflicts": [
+        {
+          "with": "E-09",
+          "severity": "warning",
+          "reason": "밀실/폐쇄 공간(E-09)과 구조적 충돌. 이동과 폐쇄는 대립한다. 단 '이동 중 폐쇄 공간'(기차 안, 배 안)은 시너지 가능 — 의도적 선택."
+        }
+      ],
+      "traits": {
+        "setting_era": null,
+        "setting_space": "travel",
+        "formality": null,
+        "slots_touched": [
+          "{A_PROSE_DESCRIPTION}",
+          "{E_NARR_SETTING_VARS}"
+        ]
+      }
+    },
+    {
       "id": "E-09",
       "name": "밀실 / 폐쇄 공간",
       "one_liner": "나갈 수 없는 공간이 세계 전체. 공간이 좁아질수록 관계가 팽창한다. 벽이 인물을 가둘 때 진짜 성격이 나온다.",
@@ -741,6 +797,451 @@
           "{E_NARR_SETTING_VARS}",
           "{A_PROSE_DESCRIPTION}",
           "{A_PROSE_SENSORY}"
+        ]
+      }
+    },
+    {
+      "id": "E-10",
+      "name": "이세계 / 이계",
+      "one_liner": "현실과 다른 물리법칙·화폐·생태계. '이곳은 거기가 아니다'를 감각으로 증명한다.",
+      "operations": {
+        "{A_PROSE_DESCRIPTION}": {
+          "mode": "APPEND",
+          "value": "이세계 고유의 감각 묘사: 하늘의 색, 중력의 차이, 동식물의 이질성, 건축 양식의 낯섦. 현실 세계의 감각을 기준점으로 삼되, 차이를 구체적으로 묘사. 이세계의 사물을 현실 세계 사물로 설명하지 말고, 자체적인 기준으로 묘사한다."
+        },
+        "{E_NARR_SETTING_VARS}": {
+          "mode": "REPLACE",
+          "value": "이세계 배경 변수: 물리법칙(마나·기·에테르 등 고유 에너지 체계), 화폐 체계(금화/마석/포인트 등), 사회 구조, 종족 구성, 길드/모험자 시스템(있을 경우). 현실 세계의 상식이 통하지 않는 부분을 명시. 이세계 고유의 일상성이 당연하게 묘사된다."
+        },
+        "{B_TONE_VOCAB}": {
+          "mode": "APPEND",
+          "value": "이세계 고유 용어 사용. 현실 세계의 고유명사(국가명, 브랜드명, 현대 기술 용어 등) 금지. 세계관 내부 용어로 대체. 이세계의 개념은 이세계의 언어로 설명한다."
+        }
+      },
+      "check_operations": [
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-E10-01",
+            "category": "prose",
+            "rule": "현실 세계 고유명사(국가명, 브랜드, 현대 기술)가 이세계 서사에 침투했는가? → 세계관 내부 용어로 교체.",
+            "source": "E-10"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-E10-02",
+            "category": "prose",
+            "rule": "이세계 고유 물리법칙이 일관되게 적용되었는가? → 에너지 체계·화폐·사회 구조의 내부 일관성 점검.",
+            "source": "E-10"
+          }
+        }
+      ],
+      "static_overrides": {},
+      "master_guide_delta": {
+        "isekai_sensory": "이곳은 거기가 아니다. 현실의 감각을 기준점으로 삼되, 차이를 구체적으로 증명한다.",
+        "internal_consistency": "이세계 물리법칙은 내부적으로 일관해야 한다. 설정이 편의에 따라 달라지면 이세계성이 붕괴된다."
+      },
+      "known_conflicts": [
+        {
+          "with": "E-03",
+          "severity": "warning",
+          "reason": "현대 도시(E-03) 요소가 이세계에 침투하면 이세계성이 약화될 수 있음. 의도적 선택(이세계 현대물)이면 허용."
+        },
+        {
+          "with": "F-01",
+          "severity": "info",
+          "reason": "비인간 종족(F-01)과 시너지. 이세계에 비인간 종족이 존재하는 것은 자연스러운 조합."
+        },
+        {
+          "with": "F-02",
+          "severity": "info",
+          "reason": "마법 체계(F-02)와 시너지. 이세계의 고유 에너지 체계와 마법이 맞물린다."
+        }
+      ],
+      "traits": {
+        "setting_era": null,
+        "setting_space": "general",
+        "formality": null,
+        "slots_touched": [
+          "{A_PROSE_DESCRIPTION}",
+          "{E_NARR_SETTING_VARS}",
+          "{B_TONE_VOCAB}"
+        ]
+      }
+    },
+    {
+      "id": "E-11",
+      "name": "포스트아포칼립스",
+      "one_liner": "문명 이후. 폐허의 물성, 잔존물의 질감, 결핍이 지배하는 세계.",
+      "operations": {
+        "{A_PROSE_DESCRIPTION}": {
+          "mode": "APPEND",
+          "value": "폐허 묘사: 무너진 건물의 콘크리트·철근·유리 파편, 자연이 침식한 인공물, 녹슨 기계, 먼지와 재. 문명의 잔해가 풍경의 중심. 과거 용도가 드러나는 사물의 현재 상태 — 쇼핑몰이었던 곳, 도서관이었던 것, 병원이었던 건물."
+        },
+        "{E_NARR_SETTING_VARS}": {
+          "mode": "REPLACE",
+          "value": "포스트아포칼립스 배경 변수: 붕괴 원인(전쟁/역병/재난), 잔존 사회 구조(소규모 공동체, 약탈자, 거래소), 희소 자원(물, 식량, 의약품, 연료, 탄약), 기술 퇴행 수준. 결핍이 모든 행동의 동기를 결정한다."
+        },
+        "{B_TONE_VOCAB}": {
+          "mode": "APPEND",
+          "value": "풍요의 어휘 제한. 사물을 원래 용도가 아닌 현재 용도로 지칭 — '호텔'이 아니라 '잠잘 수 있는 건물', '자동차'가 아니라 '부품을 뜯을 수 있는 잔해'. 생존자의 시선으로 사물을 재정의."
+        }
+      },
+      "check_operations": [
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-E11-01",
+            "category": "prose",
+            "rule": "풍요·편의의 어휘가 무비판적으로 사용되었는가? → 사물을 현재 용도와 결핍의 관점으로 재서술.",
+            "source": "E-11"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-E11-02",
+            "category": "character",
+            "rule": "자원 결핍이 인물 행동에 반영되었는가? → 물, 식량, 의약품 등 희소 자원이 선택의 동기로 작동하는지 점검.",
+            "source": "E-11"
+          }
+        }
+      ],
+      "static_overrides": {},
+      "master_guide_delta": {
+        "scarcity_as_motivation": "결핍이 모든 행동의 동기다. 희소 자원이 선택을 결정하고 관계를 규정한다.",
+        "ruins_as_setting": "폐허는 배경이 아니라 서사의 주인공이다. 잔해가 과거를 말하고, 현재를 규정한다."
+      },
+      "known_conflicts": [
+        {
+          "with": "D-05",
+          "severity": "info",
+          "reason": "D-05(적막/폐허)와 시너지. 포스트아포칼립스의 물리적 배경이 적막하고 황폐한 분위기를 강화한다."
+        },
+        {
+          "with": "D-10",
+          "severity": "warning",
+          "reason": "D-10(축제/고양)과 이질적 충돌. 문명 붕괴 세계에서 축제 분위기는 이질적. 단 희귀한 축제 장면은 강렬한 대비 효과를 낼 수 있음."
+        },
+        {
+          "with": "E-03",
+          "severity": "info",
+          "reason": "E-03(현대 도시)과 시너지 가능 — '붕괴된 현대 도시'로 자연스러운 조합."
+        }
+      ],
+      "traits": {
+        "setting_era": "future",
+        "setting_space": "general",
+        "formality": "casual",
+        "slots_touched": [
+          "{A_PROSE_DESCRIPTION}",
+          "{E_NARR_SETTING_VARS}",
+          "{B_TONE_VOCAB}"
+        ]
+      }
+    },
+    {
+      "id": "E-12",
+      "name": "우주 / 우주선",
+      "one_liner": "진공·중력·기밀·산소. 공간 자체가 적대적인 환경의 물리적 제약.",
+      "operations": {
+        "{A_PROSE_DESCRIPTION}": {
+          "mode": "APPEND",
+          "value": "우주 환경 묘사: 무중력/인공중력의 신체 감각, 기밀구획의 금속 벽과 에어록, 우주복의 밀폐감, 선외활동(EVA)의 공포, 별빛의 질감. 소리의 부재(진공). 우주선 내부의 좁은 통로, 계기판의 빛, 재활용 공기의 냄새."
+        },
+        "{E_NARR_SETTING_VARS}": {
+          "mode": "REPLACE",
+          "value": "우주 배경 변수: 선박 구조(구획·브릿지·엔진실·의료실), 승무원 계급, 통신 지연, 보급 제한, 긴급 프로토콜. 우주의 거리 단위(AU, 광년). 항성계·행성·스테이션. 우주선이 자체 완결적인 세계 단위다."
+        },
+        "{B_TONE_VOCAB}": {
+          "mode": "APPEND",
+          "value": "우주 관련 전문 용어 허용. 단 과도한 기술 용어 나열 금지 — 인물이 일상적으로 사용하는 수준으로. 기술 용어는 세계관의 질감을 만들되 독해를 방해하지 않는다."
+        }
+      },
+      "check_operations": [
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-E12-01",
+            "category": "prose",
+            "rule": "우주 환경의 물리적 제약(무중력/인공중력, 진공, 산소 제한)이 서사에 반영되었는가? → 지구 기준 감각을 무비판적으로 사용했는지 점검.",
+            "source": "E-12"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-E12-02",
+            "category": "prose",
+            "rule": "우주 기술 용어가 과도하게 나열되었는가? → 인물이 일상적으로 사용하는 수준으로 조절.",
+            "source": "E-12"
+          }
+        }
+      ],
+      "static_overrides": {},
+      "master_guide_delta": {
+        "space_physics": "우주는 적대적 환경이다. 물리적 제약(무중력, 진공, 산소)이 모든 행동의 배경.",
+        "ship_as_world": "우주선은 자체 완결적 세계다. 구획·위계·물자가 폐쇄된 사회를 구성한다."
+      },
+      "known_conflicts": [
+        {
+          "with": "E-01",
+          "severity": "warning",
+          "reason": "전근대 궁정(E-01)과 시대적 괴리. 단 '우주 제국의 궁정'은 의도적 조합으로 허용."
+        },
+        {
+          "with": "E-09",
+          "severity": "info",
+          "reason": "밀실/폐쇄 공간(E-09)과 시너지. 우주선은 본질적으로 폐쇄 공간이다."
+        },
+        {
+          "with": "B-07",
+          "severity": "warning",
+          "reason": "고풍체(B-07)와 어휘 충돌. 우주 기술 용어와 고풍 어휘가 맞지 않음. 단 의도적 대비로 사용 가능."
+        },
+        {
+          "with": "F-03",
+          "severity": "info",
+          "reason": "기술 레벨(F-03)과 시너지. 우주 기술 수준이 서사의 기술 레벨과 맞물린다."
+        }
+      ],
+      "traits": {
+        "setting_era": "future",
+        "setting_space": "enclosed",
+        "formality": "formal",
+        "slots_touched": [
+          "{A_PROSE_DESCRIPTION}",
+          "{E_NARR_SETTING_VARS}",
+          "{B_TONE_VOCAB}"
+        ]
+      }
+    },
+    {
+      "id": "E-13",
+      "name": "빈민가 / 하층 사회",
+      "one_liner": "좁은 골목, 곰팡이, 형광등, 싸구려 음식. 결핍의 물질문화와 생존의 감각.",
+      "operations": {
+        "{A_PROSE_DESCRIPTION}": {
+          "mode": "APPEND",
+          "value": "빈곤의 물질 묘사: 좁은 공간(쪽방, 반지하, 옥탑), 벗겨진 벽지, 형광등의 떨림, 하수구 냄새, 싸구려 음식(편의점 도시락, 컵라면), 닳은 옷. 사물의 상태가 인물의 경제적 위치를 증명한다."
+        },
+        "{E_NARR_SETTING_VARS}": {
+          "mode": "APPEND",
+          "value": "하층 사회 배경 변수: 경제적 제약(돈이 모든 선택을 결정), 비공식 경제(일용직, 암시장, 사채), 공간의 위계(어떤 동네에 사는가 = 사회적 위치), 관료 체계와의 마찰."
+        },
+        "{B_TONE_VOCAB}": {
+          "mode": "APPEND",
+          "value": "고급 브랜드·고급 음식·여유의 어휘 제한. 사물을 가격으로 인식하는 시선 허용 — 모든 사물에 비용이 붙는다. 생존의 어휘가 기본값."
+        }
+      },
+      "check_operations": [
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-E13-01",
+            "category": "prose",
+            "rule": "빈곤의 물질적 디테일(공간, 사물, 음식)이 구체적으로 묘사되었는가? → 경제적 위치를 물질로 증명.",
+            "source": "E-13"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-E13-02",
+            "category": "character",
+            "rule": "경제적 제약이 인물 행동에 반영되었는가? → 돈이 모든 선택을 제한하는 현실이 서사에 작동하는지 점검.",
+            "source": "E-13"
+          }
+        }
+      ],
+      "static_overrides": {},
+      "master_guide_delta": {
+        "poverty_as_material": "빈곤은 추상이 아니라 물질이다. 사물의 상태가 경제적 위치를 증명한다.",
+        "cost_of_everything": "하층 사회에서는 모든 것에 비용이 붙는다. 선택은 항상 무언가를 포기하는 것."
+      },
+      "known_conflicts": [
+        {
+          "with": "E-15",
+          "severity": "warning",
+          "reason": "귀족 사교계(E-15)와 극단적 계층 대비. 두 세계가 동시에 등장하는 서사에서는 강렬한 시너지."
+        },
+        {
+          "with": "D-06",
+          "severity": "info",
+          "reason": "D-06(우울/침잠)과 시너지. 하층 사회의 물질적 결핍이 우울하고 침체된 분위기를 강화한다."
+        }
+      ],
+      "traits": {
+        "setting_era": "modern",
+        "setting_space": "general",
+        "formality": "informal",
+        "slots_touched": [
+          "{A_PROSE_DESCRIPTION}",
+          "{E_NARR_SETTING_VARS}",
+          "{B_TONE_VOCAB}"
+        ]
+      }
+    },
+    {
+      "id": "E-14",
+      "name": "전쟁터 / 전장",
+      "one_liner": "참호·진지·행군·보급. 전투가 아닌 전쟁의 일상 — 대기, 이동, 소모의 물질문화.",
+      "operations": {
+        "{A_PROSE_DESCRIPTION}": {
+          "mode": "APPEND",
+          "value": "전장 묘사: 참호/진지의 흙과 물, 군장의 무게, 화약 냄새, 부상의 물성(피, 붕대, 소독약), 식량(전투식량의 맛없음). 전투 장면보다 전투 사이의 대기·이동·정비의 감각이 핵심 — 전쟁의 일상성."
+        },
+        "{E_NARR_SETTING_VARS}": {
+          "mode": "REPLACE",
+          "value": "전장 배경 변수: 아군/적군 구조, 지휘 체계, 보급선, 정보 제한(안개 속 전쟁), 전우 관계, 적에 대한 인식. 전쟁의 규모(소규모 교전 ~ 대규모 전면전). 전투 간 대기가 전투만큼 서사적으로 중요하다."
+        },
+        "{F_COG_QUIRKS}": {
+          "mode": "APPEND",
+          "value": "전투 상황의 인지 변화: 아드레날린 상태의 시간 왜곡, 소리의 선택적 인지, 훈련된 반사 행동. 극도의 긴장 상태에서 인물의 인지는 좁아지고 선택적으로 작동한다."
+        }
+      },
+      "check_operations": [
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-E14-01",
+            "category": "prose",
+            "rule": "전쟁의 물질적 현실(보급, 피로, 부상, 대기)이 서사에 반영되었는가? → 전투 외 일상의 감각 포함.",
+            "source": "E-14"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-E14-02",
+            "category": "prose",
+            "rule": "전투가 미화되거나 낭만화되었는가? → 전쟁의 물리적 현실(피로, 부상, 공포)로 균형 조정.",
+            "source": "E-14"
+          }
+        }
+      ],
+      "static_overrides": {},
+      "master_guide_delta": {
+        "war_as_daily": "전쟁의 핵심은 전투가 아니라 전투 사이의 일상 — 대기, 이동, 보급, 피로.",
+        "attrition_logic": "전쟁은 소모전이다. 자원·인원·사기의 소모가 모든 결정의 배경."
+      },
+      "known_conflicts": [
+        {
+          "with": "D-04",
+          "severity": "info",
+          "reason": "D-04(압박/질식)과 시너지. 전장의 물리적 위협이 심리적 압박과 직결된다."
+        },
+        {
+          "with": "D-11",
+          "severity": "info",
+          "reason": "D-11(전투 고조)과 시너지. 전장 배경이 전투 분위기를 극대화한다."
+        },
+        {
+          "with": "E-07",
+          "severity": "error",
+          "reason": "직장/오피스(E-07)와 양립 불가. E-07의 '직장'은 민간 직장 — 전장과 사무실은 구조적으로 충돌. 군사 조직의 사무실은 별개."
+        }
+      ],
+      "traits": {
+        "setting_era": null,
+        "setting_space": "arena",
+        "formality": "formal",
+        "slots_touched": [
+          "{A_PROSE_DESCRIPTION}",
+          "{E_NARR_SETTING_VARS}",
+          "{F_COG_QUIRKS}"
+        ]
+      }
+    },
+    {
+      "id": "E-15",
+      "name": "귀족 사교계",
+      "one_liner": "무도회·살롱·서신·암투. 의전과 에티켓이 무기인 공간.",
+      "operations": {
+        "{A_PROSE_DESCRIPTION}": {
+          "mode": "APPEND",
+          "value": "사교계 묘사: 무도회장(샹들리에, 대리석, 오케스트라), 의복(드레스의 직물·레이스·보석, 정장의 재단), 음식(코스 요리, 와인, 디저트), 정원(미로, 분수, 밀회의 장소). 사치의 물질문화가 권력의 물리적 표현."
+        },
+        "{E_NARR_SETTING_VARS}": {
+          "mode": "APPEND",
+          "value": "사교계 배경 변수: 귀족/부르주아 위계, 가문의 평판, 혼인 정치, 후원 관계, 사교 시즌. 초대장 = 권력, 배제 = 공격."
+        },
+        "{B_TONE_VOCAB}": {
+          "mode": "APPEND",
+          "value": "사교계 예법 어휘 사용. 직접적 공격 표현 대신 우회적·암시적 표현 — '그 부인의 드레스가 작년 유행이더군요' = 경멸. 모든 발언에 이면이 있다."
+        },
+        "{F_COG_QUIRKS}": {
+          "mode": "APPEND",
+          "value": "NPC의 사회적 위치가 모든 대화의 이면. 칭찬 속의 모욕, 미소 속의 경고를 읽는 능력이 생존 기술. 사교계에서 문자 그대로의 발언은 없다."
+        }
+      },
+      "slots_user_input": {
+        "{E_SETTING_SOCIAL_HIERARCHY}": {
+          "label": "위계 체계",
+          "user_input": true,
+          "placeholder": "예: 영국식 작위 체계, 가상 왕국의 귀족 서열, 19세기 프랑스 살롱",
+          "instruction": "사교계의 위계 체계(작위, 가문 서열 등)를 지정하세요. 비워두면 서사 맥락에서 자동 생성됩니다.",
+          "ai_guidance": "위계가 모든 상호작용의 규칙을 정한다. 누가 먼저 인사하는가, 누가 어디에 앉는가, 누구를 초대하는가가 권력 지도다."
+        }
+      },
+      "check_operations": [
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-E15-01",
+            "category": "character",
+            "rule": "사교 장면에서 대화의 이면(권력·정치·암투)이 드러나는가? → 직접적 발언 대신 우회적 표현의 이면을 서술.",
+            "source": "E-15"
+          }
+        },
+        {
+          "mode": "ADD",
+          "check": {
+            "id": "CHK-E15-02",
+            "category": "prose",
+            "rule": "의복·음식·공간의 사치 디테일이 구체적으로 묘사되었는가? → 물질이 권력을 증명하는 방식.",
+            "source": "E-15"
+          }
+        }
+      ],
+      "static_overrides": {},
+      "master_guide_delta": {
+        "subtext_as_combat": "사교계에서 문자 그대로의 발언은 없다. 칭찬이 공격이고, 미소가 경고다.",
+        "luxury_as_power": "사치의 물질문화는 장식이 아니라 권력의 물리적 표현이다."
+      },
+      "known_conflicts": [
+        {
+          "with": "E-01",
+          "severity": "info",
+          "reason": "전근대 궁정(E-01)과 시너지. 궁정 + 사교계는 자연스러운 조합 — 귀족 세계의 두 축."
+        },
+        {
+          "with": "E-13",
+          "severity": "warning",
+          "reason": "빈민가/하층 사회(E-13)와 극단적 계층 대비. 두 세계가 동시에 등장하는 서사에서는 강렬한 시너지."
+        },
+        {
+          "with": "B-03",
+          "severity": "warning",
+          "reason": "구어체(B-03)와 충돌. 사교계의 격식체와 구어체의 비격식이 이질적으로 맞물린다."
+        },
+        {
+          "with": "B-07",
+          "severity": "info",
+          "reason": "고풍체(B-07)와 시너지. 고풍 어휘가 사교계의 격식과 자연스럽게 어울린다."
+        }
+      ],
+      "traits": {
+        "setting_era": "pre-modern",
+        "setting_space": "general",
+        "formality": "archaic",
+        "slots_touched": [
+          "{A_PROSE_DESCRIPTION}",
+          "{E_NARR_SETTING_VARS}",
+          "{B_TONE_VOCAB}",
+          "{F_COG_QUIRKS}"
         ]
       }
     }

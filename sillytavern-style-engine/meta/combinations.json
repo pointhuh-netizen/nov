@@ -1241,6 +1241,176 @@
       "severity": "info",
       "description_ko": "밀실/폐쇄 공간(E-09)와 추리 색채(C-02)의 시너지. 밀실 추리는 추리 장르의 고전적 조합이다.",
       "resolution_ko": "의도적 시너지. 밀실이라는 공간 제약이 추리의 용의자 범위를 한정하고 긴장을 고조시킨다."
+    },
+    {
+      "id": "RULE-E08-E09-CONFLICT",
+      "modules": [
+        "E-08",
+        "E-09"
+      ],
+      "severity": "warning",
+      "description_ko": "여행/방랑(E-08)과 밀실/폐쇄 공간(E-09)의 구조적 충돌. 이동과 폐쇄는 서사 구조가 대립한다.",
+      "resolution_ko": "'이동 중 폐쇄 공간'(기차 안, 배 안)은 의도적 시너지로 허용. 그 외에는 두 모듈이 서로의 핵심 긴장을 약화시킨다."
+    },
+    {
+      "id": "RULE-E10-E03-CLASH",
+      "modules": [
+        "E-10",
+        "E-03"
+      ],
+      "severity": "warning",
+      "description_ko": "이세계/이계(E-10)에 현대 도시(E-03) 요소가 침투하면 이세계성이 약화될 수 있다.",
+      "resolution_ko": "의도적 선택(이세계 현대물, 현대 회귀 등)이면 허용. 무의식적 혼입은 이세계성을 훼손한다."
+    },
+    {
+      "id": "RULE-E10-F01-SYNERGY",
+      "modules": [
+        "E-10",
+        "F-01"
+      ],
+      "severity": "info",
+      "description_ko": "이세계/이계(E-10)와 비인간 종족(F-01)의 자연스러운 시너지.",
+      "resolution_ko": "의도적 시너지. 이세계에 비인간 종족이 존재하는 것은 이세계성을 강화한다."
+    },
+    {
+      "id": "RULE-E10-F02-SYNERGY",
+      "modules": [
+        "E-10",
+        "F-02"
+      ],
+      "severity": "info",
+      "description_ko": "이세계/이계(E-10)와 마법 체계(F-02)의 시너지. 이세계 고유 에너지 체계와 마법이 맞물린다.",
+      "resolution_ko": "의도적 시너지. F-02의 마법 체계가 E-10의 이세계 물리법칙을 구체화한다."
+    },
+    {
+      "id": "RULE-E11-D05-SYNERGY",
+      "modules": [
+        "E-11",
+        "D-05"
+      ],
+      "severity": "info",
+      "description_ko": "포스트아포칼립스(E-11)와 적막/폐허(D-05)의 시너지. 문명 붕괴의 물리적 배경이 적막한 분위기를 강화한다.",
+      "resolution_ko": "의도적 시너지. E-11의 폐허 묘사가 D-05의 고요하고 황폐한 분위기와 자연스럽게 맞물린다."
+    },
+    {
+      "id": "RULE-E11-D10-CLASH",
+      "modules": [
+        "E-11",
+        "D-10"
+      ],
+      "severity": "warning",
+      "description_ko": "포스트아포칼립스(E-11)와 축제/고양(D-10)의 이질적 충돌. 문명 붕괴 세계에서 축제 분위기는 이질적.",
+      "resolution_ko": "희귀한 축제 장면은 강렬한 대비 효과를 낼 수 있음. 단 분위기의 부조화를 의도적으로 설계할 것."
+    },
+    {
+      "id": "RULE-E12-E01-ERA-CLASH",
+      "modules": [
+        "E-12",
+        "E-01"
+      ],
+      "severity": "warning",
+      "description_ko": "우주/우주선(E-12)과 전근대 궁정(E-01)의 시대적 괴리.",
+      "resolution_ko": "'우주 제국의 궁정'처럼 의도적 조합은 허용. 무의식적 혼입은 두 세계의 질감을 모두 약화시킨다."
+    },
+    {
+      "id": "RULE-E12-E09-SYNERGY",
+      "modules": [
+        "E-12",
+        "E-09"
+      ],
+      "severity": "info",
+      "description_ko": "우주/우주선(E-12)과 밀실/폐쇄 공간(E-09)의 시너지. 우주선은 본질적으로 폐쇄 공간이다.",
+      "resolution_ko": "의도적 시너지. 우주선의 밀폐성이 E-09의 폐쇄 공간 긴장을 배가시킨다."
+    },
+    {
+      "id": "RULE-E12-B07-CLASH",
+      "modules": [
+        "E-12",
+        "B-07"
+      ],
+      "severity": "warning",
+      "description_ko": "우주/우주선(E-12)과 고풍체(B-07)의 어휘 충돌. 우주 기술 용어와 고풍 어휘가 맞지 않는다.",
+      "resolution_ko": "의도적 대비(고풍 SF)로 사용 가능. 단 어휘 충돌이 몰입을 방해하지 않도록 설계 필요."
+    },
+    {
+      "id": "RULE-E12-F03-SYNERGY",
+      "modules": [
+        "E-12",
+        "F-03"
+      ],
+      "severity": "info",
+      "description_ko": "우주/우주선(E-12)과 기술 레벨(F-03)의 시너지. 우주 기술 수준이 서사의 기술 레벨과 맞물린다.",
+      "resolution_ko": "의도적 시너지. F-03이 E-12의 기술 세계관을 구체화한다."
+    },
+    {
+      "id": "RULE-E13-E15-CLASS-CONTRAST",
+      "modules": [
+        "E-13",
+        "E-15"
+      ],
+      "severity": "warning",
+      "description_ko": "빈민가/하층 사회(E-13)와 귀족 사교계(E-15)의 극단적 계층 대비.",
+      "resolution_ko": "두 세계가 동시에 등장하는 서사에서는 강렬한 시너지. 계층 간 충돌을 주제로 삼는다면 의도적 조합."
+    },
+    {
+      "id": "RULE-E14-E07-INCOMPATIBLE",
+      "modules": [
+        "E-14",
+        "E-07"
+      ],
+      "severity": "error",
+      "description_ko": "전쟁터/전장(E-14)과 직장/오피스(E-07)는 양립 불가. E-07의 '직장'은 민간 직장이며, 전장과 사무실은 구조적으로 충돌한다.",
+      "resolution_ko": "군사 조직의 사무실은 E-07의 '직장' 범위 밖. 두 모듈을 동시에 활성화하지 말 것."
+    },
+    {
+      "id": "RULE-E14-D04-SYNERGY",
+      "modules": [
+        "E-14",
+        "D-04"
+      ],
+      "severity": "info",
+      "description_ko": "전쟁터/전장(E-14)과 압박/질식(D-04)의 시너지. 전장의 물리적 위협이 심리적 압박과 직결된다.",
+      "resolution_ko": "의도적 시너지. 전장의 생사 긴장이 D-04의 숨막히는 분위기를 강화한다."
+    },
+    {
+      "id": "RULE-E14-D11-SYNERGY",
+      "modules": [
+        "E-14",
+        "D-11"
+      ],
+      "severity": "info",
+      "description_ko": "전쟁터/전장(E-14)과 전투 고조(D-11)의 시너지. 전장 배경이 전투 분위기를 극대화한다.",
+      "resolution_ko": "의도적 시너지. E-14의 물질적 현실이 D-11의 전투 에너지에 물리적 근거를 제공한다."
+    },
+    {
+      "id": "RULE-E15-E01-SYNERGY",
+      "modules": [
+        "E-15",
+        "E-01"
+      ],
+      "severity": "info",
+      "description_ko": "귀족 사교계(E-15)와 전근대 궁정(E-01)의 시너지. 궁정 + 사교계는 자연스러운 조합 — 귀족 세계의 두 축.",
+      "resolution_ko": "의도적 시너지. E-01의 궁정 의전과 E-15의 사교계 암투가 맞물려 귀족 세계관을 풍성하게 만든다."
+    },
+    {
+      "id": "RULE-E15-B03-CLASH",
+      "modules": [
+        "E-15",
+        "B-03"
+      ],
+      "severity": "warning",
+      "description_ko": "귀족 사교계(E-15)와 구어체(B-03)의 충돌. 사교계의 격식체와 구어체의 비격식이 이질적.",
+      "resolution_ko": "의도적 대비(격식 세계를 파괴하는 캐릭터)라면 허용. 단 분위기 일관성 손상에 주의."
+    },
+    {
+      "id": "RULE-E15-B07-SYNERGY",
+      "modules": [
+        "E-15",
+        "B-07"
+      ],
+      "severity": "info",
+      "description_ko": "귀족 사교계(E-15)와 고풍체(B-07)의 시너지. 고풍 어휘가 사교계의 격식과 자연스럽게 어울린다.",
+      "resolution_ko": "의도적 시너지. B-07의 고풍 어휘가 E-15의 귀족 사교계 격식을 강화한다."
     }
   ]
 }
