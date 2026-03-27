@@ -27,7 +27,7 @@ sillytavern-style-engine/
 │   ├── axis-s-narration.json       ← S축: 서술 방식. S-00~S-14
 │   ├── axis-b-tone.json            ← B축: 어조·어휘. B-00~B-08
 │   ├── axis-c-genre.json           ← C축: 장르. C-01~C-05
-│   ├── axis-d-mood.json            ← D축: 분위기. D-01
+│   ├── axis-d-mood.json            ← D축: 분위기. D-01~D-16
 │   ├── axis-e-setting.json         ← E축: 배경. E-01~E-02
 │   ├── axis-f-special.json         ← F축: 특별 요소. F-01~F-03
 │   └── axis-g-interaction.json     ← G축: 상호작용. G-01~G-03, G-10~G-24

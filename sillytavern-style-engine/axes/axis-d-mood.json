@@ -978,6 +978,11 @@
           "with": "C-01",
           "severity": "info",
           "reason": "D-11(전투 고조)과 C-01(궁정/전쟁)의 시너지. 전쟁 장면의 전투 묘사에서 최고 시너지."
+        },
+        {
+          "with": "B-02",
+          "severity": "warning",
+          "reason": "서정체(B-02)는 D-11의 lyricism: forbidden 규칙과 충돌한다. 전투 고조 구간에서는 서정체 규칙을 일시 정지한다."
         }
       ],
       "traits": {
