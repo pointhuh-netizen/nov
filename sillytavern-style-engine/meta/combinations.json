@@ -59,7 +59,7 @@
         "trait": "pov",
         "conflict": "different_values"
       },
-      "description": "N축과 A축의 시점(pov) trait 값이 다르면 조합 불가. 예: N-01(3인칭 고정) + A-01(1인칭).",
+      "description": "A축/S축 간 시점(pov) trait 값이 다르면 조합 불가.",
       "affected_axes": [
         "A"
       ]
@@ -101,7 +101,7 @@
         "trait": "sentence_length",
         "conflict": "opposite_values"
       },
-      "description": "N축이 설정한 문장 길이 경향과 B축이 설정한 경향이 반대일 때 경고. 예: N-01(단문 중심) + B-04(만연체). 빌드 순서상 B축이 최종 우선하지만, N축의 서사 리듬이 깨질 수 있다.",
+      "description": "A축/S축이 설정한 문장 길이 경향과 B축이 설정한 경향이 반대일 때 경고. 빌드 순서상 B축이 최종 우선하지만, A축/S축의 서사 리듬이 깨질 수 있다.",
       "affected_axes": [
         "B"
       ]
@@ -114,7 +114,7 @@
         "trait": "formality",
         "conflict": "opposite_values"
       },
-      "description": "N축/B축 간 격식 수준 불일치. 예: N-04(무협, 격식 높음) + B-03(구어체, 격식 낮음). 의도적 스타일링이 아니면 어색한 결과물이 나올 수 있다.",
+      "description": "A축/S축/B축 간 격식 수준 불일치. 의도적 스타일링이 아니면 어색한 결과물이 나올 수 있다.",
       "affected_axes": [
         "B"
       ]
@@ -127,7 +127,7 @@
         "trait": "lyricism",
         "conflict": "opposite_values"
       },
-      "description": "서정성 수준 충돌. 예: N-01(동화, 서정성 높음) + B-01(건조체, 서정성 없음). 빌드 순서상 B축 우선이지만 N축의 서사 분위기가 깨질 수 있다.",
+      "description": "서정성 수준 충돌. 빌드 순서상 B축 우선이지만 A축/S축의 서사 분위기가 깨질 수 있다.",
       "affected_axes": [
         "B"
       ]
@@ -840,5 +840,77 @@
   "manual_overrides": {
     "description": "auto_rules로 감지할 수 없는 특수 케이스. 각 모듈의 known_conflicts에 이미 기록된 것과 보완적으로 사용.",
     "overrides": []
-  }
+  },
+  "explicit_pairs": [
+    {
+      "id": "RULE-G19-G23-SUBMISSION-DOMINATION",
+      "modules": [
+        "G-19",
+        "G-23"
+      ],
+      "severity": "error",
+      "description_ko": "복종(G-19)과 지배(G-23)는 유저가 복종+지배 양쪽에 동시에 있을 수 없다. 유저가 위에 있는 NPC(G-19)와 유저 위에 있는 NPC(G-23)가 공존하려면, NPC별로 다른 역할을 명시해야 한다.",
+      "resolution_ko": "의도적이라면 NPC별 역할 분리를 캐릭터 설정에서 명시하세요."
+    },
+    {
+      "id": "RULE-G22-G18-RIVALRY-COMPLIANCE",
+      "modules": [
+        "G-22",
+        "G-18"
+      ],
+      "severity": "warning",
+      "description_ko": "경쟁(G-22)과 순응적(G-18)이 함께 선택되면, NPC가 경쟁하면서도 유저에게 맞춰주는 모순적 행동이 된다.",
+      "resolution_ko": "의도적 긴장이라면 유지. NPC가 겉으로는 순응하면서 속으로는 경쟁하는 구도가 가능."
+    },
+    {
+      "id": "RULE-G20-G23-PROTECTION-DOMINATION",
+      "modules": [
+        "G-20",
+        "G-23"
+      ],
+      "severity": "warning",
+      "description_ko": "보호(G-20)와 지배(G-23)가 함께 선택되면, 보호가 지배의 수단이 될 수 있다. '너를 위해서'라는 명목의 통제.",
+      "resolution_ko": "의도적이라면 강력한 서사 장치. 보호인지 지배인지 모호한 경계가 핵심 갈등이 된다."
+    },
+    {
+      "id": "RULE-G21-G23-ADVISORY-DOMINATION",
+      "modules": [
+        "G-21",
+        "G-23"
+      ],
+      "severity": "warning",
+      "description_ko": "조언(G-21)과 지배(G-23)가 함께 선택되면, 조언이 명령과 구분이 안 된다.",
+      "resolution_ko": "의도적이라면 조언과 명령의 경계가 서사의 핵심 긴장이 된다."
+    },
+    {
+      "id": "RULE-G24-G23-MENTORSHIP-DOMINATION",
+      "modules": [
+        "G-24",
+        "G-23"
+      ],
+      "severity": "warning",
+      "description_ko": "후견(G-24)과 지배(G-23)가 함께 선택되면, 성장 지원이 통제와 구분이 안 된다.",
+      "resolution_ko": "의도적이라면 스승과 독재자의 경계가 서사의 핵심."
+    },
+    {
+      "id": "RULE-G20-G22-PROTECTION-RIVALRY",
+      "modules": [
+        "G-20",
+        "G-22"
+      ],
+      "severity": "info",
+      "description_ko": "보호(G-20)와 경쟁(G-22)의 시너지: NPC가 유저를 지키려 하면서도 유저와 경쟁한다. '나보다 강해져야 보호하지 않아도 되니까'.",
+      "resolution_ko": "의도적 시너지로 활용 가능."
+    },
+    {
+      "id": "RULE-G19-E07-SUBMISSION-OFFICE",
+      "modules": [
+        "G-19",
+        "E-07"
+      ],
+      "severity": "info",
+      "description_ko": "복종(G-19)과 직장/오피스(E-07)의 시너지: 직급 위계가 복종 구조와 자연스럽게 연동된다.",
+      "resolution_ko": "직급 호칭 변화 = 관계 변화의 메커니즘이 강화된다."
+    }
+  ]
 }
