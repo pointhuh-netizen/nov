@@ -531,10 +531,59 @@
       "file": "axes/axis-e-setting.json"
     },
     {
+      "id": "E-08",
+      "axis": "E",
+      "name": "여행 / 방랑",
+      "one_liner": "이동 자체가 서사. 길·역·항구·낯선 땅의 감각. 정착하지 않는 인물의 시선으로 세계를 기록한다.",
+      "file": "axes/axis-e-setting.json"
+    },
+    {
       "id": "E-09",
       "axis": "E",
       "name": "밀실 / 폐쇄 공간",
       "one_liner": "나갈 수 없는 공간이 세계 전체. 공간이 좁아질수록 관계가 팽창한다. 벽이 인물을 가둘 때 진짜 성격이 나온다.",
+      "file": "axes/axis-e-setting.json"
+    },
+    {
+      "id": "E-10",
+      "axis": "E",
+      "name": "이세계 / 이계",
+      "one_liner": "현실과 다른 물리법칙·화폐·생태계. '이곳은 거기가 아니다'를 감각으로 증명한다.",
+      "file": "axes/axis-e-setting.json"
+    },
+    {
+      "id": "E-11",
+      "axis": "E",
+      "name": "포스트아포칼립스",
+      "one_liner": "문명 이후. 폐허의 물성, 잔존물의 질감, 결핍이 지배하는 세계.",
+      "file": "axes/axis-e-setting.json"
+    },
+    {
+      "id": "E-12",
+      "axis": "E",
+      "name": "우주 / 우주선",
+      "one_liner": "진공·중력·기밀·산소. 공간 자체가 적대적인 환경의 물리적 제약.",
+      "file": "axes/axis-e-setting.json"
+    },
+    {
+      "id": "E-13",
+      "axis": "E",
+      "name": "빈민가 / 하층 사회",
+      "one_liner": "좁은 골목, 곰팡이, 형광등, 싸구려 음식. 결핍의 물질문화와 생존의 감각.",
+      "file": "axes/axis-e-setting.json"
+    },
+    {
+      "id": "E-14",
+      "axis": "E",
+      "name": "전쟁터 / 전장",
+      "one_liner": "참호·진지·행군·보급. 전투가 아닌 전쟁의 일상 — 대기, 이동, 소모의 물질문화.",
+      "file": "axes/axis-e-setting.json"
+    },
+    {
+      "id": "E-15",
+      "axis": "E",
+      "name": "귀족 사교계",
+      "one_liner": "무도회·살롱·서신·암투. 의전과 에티켓이 무기인 공간.",
       "file": "axes/axis-e-setting.json"
     },
     {
