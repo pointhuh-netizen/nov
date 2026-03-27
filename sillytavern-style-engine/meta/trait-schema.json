@@ -43,7 +43,8 @@
       ],
       "description": "FID(자유 간접 화법) 사용 범위.",
       "applicable_axes": [
-        "A"
+        "A",
+        "C"
       ]
     },
     "emotion_level": {
@@ -89,7 +90,8 @@
         "memory",
         "default",
         "tactile-thermal",
-        "auditory-tactile"
+        "auditory-tactile",
+        "visual-behavioral"
       ],
       "description": "감각 우선순위의 앵커.",
       "applicable_axes": [
@@ -159,6 +161,7 @@
       "applicable_axes": [
         "A",
         "B",
+        "C",
         "F"
       ]
     },
