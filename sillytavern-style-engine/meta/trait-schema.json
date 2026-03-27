@@ -52,12 +52,14 @@
         "open",
         "restrained",
         "suppressed",
-        "forbidden"
+        "forbidden",
+        "expressive"
       ],
       "description": "감정 표현 허용 수준.",
       "applicable_axes": [
         "A",
-        "B"
+        "B",
+        "C"
       ]
     },
     "sentence_length": {
@@ -85,11 +87,14 @@
         "object-surface",
         "character-driven",
         "memory",
-        "default"
+        "default",
+        "tactile-thermal",
+        "auditory-tactile"
       ],
       "description": "감각 우선순위의 앵커.",
       "applicable_axes": [
-        "A"
+        "A",
+        "C"
       ]
     },
     "formality": {
@@ -99,11 +104,13 @@
         "formal",
         "neutral",
         "casual",
-        "mixed"
+        "mixed",
+        "informal"
       ],
       "description": "격식 수준.",
       "applicable_axes": [
-        "B"
+        "B",
+        "C"
       ]
     },
     "irony": {
@@ -123,7 +130,8 @@
       ],
       "description": "서정성 수준.",
       "applicable_axes": [
-        "B"
+        "B",
+        "C"
       ]
     },
     "narrator_presence": {
@@ -162,12 +170,14 @@
         "layered",
         "ritual",
         "loop",
-        "martial"
+        "martial",
+        "sf"
       ],
       "description": "시간 구조.",
       "applicable_axes": [
         "A",
-        "E"
+        "E",
+        "C"
       ]
     },
     "slots_touched": {

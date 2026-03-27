@@ -18,7 +18,7 @@ sillytavern-style-engine/
 │   ├── axis-a-pov.json            ← A축: 시점. A-00~A-06
 │   ├── axis-s-narration.json      ← S축: 서술 방식. S-00~S-14
 │   ├── axis-b-tone.json           ← B축: 어조·어휘. B-00~B-08
-│   ├── axis-c-genre.json          ← C축: 장르. C-01~C-05
+│   ├── axis-c-genre.json          ← C축: 장르. C-01~C-12
 │   ├── axis-d-mood.json           ← D축: 분위기. D-01~D-16
 │   ├── axis-e-setting.json        ← E축: 배경. E-01~E-07, E-09
 │   ├── axis-f-special.json        ← F축: 특별 요소. F-01~F-03
@@ -248,6 +248,13 @@ AI가 생성하는 콘텐츠의 성적·폭력 묘사 수위를 결정합니다.
 | **C** | C-03 | 동화/우화 | ✅ 완성 |
 | **C** | C-04 | 무협 | ✅ 완성 |
 | **C** | C-05 | 심리 스릴러 | ✅ 완성 |
+| **C** | C-06 | 로맨스 | ✅ 완성 |
+| **C** | C-07 | SF/사이버펑크 | ✅ 완성 |
+| **C** | C-08 | 호러 | ✅ 완성 |
+| **C** | C-09 | 코미디/시트콤 | ✅ 완성 |
+| **C** | C-10 | 다크 판타지 | ✅ 완성 |
+| **C** | C-11 | 일상 | ✅ 완성 |
+| **C** | C-12 | 느와르 | ✅ 완성 |
 | **D** | D-01~D-16 | 감각적 일상, 불안/불길, 공포/엄습, 압박/질식, 적막/폐허, 우울/침잠, 명상/고독, 몽환/비현실, 환각/왜곡, 축제/고양, 전투 고조, 희열/도취, 노스탤지어, 서정적 비, 새벽/경계시간, 폭풍 전야 | ✅ 완성 |
 | **E** | E-01 | 전근대 궁정 / 고대 세계 | ✅ 완성 |
 | **E** | E-02 | 강호/무림 세계 | ✅ 완성 |
@@ -288,6 +295,7 @@ AI가 생성하는 콘텐츠의 성적·폭력 묘사 수위를 결정합니다.
 - [x] **[MED] S축 2차 확장**: S-09(의식의 흐름), S-10(신뢰할 수 없는 서술자), S-11(다성 서술), S-12(일기체), S-13(실시간 중계체), S-14(사관 기록체) 추가. B-08(사극투) 추가. ✅ 완료
 - [x] **[HIGH] C-05 심리 스릴러 추가**: 표면 아래의 전쟁. 일상의 외피 속 심리 권력 교전. ✅ 완료
 - [x] **[MED] C축 장르 모듈 작성**: C-01 궁정 정치/전쟁 서사, C-02 추리 색채 ✅ 완료
+- [x] **[향후] C축 장르 모듈 확장**: C-06(로맨스), C-07(SF/사이버펑크), C-08(호러), C-09(코미디/시트콤), C-10(다크 판타지), C-11(일상), C-12(느와르) 7개 신규 모듈 추가. ✅ 완료
 - [x] **[MED] D축 분위기 모듈 작성**: D-01 감각적 일상 ✅ 완료
 - [x] **[HIGH] D축 분위기 모듈 확장**: D-02(불안/불길)~D-16(폭풍 전야) 15개 신규 모듈 추가. 고요/내성, 긴장/위협, 몽환/초현실, 고양/에너지, 서정/감성 5개 카테고리. ✅ 완료
 - [x] **[MED] E축 배경 모듈 작성**: E-01 전근대 궁정/고대 세계, E-02 강호/무림 세계 ✅ 완료
@@ -461,6 +469,7 @@ sillytavern-style-engine/
 | Config 신설 | **Config 시스템(0계층) 신설**: 축과 독립적인 빌드 레벨 설정. `configs/` 디렉토리, `meta/config-schema.json` 추가. 첫 번째 config으로 유저 캐릭터 제어(UCC-00~02) 추가. `default-template.json`의 `build_order`에 `"configs"` 항목 추가 |
 | NSFW Config 추가 | **NSFW 등급 제어 Config 신설**: NSFW-00(사용안함)~NSFW-04(R18) 5단계. `{B_TONE_VOCAB}` 슬롯 오버라이드 + `[CONTENT_RATING_*]` 디렉티브 주입. config-schema.json, catalog.json 등록. 다국어 지원 분석 기록 추가 |
 | C축 추가 | **C-02(추리 색채) 신설**: 추리 장르 변수(증거, 증언, 탐문) 경량 모듈. C-01(궁정 정치/전쟁 서사) README 반영. catalog.json에 C-02 등록 |
+| C축 확장 | **C-06~C-12 신설** (7개): C-06(로맨스), C-07(SF/사이버펑크), C-08(호러), C-09(코미디/시트콤), C-10(다크 판타지), C-11(일상), C-12(느와르). trait-schema에 `sf` temporal_mode, `tactile-thermal`/`auditory-tactile` sensory_anchor, `expressive` emotion_level, `informal` formality 값 추가. combinations.json에 19개 조합 규칙 추가. C-04 known_conflicts 버그 수정(A-08→S-02), C-02 N-04 참조 제거. |
 | 하드코딩 마이그레이션 | **godmoding_rule 중립화**: `master-rules.json`의 `godmoding_rule`을 `null`로 전환, UCC config 의존. `default-template.json`의 MODULE_1_VOICE static 업데이트. A-01/A-02의 유저 캐릭터 하드코딩을 UCC 의존으로 전환. A-05는 시점 본질 제약으로 유지 |
 | S축 분리 | **S축(서술 방식) 신설**: A-07(동화적 서술)→S-01, A-08(무협적 서술)→S-02, A-09(서간체)→S-03. A축은 순수 시점(A-00~A-06)만 유지. `axis-s-narration.json` 신규 생성. 빌드 순서 `configs → A → S → B → C → D → E → F → G`로 업데이트. combinations.json 규칙 ID 업데이트(N-01→S-01, N-04→S-02) 및 A-06+S-03, A-05+S-03 충돌 규칙 추가. |
 | F축 추가 + combinations | **F축(특별 요소) 신설**: F-01(비인간 종족 체계), F-02(마법 체계), F-03(기술 레벨 오버라이드). catalog.json 등록. **combinations.json**: traits 기반 자동 충돌 감지 규칙 13개(error 3, warning 6, info 4) 채움 |
@@ -517,6 +526,6 @@ axes/
 - 현재 파일 크기 참고 (2026-03-26 기준):
   - axis-s-narration.json: 약 32KB
   - axis-a-pov.json: 약 29KB
-  - axis-c-genre.json: 약 29KB
+  - axis-c-genre.json: 약 52KB
   - axis-b-tone.json: 약 18KB
   - 나머지: 12KB 이하

@@ -911,6 +911,196 @@
       "severity": "info",
       "description_ko": "복종(G-19)과 직장/오피스(E-07)의 시너지: 직급 위계가 복종 구조와 자연스럽게 연동된다.",
       "resolution_ko": "직급 호칭 변화 = 관계 변화의 메커니즘이 강화된다."
+    },
+    {
+      "id": "RULE-C06-C05-ROMANCE-THRILLER",
+      "modules": [
+        "C-06",
+        "C-05"
+      ],
+      "severity": "info",
+      "description_ko": "로맨스(C-06)와 심리 스릴러(C-05)의 시너지: 심리 스릴러의 이중성이 로맨스의 밀당을 강화한다. 신뢰와 배신이 로맨스의 핵심 갈등이 된다.",
+      "resolution_ko": "의도적 시너지. 감정 표현 억제 규칙(C-06)과 FID 자기기만(C-05)이 자연스럽게 결합된다."
+    },
+    {
+      "id": "RULE-C06-G15-ROMANCE-COLD",
+      "modules": [
+        "C-06",
+        "G-15"
+      ],
+      "severity": "info",
+      "description_ko": "로맨스(C-06)와 냉담한 NPC(G-15)의 조합: 슬로번 로맨스. 냉담한 NPC와의 관계 진전이 더디고 긴장감 있는 로맨스를 만든다.",
+      "resolution_ko": "의도적 조합으로 활용 가능. 냉담함의 균열이 서사의 핵심 모멘트."
+    },
+    {
+      "id": "RULE-C07-F03-SF-TECHLEVEL",
+      "modules": [
+        "C-07",
+        "F-03"
+      ],
+      "severity": "info",
+      "description_ko": "SF/사이버펑크(C-07)와 기술 레벨 오버라이드(F-03)의 시너지: 기술 세계관의 정밀도가 높아진다.",
+      "resolution_ko": "의도적 시너지. F-03으로 기술 레벨을 고정하면 C-07의 기술 제약이 더 구체적으로 작동한다."
+    },
+    {
+      "id": "RULE-C07-E01-SF-PREMODERN",
+      "modules": [
+        "C-07",
+        "E-01"
+      ],
+      "severity": "warning",
+      "description_ko": "SF/사이버펑크(C-07)와 전근대 배경(E-01)의 시대 충돌. 기술과 전근대 세계관이 직접 조합되면 설정 충돌이 발생한다.",
+      "resolution_ko": "의도적이라면 타임슬립, 이종 문명 접촉 등 서사적 근거 필요."
+    },
+    {
+      "id": "RULE-C08-D03-HORROR-DREAD",
+      "modules": [
+        "C-08",
+        "D-03"
+      ],
+      "severity": "info",
+      "description_ko": "호러 장르(C-08)와 공포/엄습 분위기(D-03)의 시너지: 장르와 분위기의 이중 강화. 공포 단계 고조가 분위기 레이어와 결합된다.",
+      "resolution_ko": "의도적 시너지. 최고 강도의 공포 서사를 만들 때 추천."
+    },
+    {
+      "id": "RULE-C08-D01-HORROR-EVERYDAY",
+      "modules": [
+        "C-08",
+        "D-01"
+      ],
+      "severity": "info",
+      "description_ko": "호러(C-08)와 감각적 일상(D-01)의 조합: 일상 호러. 평범한 감각의 일상에 공포가 침투하는 구조.",
+      "resolution_ko": "의도적 조합. 일상의 질감이 공포의 침투와 대비되어 효과가 배가된다."
+    },
+    {
+      "id": "RULE-C08-B02-HORROR-LYRICAL",
+      "modules": [
+        "C-08",
+        "B-02"
+      ],
+      "severity": "warning",
+      "description_ko": "호러(C-08)와 서정체(B-02)의 긴장: 서정성이 공포의 날을 무디게 할 수 있다.",
+      "resolution_ko": "의도적이라면 서정적 문체로 공포를 포장하는 효과. 의도적이지 않다면 B축을 변경하는 것을 고려."
+    },
+    {
+      "id": "RULE-C09-D02-COMEDY-ANXIETY",
+      "modules": [
+        "C-09",
+        "D-02"
+      ],
+      "severity": "warning",
+      "description_ko": "코미디/시트콤(C-09)와 불안/불길 분위기(D-02)의 충돌: 코미디 타이밍과 불안 분위기가 서로 상쇄된다.",
+      "resolution_ko": "의도적이라면 블랙 코미디나 코미디 호러로 재해석. 의도적이지 않다면 D-02를 D-01로 교체 권장."
+    },
+    {
+      "id": "RULE-C09-D06-COMEDY-MELANCHOLY",
+      "modules": [
+        "C-09",
+        "D-06"
+      ],
+      "severity": "warning",
+      "description_ko": "코미디/시트콤(C-09)와 우울/침잠(D-06)의 톤 충돌: 희극적 해소와 우울의 방향이 정반대다.",
+      "resolution_ko": "의도적이라면 슬픈 코미디(sad comedy) 장르. 의도적이지 않다면 분위기 축 재검토."
+    },
+    {
+      "id": "RULE-C09-C08-COMEDY-HORROR",
+      "modules": [
+        "C-09",
+        "C-08"
+      ],
+      "severity": "info",
+      "description_ko": "코미디/시트콤(C-09)와 호러(C-08)의 조합: 호러 코미디. 공포와 웃음이 교차하는 장르.",
+      "resolution_ko": "의도적 시너지. 공포와 웃음의 전환이 핵심 메커니즘."
+    },
+    {
+      "id": "RULE-C10-C01-DARKFANTASY-COURT",
+      "modules": [
+        "C-10",
+        "C-01"
+      ],
+      "severity": "info",
+      "description_ko": "다크 판타지(C-10)와 궁정 정치/전쟁 서사(C-01)의 시너지: 잔혹한 정치 판타지. 궁정 정치의 이중성과 다크 판타지의 도덕적 모호성이 결합된다.",
+      "resolution_ko": "의도적 시너지. 두 모듈 모두 그레이 모럴리티를 강화하는 방향으로 작동한다."
+    },
+    {
+      "id": "RULE-C10-C03-DARKFANTASY-FAIRYTALE",
+      "modules": [
+        "C-10",
+        "C-03"
+      ],
+      "severity": "info",
+      "description_ko": "다크 판타지(C-10)와 동화/우화(C-03)의 조합: 잔혹 동화. 동화 구조 위에 다크 판타지의 냉혹함을 덮는다.",
+      "resolution_ko": "의도적 조합. 동화의 금기·변신·보상 구조가 다크 판타지의 대가 시스템과 결합된다."
+    },
+    {
+      "id": "RULE-C10-F02-DARKFANTASY-MAGIC",
+      "modules": [
+        "C-10",
+        "F-02"
+      ],
+      "severity": "info",
+      "description_ko": "다크 판타지(C-10)와 마법 체계(F-02)의 시너지: 힘의 대가와 마법 비용 시스템이 결합되어 정교한 마법 세계관을 만든다.",
+      "resolution_ko": "의도적 시너지. F-02의 마법 규칙이 C-10의 대가 원칙과 자연스럽게 연동된다."
+    },
+    {
+      "id": "RULE-C11-D01-EVERYDAY-DAILY",
+      "modules": [
+        "C-11",
+        "D-01"
+      ],
+      "severity": "info",
+      "description_ko": "일상 장르(C-11)와 감각적 일상 분위기(D-01)의 시너지: 장르+분위기 최적 조합. 두 모듈이 같은 방향으로 서사를 강화한다.",
+      "resolution_ko": "의도적 최적 조합. 일상의 질감을 가장 풍성하게 만들 수 있는 조합."
+    },
+    {
+      "id": "RULE-C11-C01-EVERYDAY-COURT",
+      "modules": [
+        "C-11",
+        "C-01"
+      ],
+      "severity": "warning",
+      "description_ko": "일상 장르(C-11)와 궁정 정치(C-01)의 장르 톤 충돌: 일상의 이완과 궁정 정치의 긴장이 상충된다.",
+      "resolution_ko": "의도적이라면 궁정 일상(궁중 생활의 루틴)으로 재해석 가능. 의도적이지 않다면 장르 축 재검토."
+    },
+    {
+      "id": "RULE-C11-C08-EVERYDAY-HORROR",
+      "modules": [
+        "C-11",
+        "C-08"
+      ],
+      "severity": "info",
+      "description_ko": "일상 장르(C-11)와 호러(C-08)의 조합: 일상 호러. 평범한 일상에 공포가 침투하는 구조.",
+      "resolution_ko": "의도적 시너지. 일상의 루틴이 무너지는 순간이 공포의 핵심."
+    },
+    {
+      "id": "RULE-C12-C05-NOIR-THRILLER",
+      "modules": [
+        "C-12",
+        "C-05"
+      ],
+      "severity": "info",
+      "description_ko": "느와르(C-12)와 심리 스릴러(C-05)의 시너지: 느와르 스릴러. 심리 스릴러의 심리전과 느와르의 운명론이 결합된다.",
+      "resolution_ko": "의도적 시너지. 배신과 자기기만이 공존하는 강도 높은 장르 조합."
+    },
+    {
+      "id": "RULE-C12-B06-NOIR-CYNICAL",
+      "modules": [
+        "C-12",
+        "B-06"
+      ],
+      "severity": "info",
+      "description_ko": "느와르(C-12)와 냉소체(B-06)의 시너지: 냉소적 문체가 느와르의 세계관과 자연스럽게 결합된다.",
+      "resolution_ko": "의도적 시너지. B-06의 냉소적 문체가 느와르의 운명론을 서술 차원에서 강화한다."
+    },
+    {
+      "id": "RULE-C12-D02-NOIR-ANXIETY",
+      "modules": [
+        "C-12",
+        "D-02"
+      ],
+      "severity": "info",
+      "description_ko": "느와르(C-12)와 불안/불길 분위기(D-02)의 시너지: 불안한 분위기가 느와르의 운명론적 긴장을 증폭시킨다.",
+      "resolution_ko": "의도적 시너지. 세계의 기본 질감(비, 밤, 그림자)이 불안 분위기와 중첩된다."
     }
   ]
 }
