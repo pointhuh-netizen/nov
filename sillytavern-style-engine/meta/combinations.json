@@ -1101,6 +1101,146 @@
       "severity": "info",
       "description_ko": "느와르(C-12)와 불안/불길 분위기(D-02)의 시너지: 불안한 분위기가 느와르의 운명론적 긴장을 증폭시킨다.",
       "resolution_ko": "의도적 시너지. 세계의 기본 질감(비, 밤, 그림자)이 불안 분위기와 중첩된다."
+    },
+    {
+      "id": "RULE-E03-D01-SYNERGY",
+      "modules": [
+        "E-03",
+        "D-01"
+      ],
+      "severity": "info",
+      "description_ko": "현대 도시(E-03)와 감각적 일상(D-01)의 시너지. 현대 도시 일상의 감각이 D-01의 '사건 없는 서사'에 자연스럽게 맞물린다.",
+      "resolution_ko": "의도적 시너지. 도시의 일상적 감각(소음, 빛, 냄새)이 D-01의 분위기 앵커와 결합된다."
+    },
+    {
+      "id": "RULE-E03-E01-ERA-CLASH",
+      "modules": [
+        "E-03",
+        "E-01"
+      ],
+      "severity": "warning",
+      "description_ko": "현대 도시(E-03)와 전근대 궁정(E-01)의 물질문화 충돌. 두 배경의 기술·사회 수준이 근본적으로 다르다.",
+      "resolution_ko": "의도적이라면 시간여행/이세계 전제를 서사 설정에 명시하세요."
+    },
+    {
+      "id": "RULE-E03-E02-ERA-CLASH",
+      "modules": [
+        "E-03",
+        "E-02"
+      ],
+      "severity": "warning",
+      "description_ko": "현대 도시(E-03)와 강호/무림(E-02)의 물질문화 충돌. 두 배경의 기술·사회 수준이 다르다.",
+      "resolution_ko": "의도적이라면 현대 무협 장르(현대 도시에 무림이 공존)라는 전제를 명시하세요."
+    },
+    {
+      "id": "RULE-E04-D01-SYNERGY",
+      "modules": [
+        "E-04",
+        "D-01"
+      ],
+      "severity": "info",
+      "description_ko": "학교/캠퍼스(E-04)와 감각적 일상(D-01)의 시너지. 학교의 반복적 일상이 D-01의 '사건 없는 서사'에 잘 맞는다.",
+      "resolution_ko": "의도적 시너지. 수업·쉬는 시간·하굣길 등 캠퍼스 루틴이 일상 분위기를 강화한다."
+    },
+    {
+      "id": "RULE-E04-E01-ERA-CLASH",
+      "modules": [
+        "E-04",
+        "E-01"
+      ],
+      "severity": "warning",
+      "description_ko": "학교/캠퍼스(E-04)와 전근대 궁정(E-01)의 물질문화 충돌. 근대적 교육 제도와 전근대 궁정 문화가 공존하려면 별도 설정이 필요하다.",
+      "resolution_ko": "의도적이라면 이세계 학원이나 시간여행 설정을 명시하세요."
+    },
+    {
+      "id": "RULE-E04-E02-ERA-CLASH",
+      "modules": [
+        "E-04",
+        "E-02"
+      ],
+      "severity": "warning",
+      "description_ko": "학교/캠퍼스(E-04)와 강호/무림(E-02)의 물질문화 충돌. 근대적 학교 공간과 무림 세계의 물질 조건이 다르다.",
+      "resolution_ko": "의도적이라면 무협 학원물 설정을 명시하세요."
+    },
+    {
+      "id": "RULE-E05-E01-INFO",
+      "modules": [
+        "E-05",
+        "E-01"
+      ],
+      "severity": "info",
+      "description_ko": "서양 중세~르네상스(E-05)와 전근대 궁정(E-01)의 조합. 동서양 궁정 배경의 교차 가능. 동일 세계관으로 설정하면 문화 혼합에 주의가 필요하다.",
+      "resolution_ko": "의도적 조합이라면 두 궁정 문화의 충돌 서사로 활용 가능. 단일 세계관 내 혼합 시 문화 일관성을 유지하세요."
+    },
+    {
+      "id": "RULE-E06-E01-ERA-CLASH",
+      "modules": [
+        "E-06",
+        "E-01"
+      ],
+      "severity": "warning",
+      "description_ko": "한국 근현대(E-06)와 전근대 궁정(E-01)의 물질문화 충돌. E-06은 1945~1980년대 배경으로 전근대 궁정 문화와 시대적으로 충돌한다.",
+      "resolution_ko": "의도적이라면 시간여행이나 병렬 세계 설정을 명시하세요."
+    },
+    {
+      "id": "RULE-E06-E02-ERA-CLASH",
+      "modules": [
+        "E-06",
+        "E-02"
+      ],
+      "severity": "warning",
+      "description_ko": "한국 근현대(E-06)와 강호/무림(E-02)의 물질문화 충돌. 근현대 한국의 사회 구조와 무림 세계관이 충돌한다.",
+      "resolution_ko": "의도적이라면 근현대 무협 설정(현대에 숨어든 무림)을 명시하세요."
+    },
+    {
+      "id": "RULE-E07-E01-ERA-CLASH",
+      "modules": [
+        "E-07",
+        "E-01"
+      ],
+      "severity": "warning",
+      "description_ko": "직장/오피스(E-07)와 전근대 궁정(E-01)의 물질문화 충돌. 현대 직장 환경과 전근대 궁정 문화의 물질 조건이 근본적으로 다르다.",
+      "resolution_ko": "의도적이라면 시간여행이나 이세계 사무실 설정을 명시하세요."
+    },
+    {
+      "id": "RULE-E07-E02-ERA-CLASH",
+      "modules": [
+        "E-07",
+        "E-02"
+      ],
+      "severity": "warning",
+      "description_ko": "직장/오피스(E-07)와 강호/무림(E-02)의 물질문화 충돌. 현대 직장 구조와 무림 세계관의 물질 조건이 다르다.",
+      "resolution_ko": "의도적이라면 현대 직장에 무림 조직이 위장한 설정을 명시하세요."
+    },
+    {
+      "id": "RULE-E09-D02-SYNERGY",
+      "modules": [
+        "E-09",
+        "D-02"
+      ],
+      "severity": "info",
+      "description_ko": "밀실/폐쇄 공간(E-09)와 불안/불길(D-02)의 시너지. 밀실의 고립이 불안의 배경 조건이 된다.",
+      "resolution_ko": "의도적 시너지. 탈출 불가능한 공간이 불안과 불길함의 물리적 근거를 강화한다."
+    },
+    {
+      "id": "RULE-E09-D04-SYNERGY",
+      "modules": [
+        "E-09",
+        "D-04"
+      ],
+      "severity": "info",
+      "description_ko": "밀실/폐쇄 공간(E-09)와 압박/질식(D-04)의 강한 시너지. 물리적 공간의 압축이 심리적 압박과 직결된다.",
+      "resolution_ko": "강한 의도적 시너지. 좁은 공간이 D-04의 숨막히는 분위기를 배가시킨다."
+    },
+    {
+      "id": "RULE-E09-C02-SYNERGY",
+      "modules": [
+        "E-09",
+        "C-02"
+      ],
+      "severity": "info",
+      "description_ko": "밀실/폐쇄 공간(E-09)와 추리 색채(C-02)의 시너지. 밀실 추리는 추리 장르의 고전적 조합이다.",
+      "resolution_ko": "의도적 시너지. 밀실이라는 공간 제약이 추리의 용의자 범위를 한정하고 긴장을 고조시킨다."
     }
   ]
 }
