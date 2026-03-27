@@ -126,6 +126,18 @@
             "close_negative": "[인물 A]가 [인물 B]의 머리를 어깨에 기대게 했다.",
             "close_positive": "어느 시점에서인가 [인물 B]의 머리가 어깨 언저리에 닿아 있었다. 둘 다 고치지 않았다."
           }
+        },
+        "{D_MOOD_ANCHOR}": {
+          "label": "분위기 앵커",
+          "default": "없음. D축 모듈이 선택되면 교체됨."
+        },
+        "{D_SENSORY_PALETTE}": {
+          "label": "분위기별 감각 팔레트",
+          "default": "없음. D축 모듈이 선택되면 교체됨."
+        },
+        "{D_RHYTHM_OVERRIDE}": {
+          "label": "분위기별 리듬 오버라이드",
+          "default": "없음. D축 모듈이 선택되면 교체됨."
         }
       }
     },
