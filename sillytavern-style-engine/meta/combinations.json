@@ -853,19 +853,211 @@
             ]
         },
         {
-            "id": "RULE-W01-D04-MISMATCH",
+            "id": "RULE-W02-D04-MISMATCH",
+            "type": "explicit_pair",
+            "severity": "warning",
+            "condition": {
+                "modules": [
+                    "W-02",
+                    "D-04"
+                ]
+            },
+            "description": "잔잔한 일상(W-02)의 중립 세계와 압박/질식(D-04) 분위기가 충돌. 의도적이라면 일상 속 압박(시험 기간, 취준 스트레스)으로 해석 가능.",
+            "affected_modules": [
+                "W-02",
+                "D-04"
+            ]
+        },
+        {
+            "id": "RULE-W02-D03-MISMATCH",
+            "type": "explicit_pair",
+            "severity": "warning",
+            "condition": {
+                "modules": [
+                    "W-02",
+                    "D-03"
+                ]
+            },
+            "description": "잔잔한 일상(W-02)의 중립 세계에 공포/엄습(D-03) 분위기가 부자연스러울 수 있다.",
+            "affected_modules": [
+                "W-02",
+                "D-03"
+            ]
+        },
+        {
+            "id": "RULE-W02-C01-MISMATCH",
+            "type": "explicit_pair",
+            "severity": "warning",
+            "condition": {
+                "modules": [
+                    "W-02",
+                    "C-01"
+                ]
+            },
+            "description": "잔잔한 일상(W-02) 시뮬레이션과 궁정 정치/전쟁 서사(C-01)의 갈등 강도가 충돌.",
+            "affected_modules": [
+                "W-02",
+                "C-01"
+            ]
+        },
+        {
+            "id": "RULE-W05-C05-SYNERGY",
+            "type": "explicit_pair",
+            "severity": "info",
+            "condition": {
+                "modules": [
+                    "W-05",
+                    "C-05"
+                ]
+            },
+            "description": "현실적 마찰(W-05)과 심리 스릴러(C-05)의 시너지. 일상적 독성(수동공격, 가스라이팅)이 심리 스릴러의 권력 교전과 맞물린다.",
+            "affected_modules": [
+                "W-05",
+                "C-05"
+            ]
+        },
+        {
+            "id": "RULE-W05-D01-SYNERGY",
+            "type": "explicit_pair",
+            "severity": "info",
+            "condition": {
+                "modules": [
+                    "W-05",
+                    "D-01"
+                ]
+            },
+            "description": "현실적 마찰(W-05)과 감각적 일상(D-01)의 시너지. 스트레스 후 쿨다운 장면에서 감각적 일상이 안식처로 작동한다.",
+            "affected_modules": [
+                "W-05",
+                "D-01"
+            ]
+        },
+        {
+            "id": "RULE-W07-D01-MISMATCH",
+            "type": "explicit_pair",
+            "severity": "warning",
+            "condition": {
+                "modules": [
+                    "W-07",
+                    "D-01"
+                ]
+            },
+            "description": "가혹한 세계(W-07)와 감각적 일상(D-01)의 분위기 충돌. 의도적이라면 '폭풍 속의 고요' 효과.",
+            "affected_modules": [
+                "W-07",
+                "D-01"
+            ]
+        },
+        {
+            "id": "RULE-W07-C11-MISMATCH",
+            "type": "explicit_pair",
+            "severity": "warning",
+            "condition": {
+                "modules": [
+                    "W-07",
+                    "C-11"
+                ]
+            },
+            "description": "가혹한 세계(W-07)와 일상 장르(C-11)의 충돌. 가혹한 세계에서 '사건 없는 서사'가 부자연스럽다.",
+            "affected_modules": [
+                "W-07",
+                "C-11"
+            ]
+        },
+        {
+            "id": "RULE-W07-G12-MISMATCH",
+            "type": "explicit_pair",
+            "severity": "warning",
+            "condition": {
+                "modules": [
+                    "W-07",
+                    "G-12"
+                ]
+            },
+            "description": "가혹한 세계(W-07)에서 사랑스러운(G-12) NPC 반응이 부자연스러울 수 있다. 의도적이라면 잔혹한 세계 속 유일한 따뜻함으로 해석.",
+            "affected_modules": [
+                "W-07",
+                "G-12"
+            ]
+        },
+        {
+            "id": "RULE-W02-E03-SYNERGY",
+            "type": "explicit_pair",
+            "severity": "info",
+            "condition": {
+                "modules": [
+                    "W-02",
+                    "E-03"
+                ]
+            },
+            "description": "잔잔한 일상(W-02)과 현대 도시(E-03)의 시너지. 도시의 익명성과 일상의 무사건이 자연스럽게 맞물린다.",
+            "affected_modules": [
+                "W-02",
+                "E-03"
+            ]
+        },
+        {
+            "id": "RULE-W02-E04-SYNERGY",
+            "type": "explicit_pair",
+            "severity": "info",
+            "condition": {
+                "modules": [
+                    "W-02",
+                    "E-04"
+                ]
+            },
+            "description": "잔잔한 일상(W-02)과 학교/캠퍼스(E-04)의 시너지. 학교의 반복적 루틴이 잔잔한 일상의 '아무 일도 없는' 서사에 최적.",
+            "affected_modules": [
+                "W-02",
+                "E-04"
+            ]
+        },
+        {
+            "id": "RULE-W07-E11-SYNERGY",
+            "type": "explicit_pair",
+            "severity": "info",
+            "condition": {
+                "modules": [
+                    "W-07",
+                    "E-11"
+                ]
+            },
+            "description": "가혹한 세계(W-07)와 포스트아포칼립스(E-11)의 궁극 시너지. 문명 이후 세계의 가혹함이 W-07의 규칙과 완벽하게 맞물린다.",
+            "affected_modules": [
+                "W-07",
+                "E-11"
+            ]
+        },
+        {
+            "id": "RULE-W01-C08-MISMATCH",
+            "type": "explicit_pair",
+            "severity": "error",
+            "condition": {
+                "modules": [
+                    "W-01",
+                    "C-08"
+                ]
+            },
+            "description": "안전한 세계(W-01)와 호러(C-08) 장르는 양립 불가.",
+            "affected_modules": [
+                "W-01",
+                "C-08"
+            ]
+        },
+        {
+            "id": "RULE-W01-D02-MISMATCH",
             "type": "explicit_pair",
             "severity": "warning",
             "condition": {
                 "modules": [
                     "W-01",
-                    "D-04"
+                    "D-02"
                 ]
             },
-            "description": "잔잔한 일상(W-01)의 중립 세계와 압박/질식(D-04) 분위기가 충돌. 의도적이라면 일상 속 압박(시험 기간, 취준 스트레스)으로 해석 가능.",
+            "description": "안전한 세계(W-01)와 불안/불길(D-02) 분위기 충돌.",
             "affected_modules": [
                 "W-01",
-                "D-04"
+                "D-02"
             ]
         },
         {
@@ -878,154 +1070,138 @@
                     "D-03"
                 ]
             },
-            "description": "잔잔한 일상(W-01)의 중립 세계에 공포/엄습(D-03) 분위기가 부자연스러울 수 있다.",
+            "description": "안전한 세계(W-01)와 공포/엄습(D-03) 분위기 충돌.",
             "affected_modules": [
                 "W-01",
                 "D-03"
             ]
         },
         {
-            "id": "RULE-W01-C01-MISMATCH",
+            "id": "RULE-W01-D04-MISMATCH",
             "type": "explicit_pair",
             "severity": "warning",
             "condition": {
                 "modules": [
                     "W-01",
-                    "C-01"
+                    "D-04"
                 ]
             },
-            "description": "잔잔한 일상(W-01) 시뮬레이션과 궁정 정치/전쟁 서사(C-01)의 갈등 강도가 충돌.",
+            "description": "안전한 세계(W-01)와 압박/질식(D-04) 분위기 충돌.",
             "affected_modules": [
                 "W-01",
-                "C-01"
+                "D-04"
             ]
         },
         {
-            "id": "RULE-W02-C05-SYNERGY",
-            "type": "explicit_pair",
-            "severity": "info",
-            "condition": {
-                "modules": [
-                    "W-02",
-                    "C-05"
-                ]
-            },
-            "description": "현실적 마찰(W-02)과 심리 스릴러(C-05)의 시너지. 일상적 독성(수동공격, 가스라이팅)이 심리 스릴러의 권력 교전과 맞물린다.",
-            "affected_modules": [
-                "W-02",
-                "C-05"
-            ]
-        },
-        {
-            "id": "RULE-W02-D01-SYNERGY",
-            "type": "explicit_pair",
-            "severity": "info",
-            "condition": {
-                "modules": [
-                    "W-02",
-                    "D-01"
-                ]
-            },
-            "description": "현실적 마찰(W-02)과 감각적 일상(D-01)의 시너지. 스트레스 후 쿨다운 장면에서 감각적 일상이 안식처로 작동한다.",
-            "affected_modules": [
-                "W-02",
-                "D-01"
-            ]
-        },
-        {
-            "id": "RULE-W03-D01-MISMATCH",
+            "id": "RULE-W03-G01-MISMATCH",
             "type": "explicit_pair",
             "severity": "warning",
             "condition": {
                 "modules": [
                     "W-03",
-                    "D-01"
+                    "G-01"
                 ]
             },
-            "description": "가혹한 세계(W-03)와 감각적 일상(D-01)의 분위기 충돌. 의도적이라면 '폭풍 속의 고요' 효과.",
+            "description": "평행 세계(W-03)의 NPC 자율성과 능동형(G-01) NPC 반응 충돌. NPC가 먼저 다가오는 빈도가 축소됨.",
             "affected_modules": [
                 "W-03",
-                "D-01"
+                "G-01"
             ]
         },
         {
-            "id": "RULE-W03-C11-MISMATCH",
+            "id": "RULE-W03-G12-SYNERGY",
             "type": "explicit_pair",
-            "severity": "warning",
-            "condition": {
-                "modules": [
-                    "W-03",
-                    "C-11"
-                ]
-            },
-            "description": "가혹한 세계(W-03)와 일상 장르(C-11)의 충돌. 가혹한 세계에서 '사건 없는 서사'가 부자연스럽다.",
-            "affected_modules": [
-                "W-03",
-                "C-11"
-            ]
-        },
-        {
-            "id": "RULE-W03-G12-MISMATCH",
-            "type": "explicit_pair",
-            "severity": "warning",
+            "severity": "info",
             "condition": {
                 "modules": [
                     "W-03",
                     "G-12"
                 ]
             },
-            "description": "가혹한 세계(W-03)에서 사랑스러운(G-12) NPC 반응이 부자연스러울 수 있다. 의도적이라면 잔혹한 세계 속 유일한 따뜻함으로 해석.",
+            "description": "평행 세계(W-03)와 사랑스러운(G-12) 시너지. 만남의 희소성이 따뜻함의 밀도를 높임.",
             "affected_modules": [
                 "W-03",
                 "G-12"
             ]
         },
         {
-            "id": "RULE-W01-E03-SYNERGY",
+            "id": "RULE-W04-C12-MISMATCH",
             "type": "explicit_pair",
-            "severity": "info",
+            "severity": "warning",
             "condition": {
                 "modules": [
-                    "W-01",
-                    "E-03"
+                    "W-04",
+                    "C-12"
                 ]
             },
-            "description": "잔잔한 일상(W-01)과 현대 도시(E-03)의 시너지. 도시의 익명성과 일상의 무사건이 자연스럽게 맞물린다.",
+            "description": "보호된 마찰(W-04)의 '결국 괜찮아진다'와 느와르(C-12)의 운명론 충돌.",
             "affected_modules": [
-                "W-01",
-                "E-03"
+                "W-04",
+                "C-12"
             ]
         },
         {
-            "id": "RULE-W01-E04-SYNERGY",
+            "id": "RULE-W04-C05-MISMATCH",
             "type": "explicit_pair",
-            "severity": "info",
+            "severity": "warning",
             "condition": {
                 "modules": [
-                    "W-01",
-                    "E-04"
+                    "W-04",
+                    "C-05"
                 ]
             },
-            "description": "잔잔한 일상(W-01)과 학교/캠퍼스(E-04)의 시너지. 학교의 반복적 루틴이 잔잔한 일상의 '아무 일도 없는' 서사에 최적.",
+            "description": "보호된 마찰(W-04)에서 심리 스릴러(C-05)의 권력 교전 강도 제한.",
             "affected_modules": [
-                "W-01",
-                "E-04"
+                "W-04",
+                "C-05"
             ]
         },
         {
-            "id": "RULE-W03-E11-SYNERGY",
+            "id": "RULE-W06-G11-MISMATCH",
+            "type": "explicit_pair",
+            "severity": "warning",
+            "condition": {
+                "modules": [
+                    "W-06",
+                    "G-11"
+                ]
+            },
+            "description": "냉담한 현실(W-06)의 NPC 자율성과 다정한(G-11) NPC 반응 충돌. 다정함이 관계 깊이에 비례하도록 조정.",
+            "affected_modules": [
+                "W-06",
+                "G-11"
+            ]
+        },
+        {
+            "id": "RULE-W06-G20-MISMATCH",
+            "type": "explicit_pair",
+            "severity": "warning",
+            "condition": {
+                "modules": [
+                    "W-06",
+                    "G-20"
+                ]
+            },
+            "description": "냉담한 현실(W-06)에서 NPC의 보호(G-20) 반응 약화.",
+            "affected_modules": [
+                "W-06",
+                "G-20"
+            ]
+        },
+        {
+            "id": "RULE-W03-E03-SYNERGY",
             "type": "explicit_pair",
             "severity": "info",
             "condition": {
                 "modules": [
                     "W-03",
-                    "E-11"
+                    "E-03"
                 ]
             },
-            "description": "가혹한 세계(W-03)와 포스트아포칼립스(E-11)의 궁극 시너지. 문명 이후 세계의 가혹함이 W-03의 규칙과 완벽하게 맞물린다.",
+            "description": "평행 세계(W-03)와 현대 도시(E-03) 시너지. 도시의 익명성과 각자의 삶이 완벽하게 맞물림.",
             "affected_modules": [
                 "W-03",
-                "E-11"
+                "E-03"
             ]
         }
     ],
