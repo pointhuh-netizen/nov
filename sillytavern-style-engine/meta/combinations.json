@@ -1969,6 +1969,114 @@
             "severity": "warning",
             "description_ko": "웅장체(B-13)와 간결체(B-05)는 문장 길이 방향이 정반대. 같은 B축 MUTEX이므로 양립 불가하나 명시적으로 기록.",
             "resolution_ko": "양립 불가. 하나만 선택."
+        },
+        {
+            "id": "RULE-LETHAL01-W01-INFO",
+            "type": "explicit_pair",
+            "severity": "info",
+            "condition": {
+                "config_mode": "LETHAL-01",
+                "module": "W-01"
+            },
+            "description": "안전한 세계(W-01) + LETHAL-01: 극히 드문 예상치 못한 비극. 전체 서사에서 0~1회. 안전한 세계의 규칙이 먼저 적용되되, 치명적 결과의 천장만 열림.",
+            "affected_modules": [
+                "W-01"
+            ],
+            "affected_configs": [
+                "LETHAL-01"
+            ]
+        },
+        {
+            "id": "RULE-LETHAL01-W02-INFO",
+            "type": "explicit_pair",
+            "severity": "info",
+            "condition": {
+                "config_mode": "LETHAL-01",
+                "module": "W-02"
+            },
+            "description": "잔잔한 일상(W-02) + LETHAL-01: 극히 드문 비극. 일상 속에 갑자기 찾아오는 상실. 전체 서사에서 0~1회.",
+            "affected_modules": [
+                "W-02"
+            ],
+            "affected_configs": [
+                "LETHAL-01"
+            ]
+        },
+        {
+            "id": "RULE-LETHAL01-W03-SYNERGY",
+            "type": "explicit_pair",
+            "severity": "info",
+            "condition": {
+                "config_mode": "LETHAL-01",
+                "module": "W-03"
+            },
+            "description": "평행 세계(W-03) + LETHAL-01: 시너지. '각자의 삶을 살고 있는데, 어느 날 연락이 안 된다.' 부재 자체가 복선. 조용한 상실의 서사.",
+            "affected_modules": [
+                "W-03"
+            ],
+            "affected_configs": [
+                "LETHAL-01"
+            ]
+        },
+        {
+            "id": "RULE-LETHAL01-W04-INFO",
+            "type": "explicit_pair",
+            "severity": "info",
+            "condition": {
+                "config_mode": "LETHAL-01",
+                "module": "W-04"
+            },
+            "description": "보호된 마찰(W-04) + LETHAL-01: 보호가 실패하는 순간의 비극. 동맹이 버텨주다가 한계에 부딪힘. 드묾.",
+            "affected_modules": [
+                "W-04"
+            ],
+            "affected_configs": [
+                "LETHAL-01"
+            ]
+        },
+        {
+            "id": "RULE-LETHAL01-W07-SYNERGY",
+            "type": "explicit_pair",
+            "severity": "info",
+            "condition": {
+                "config_mode": "LETHAL-01",
+                "module": "W-07"
+            },
+            "description": "가혹한 세계(W-07) + LETHAL-01: 완전체. 세계의 논리적 귀결로 치명적 결과 발생. CHK-W07-03의 '치명적 결과 금지'가 해제됨.",
+            "affected_modules": [
+                "W-07"
+            ],
+            "affected_configs": [
+                "LETHAL-01"
+            ]
+        },
+        {
+            "id": "RULE-LETHAL01-NSFW00-INFO",
+            "type": "explicit_pair",
+            "severity": "info",
+            "condition": {
+                "config_mode": "LETHAL-01",
+                "config_mode_2": "NSFW-00"
+            },
+            "description": "LETHAL-01 + NSFW-00(전연령): 치명적 결과 허용이지만 묘사가 전연령 수준으로 제한. 사망은 발생하되 잔혹한 묘사 없음. '그는 돌아오지 않았다' 류.",
+            "affected_configs": [
+                "LETHAL-01",
+                "NSFW-00"
+            ]
+        },
+        {
+            "id": "RULE-LETHAL01-NSFW04-WARNING",
+            "type": "explicit_pair",
+            "severity": "warning",
+            "condition": {
+                "config_mode": "LETHAL-01",
+                "config_mode_2": "NSFW-04"
+            },
+            "description": "LETHAL-01 + NSFW-04(무제한): 치명적 결과 + 묘사 제한 없음. 잔혹한 사망, 고어, 극단적 폭력 묘사 가능. 사용자 주의 필요.",
+            "affected_configs": [
+                "LETHAL-01",
+                "NSFW-04"
+            ]
         }
     ]
 }

@@ -35,6 +35,17 @@
                 "NSFW-03",
                 "NSFW-04"
             ]
+        },
+        {
+            "id": "lethal_protocol",
+            "name_ko": "치명적 결과 프로토콜",
+            "name_en": "Lethal Consequence Protocol",
+            "icon": "💀",
+            "file": "configs/lethal-protocol.json",
+            "modes": [
+                "LETHAL-00",
+                "LETHAL-01"
+            ]
         }
     ],
     "axes": {
