@@ -3,10 +3,33 @@
  * SillyTavern 3rd-party 확장. 문체 조합 빌더를 제공한다.
  */
 
-import { getContext, extension_settings } from '../../../extensions.js';
-import { eventSource, event_types, saveSettingsDebounced } from '../../../../script.js';
-import { injectPrompt } from './src/prompt-injector.js';
-import { openPopup, onChatChanged, clearCurrentBuild } from './src/ui-controller.js';
+/**
+ * ST API 임포트.
+ * 구버전 경로(scripts/extensions/third-party/...)에서는 상대 임포트가 동작하고,
+ * 신규 경로(extensions/...)에서는 전역 폴백을 사용한다.
+ */
+let extension_settings, eventSource, event_types, saveSettingsDebounced;
+
+try {
+    const [extMod, scriptMod] = await Promise.all([
+        import('../../../extensions.js'),
+        import('../../../../script.js'),
+    ]);
+    extension_settings = extMod.extension_settings;
+    eventSource = scriptMod.eventSource;
+    event_types = scriptMod.event_types;
+    saveSettingsDebounced = scriptMod.saveSettingsDebounced;
+} catch {
+    // 신규 경로 또는 전역 접근 가능한 환경 — 전역 폴백 사용
+    extension_settings = window.extension_settings ?? {};
+    eventSource = window.eventSource;
+    event_types = window.event_types;
+    saveSettingsDebounced = window.saveSettingsDebounced ?? (() => {});
+}
+
+import { injectPrompt, clearInjection } from './src/prompt-injector.js';
+import { openPopup, openPopupInNewWindow, onChatChanged, clearCurrentBuild } from './src/ui-controller.js';
+import { getExtensionRoot } from './src/data-loader.js';
 
 const EXTENSION_NAME = 'sillytavern-style-engine';
 
@@ -33,9 +56,8 @@ function initSettings() {
  * settings.html을 확장 설정 패널에 삽입
  */
 async function loadSettingsPanel() {
-    const settingsHtml = await $.get(
-        `/scripts/extensions/third-party/${EXTENSION_NAME}/settings.html`
-    );
+    const root = await getExtensionRoot();
+    const settingsHtml = await $.get(`/${root}/settings.html`);
     // ST 확장 설정 컨테이너에 추가
     const $container = $('#extensions_settings');
     if ($container.length) {
@@ -55,10 +77,27 @@ function bindSettingsEvents() {
         await openPopup();
     });
 
+    // 새 창으로 열기 버튼
+    $(document).on('click', '#style-engine-newwindow-btn', async function () {
+        await openPopupInNewWindow();
+    });
+
     // 빌드 초기화 버튼
     $(document).on('click', '#style-engine-clear-btn', function () {
         clearCurrentBuild();
         toastr.success('문체 빌드가 초기화되었습니다.', 'Style Engine');
+    });
+
+    // 활성화 토글
+    $(document).on('change', '#style-engine-enabled-toggle', function () {
+        const enabled = $(this).is(':checked');
+        extension_settings[EXTENSION_NAME].enabled = enabled;
+        saveSettingsDebounced();
+        $('#style-engine-enabled-toggle').closest('.se-toggle-label')
+            .find('.se-toggle-text').text(enabled ? 'ON' : 'OFF');
+        if (!enabled) {
+            clearInjection();
+        }
     });
 }
 
@@ -73,9 +112,7 @@ function registerEventListeners() {
 
     // 생성 직전에 빌드된 프롬프트 주입
     eventSource.on(event_types.GENERATION_STARTED, () => {
-        if (extension_settings[EXTENSION_NAME]?.enabled) {
-            injectPrompt();
-        }
+        injectPrompt();
     });
 }
 
@@ -91,6 +128,12 @@ async function init() {
 
         // 설정 패널 로드
         await loadSettingsPanel();
+
+        // 토글 초기 상태 반영
+        const enabled = extension_settings[EXTENSION_NAME]?.enabled !== false;
+        $('#style-engine-enabled-toggle').prop('checked', enabled);
+        $('#style-engine-enabled-toggle').closest('.se-toggle-label')
+            .find('.se-toggle-text').text(enabled ? 'ON' : 'OFF');
 
         // 이벤트 바인딩
         bindSettingsEvents();

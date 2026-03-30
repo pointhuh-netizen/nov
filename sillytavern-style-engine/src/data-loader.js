@@ -6,9 +6,42 @@
 
 const EXTENSION_NAME = 'sillytavern-style-engine';
 
-// 확장 루트 경로 (ST의 third-party 확장 디렉토리 기준)
-function getExtensionRoot() {
-    return `scripts/extensions/third-party/${EXTENSION_NAME}`;
+// 감지된 확장 루트 경로 캐시
+let _extensionRoot = null;
+
+/**
+ * 확장 루트 경로를 외부에서 사전 설정 (popup-standalone.html 등 자기 URL을 아는 경우).
+ * @param {string} root - 'extensions/sillytavern-style-engine' 형태의 경로
+ */
+export function setExtensionRoot(root) {
+    _extensionRoot = root;
+}
+
+/**
+ * 확장 루트 경로 자동 감지.
+ * 신규 경로(extensions/<name>) 우선, 실패 시 구버전(scripts/extensions/third-party/<name>) 폴백.
+ * 감지 결과는 캐시되어 이후 호출 시 재사용된다.
+ * @returns {Promise<string>}
+ */
+export async function getExtensionRoot() {
+    if (_extensionRoot) return _extensionRoot;
+
+    const newPath = `extensions/${EXTENSION_NAME}`;
+    const oldPath = `scripts/extensions/third-party/${EXTENSION_NAME}`;
+
+    // 신규 경로 시도
+    try {
+        const res = await fetch(`/${newPath}/manifest.json`, { method: 'HEAD' });
+        if (res.ok) {
+            _extensionRoot = newPath;
+            return _extensionRoot;
+        }
+    } catch {
+        // 신규 경로 불가 — 구버전 경로로 폴백
+    }
+
+    _extensionRoot = oldPath;
+    return _extensionRoot;
 }
 
 // 캐시 저장소
@@ -23,7 +56,8 @@ async function loadJSON(relativePath) {
     if (_cache[relativePath]) {
         return _cache[relativePath];
     }
-    const url = `/${getExtensionRoot()}/${relativePath}`;
+    const root = await getExtensionRoot();
+    const url = `/${root}/${relativePath}`;
     const response = await fetch(url);
     if (!response.ok) {
         throw new Error(`[StyleEngine] Failed to load ${url}: ${response.status}`);
