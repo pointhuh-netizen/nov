@@ -610,6 +610,69 @@
 .se-settings-actions {
     display: flex;
     gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* ============================================================
+   토글 스위치
+   ============================================================ */
+.se-toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    margin-left: auto;
+    user-select: none;
+}
+
+.se-toggle-label input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.se-toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 20px;
+    background: rgba(120, 120, 160, 0.3);
+    border-radius: 10px;
+    transition: background var(--se-transition);
+    flex-shrink: 0;
+}
+
+.se-toggle-switch::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background: var(--se-text-muted, #9090a8);
+    border-radius: 50%;
+    transition: left var(--se-transition), background var(--se-transition);
+}
+
+.se-toggle-label input:checked ~ .se-toggle-switch {
+    background: var(--se-accent, #7c8cf8);
+}
+
+.se-toggle-label input:checked ~ .se-toggle-switch::after {
+    left: 18px;
+    background: #fff;
+}
+
+.se-toggle-text {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--se-text-muted, #9090a8);
+    min-width: 22px;
+}
+
+.se-toggle-label input:checked ~ .se-toggle-text {
+    color: var(--se-accent, #7c8cf8);
 }
 
 /* ============================================================

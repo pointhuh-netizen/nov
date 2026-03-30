@@ -4,7 +4,7 @@
  * popup.html을 팝업으로 열고, 축별 탭/모듈 선택/빌드 미리보기를 제어한다.
  */
 
-import { loadAll } from './data-loader.js';
+import { loadAll, getExtensionRoot } from './data-loader.js';
 import { buildFromLoadedData } from './build-engine.js';
 import { checkCombinations } from './combination-checker.js';
 import { applyBuild, loadBuildFromChat, clearBuildFromChat } from './prompt-injector.js';
@@ -19,6 +19,9 @@ let _state = {
     selectedModules: [], // e.g. ['A-01', 'S-02']
     selectedConfigs: [], // e.g. ['UCC-01', 'NSFW-02']
 };
+
+// 새 창 참조
+let _standaloneWindow = null;
 
 /**
  * 데이터 초기화 (첫 팝업 열기 시 한 번만 실행)
@@ -40,9 +43,8 @@ export async function openPopup() {
     $('#style-engine-popup').remove();
 
     // popup.html 로드
-    const popupHtml = await $.get(
-        `/scripts/extensions/third-party/${EXTENSION_NAME}/popup.html`
-    );
+    const root = await getExtensionRoot();
+    const popupHtml = await $.get(`/${root}/popup.html`);
     $('body').append(popupHtml);
 
     // 저장된 상태 복원
@@ -479,4 +481,63 @@ export function onChatChanged() {
         renderConfigSection($('#style-engine-popup'), _loadedData?.catalog);
         updateConflictDisplay();
     }
+}
+
+/**
+ * standalone 창에서 온 postMessage 처리.
+ */
+function _handleStandaloneMessage(event) {
+    if (!event.data || event.data.source !== 'style-engine-standalone') return;
+    if (event.origin !== window.location.origin) return;
+
+    if (event.data.type === 'apply') {
+        applyBuild(event.data.result);
+        updateBuildSummary();
+    } else if (event.data.type === 'stateChange') {
+        _state.selectedModules = event.data.state.selectedModules || [];
+        _state.selectedConfigs = event.data.state.selectedConfigs || [];
+    }
+}
+
+/**
+ * popup-standalone.html을 새 브라우저 창으로 열기.
+ * 부모 창의 데이터를 window._styleEngineForStandalone으로 노출하고,
+ * 자식 창이 postMessage로 결과를 돌려보내면 부모에서 반영한다.
+ */
+export async function openPopupInNewWindow() {
+    await ensureDataLoaded();
+
+    // 이미 열려있으면 포커스
+    if (_standaloneWindow && !_standaloneWindow.closed) {
+        _standaloneWindow.focus();
+        return;
+    }
+
+    const root = await getExtensionRoot();
+    const url = `/${root}/popup-standalone.html`;
+
+    // 부모 창에 데이터/상태 노출 (자식 창이 window.opener로 접근)
+    window._styleEngineForStandalone = {
+        loadedData: _loadedData,
+        state: { ..._state },
+    };
+
+    _standaloneWindow = window.open(
+        url,
+        'style-engine-popup',
+        'width=1100,height=750,resizable=yes,scrollbars=yes'
+    );
+
+    if (!_standaloneWindow) {
+        if (typeof toastr !== 'undefined') {
+            toastr.warning('팝업이 차단되었습니다. 브라우저의 팝업 차단을 해제해 주세요.', 'Style Engine');
+        } else {
+            console.warn('[StyleEngine] Popup window was blocked by the browser.');
+        }
+        return;
+    }
+
+    // standalone 창에서 오는 메시지 수신 등록 (중복 방지)
+    window.removeEventListener('message', _handleStandaloneMessage);
+    window.addEventListener('message', _handleStandaloneMessage);
 }
